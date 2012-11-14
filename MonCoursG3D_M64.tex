@@ -1,0 +1,2300 @@
+\documentclass[10pt]{report}
+
+  \usepackage{calc}
+  \usepackage{ifthen}
+
+   %%%%%%%%%%%%%%%%%%%%%%   VERSION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   \newcounter{version}
+   \setcounter{version}{0} %0 livre ; 1 prof (trous complétés) ; 2 élève (à trous)
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+  \usepackage[latin1]{inputenc}
+  \usepackage[T1]{fontenc}
+  %\usepackage{lmodern}
+\usepackage{fouriernc} % math & rm
+\usepackage[scaled=0.875]{helvet} % ss
+\renewcommand{\ttdefault}{lmtt} %tt
+  \usepackage{textcomp}
+  \usepackage{setspace}
+  \usepackage[a4paper]{geometry}
+  \geometry{dvips,twoside,hmargin={3cm,2cm},vmargin={1cm,1cm},headheight=15pt,headsep=0.5cm,includehead,includefoot}
+
+  \usepackage{fancyhdr}
+
+  \usepackage{amsmath}
+  \usepackage{amssymb}
+  \usepackage{amsfonts}
+  \usepackage{amsthm}
+  \usepackage{mathrsfs}
+  \usepackage{wrapfig}
+  \usepackage{stmaryrd}
+
+  \usepackage{array}
+  \usepackage{multicol}
+  \setlength{\multicolsep}{3pt}
+  
+\usepackage[usenames,x11names,table]{xcolor}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{colortbl}
+%\usepackage[table]{xcolor}
+
+
+  \usepackage{graphicx}
+  \graphicspath{{Figures/}}
+  \usepackage{pstricks,pst-plot,pst-all,pstricks-add,pst-tree,pst-text,pst-solides3d,pst-3dplot,pst-eucl}
+    \usepackage[all]{xy}
+
+  \usepackage{fancybox}
+  \usepackage{color}
+
+  \usepackage[frenchb]{babel}
+  \usepackage{hyperref}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%   MISE EN FORME  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\parindent}{0pt}
+\renewcommand{\theenumi}{\arabic{enumi}}
+\renewcommand{\labelenumi}{\textbf{\theenumi.} \quad}
+%\renewcommand{\theenumii}{\alph{enumii}}
+%\renewcommand{\labelenumii}{\theenumii)}
+%\renewcommand{\labelitemi}{\textbullet}
+%
+%\renewcommand{\thesection}{\arabic{section} - }%
+%\renewcommand{\thesubsection}{\hspace{0cm} \alph{subsection})}%
+
+%\makeatletter
+%\renewcommand{\section}% 
+%               {\@startsection{section}{1}{\z@}%
+%               {-2.5ex \@plus -1ex \@minus -.2ex}%
+%	       {1.5ex \@plus.2ex}%
+%	       {\mathversion{bold}\normalfont\Large\bfseries}}
+%
+%\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+%             {-3.25ex\@plus -1ex \@minus -.2ex}%
+%             {1.5ex \@plus .2ex}%
+%             {\mathversion{bold}\normalfont\large\bfseries}}
+%\renewcommand{\@seccntformat}[1]{\csname the#1\endcsname\hspace{0.3cm}}
+%\makeatother
+
+\newenvironment{changemargin}[2]{%
+  \begin{list}{}{%
+    \setlength{\topsep}{0pt}%
+    \setlength{\leftmargin}{#1}%
+    \setlength{\rightmargin}{#2}%
+    \setlength{\listparindent}{\parindent}%
+    \setlength{\itemindent}{\parindent}%
+    \setlength{\parsep}{\parskip}%
+  }%
+  \item[]}{\end{list}}
+
+\newsavebox{\texte}
+\newsavebox{\titre}
+\newlength{\hauteur}
+%--------------------------------------------------------------
+\newenvironment{encadre}[1]%
+{\sbox{\titre}{\psframebox*{\textbf{#1}}}%
+\begin{lrbox}{\texte}\begin{minipage}{\linewidth-2\fboxsep-2\fboxrule-\shadowsize}%
+\vspace{\dp\titre}%
+}%
+{\end{minipage}\end{lrbox}%
+\psset{unit=1ex}%
+\setlength{\hauteur}{\ht\texte+\dp\texte+2\fboxsep+2\fboxrule+\shadowsize+\baselineskip+1ex}%
+\begin{pspicture}(0,-\hauteur)%
+\uput[dr](0,-1.5){\shadowbox{\usebox{\texte}}}\uput[dr](3,0.5){\usebox{\titre}}%
+\end{pspicture}%
+\par%
+}
+%--------------------------------------------------------------
+\newenvironment{definition}[1][Définition]{\begin{encadre}{#1}}{\end{encadre}}
+%--------------------------------------------------------------
+\newenvironment{prop}[1][Propriété]{\begin{encadre}{#1}}{\end{encadre}}
+%--------------------------------------------------------------
+\newenvironment{methode}[1][Méthode]{\begin{encadre}{#1}}{\end{encadre}}
+%--------------------------------------------------------------
+\newcounter{exercice}
+\newcommand{\exo}[1]{% Titre
+                     \refstepcounter{exercice}
+                     \vspace{1em} \par \noindent
+                     \raisebox{-0.7ex}{\bf Exercice \no \arabic{exercice}  #1}
+                     \hrulefill
+                     \par \vspace{0.5em}
+                    }
+%--------------------------------------------------------------
+\newenvironment{dem}{%
+		\par
+		\psset{unit=1ex}
+		\begin{pspicture}(4,0)
+		\psline[linewidth=0.5mm](1,0.5)(4,0.5)
+		\psline[linewidth=0.5mm](1,0.5)(1,-6)
+		\end{pspicture}
+		\textit{Démonstration} \begin{changemargin}{4ex}{4ex} 
+		\ifthenelse{\value{version}>0}%
+                           {\ifthenelse{\value{version}=1}{\color{blue}}{\color{white}}%
+		            \begin{large}}%
+                           {}%
+                }%
+		{\ifthenelse{\value{version}>0}%
+                            {\end{large}}%
+                            {}%
+                %\par
+		\hspace*{\fill}
+		\psset{unit=1ex}
+		\begin{pspicture}(0,0)
+		\psline[linewidth=0.5mm](-3.5,-1.5)(3,-1.5)
+		\psline[linewidth=0.5mm](3,-1.5)(3,5)
+		\end{pspicture}
+		\end{changemargin}%
+		\par\vspace{1ex}}
+%--------------------------------------------------------------
+\newenvironment{sol}{%
+		\par
+		\psset{unit=1ex}
+		\begin{pspicture}(4,0)
+		\psline[linewidth=0.5mm](1,0.5)(4,0.5)
+		\psline[linewidth=0.5mm](1,0.5)(1,-10)
+		\end{pspicture}
+		\textbf{Solutions} \begin{changemargin}{4ex}{4ex} 
+		\ifthenelse{\value{version}>0}%
+                           {\ifthenelse{\value{version}=1}{\color{blue}}{\color{white}}%
+		            \begin{large}}%
+                           {}%
+                }%
+		{\ifthenelse{\value{version}>0}%
+                            {\end{large}}%
+                            {}%
+                %\par
+		\hspace*{\fill}
+		\psset{unit=1ex}
+		\begin{pspicture}(0,0)
+		\psline[linewidth=0.5mm](-13.5,-1.5)(3,-1.5)
+		\psline[linewidth=0.5mm](3,-1.5)(3,9)
+		\end{pspicture}
+		\end{changemargin}%
+		\par\vspace{1ex}}
+%--------------------------------------------------------------
+\newcommand*{\exemple}[1]{$\diamondsuit$ \hspace*{0em} \textsf {\textbf{\textsc{\small{Exemple}}}}~:\hspace{0.5em} \begin{minipage}[t]{0.8\linewidth}
+#1
+\end{minipage}\\}
+%--------------------------------------------------------------
+\newenvironment{repex}{%
+                \par
+                \ifthenelse{\value{version}>0}%
+		           {\ifthenelse{\value{version}=1}{\color{blue}}{\color{white}}%
+		            \begin{large}}%
+                           {\begin{footnotesize}}%
+		\begin{upshape}\begin{changemargin}{4ex}{4ex}}%
+		{\end{changemargin}\end{upshape}
+                \ifthenelse{\value{version}>0}%
+                           {\end{large}}%
+                           {\end{footnotesize}}%
+		}
+%--------------------------------------------------------------
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[LO]{\textit{\leftmark}}
+%\fancyhead[RE]{\textit{Chapitre \thechapter}}
+\fancyhead[RE]{\footnotesize{Math64FL}}
+\renewcommand{\headrulewidth}{0.2pt}
+\fancypagestyle{plain}{\fancyhf{}}
+\renewcommand{\theequation}{\arabic{equation}}
+
+\setcounter{tocdepth}{1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%   COMMANDES  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ie}{\leqslant}
+\newcommand{\se}{\geqslant}
+\newcommand{\Abs}[1]{\left \lvert#1\right \rvert}
+\newcommand{\vect}[1]{\overrightarrow{#1\rule{0.1em}{0ex}}}
+\newcommand{\barre}[1]{\overline{#1\rule{0.1em}{0ex}}}
+\newcommand{\oij}{\ensuremath{(O;\vect{\imath},\vect{\jmath})}}
+%\renewcommand{\parallel}{\slash\negthickspace\slash} remplacé pat \sslash
+
+%%%%%%%%%%% Ensembles %%%%%%%%%%%%
+
+\newcommand{\D}{{\mathbb D}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\Z}{{\mathbb Z}}
+
+\newcommand{\calc}{\mathscr{C}}
+\newcommand{\cale}{\mathscr{E}}
+\newcommand{\cals}{\mathscr{S}}
+
+\newcommand{\cp}[2]{%
+	\begin{pmatrix}
+	#1\\
+	#2
+	\end{pmatrix}%
+	}
+
+%%%%%%%%%%% Polynômes %%%%%%%%%%%%
+\newcommand{\poly}[2]{#1_{#2}x^{#2}+#1_{#2-1}x^{#2-1}+\cdots+#1_{1}x+#1_{0}}
+
+%%%%%%%%%%% Limites %%%%%%%%%%%%
+\newcommand{\limn}{\ds\lim_{n\rightarrow +\infty}}
+\newcommand{\limo}[1][x]{\ds\lim_{#1\rightarrow 0}}
+\newcommand{\limite}[2][x]{\ds\lim_{#1\rightarrow #2}}
+\newcommand{\limpinf}[1][x]{\ds\lim_{#1\rightarrow +\infty}}
+\newcommand{\limminf}[1][x]{\ds\lim_{#1\rightarrow -\infty}}
+
+%%%%%%%%%%% Barycentres %%%%%%%%%%%%
+\newcommand{\bard}[2]{%
+                   \text{Bar}\left\{\left( #1 \right);\left( #2 \right)\right\}}
+\newcommand{\bart}[3]{%
+                   \text{Bar}\left\{\left( #1 \right);\left( #2 \right);\left( #3 \right)\right\}}
+
+%%%%%%%%%%% Arc %%%%%%%%%%%%
+\newlength{\longarc}
+\newcommand{\arc}[1]{\settowidth{\longarc}{$#1$\rule{0.5em}{0ex}}%
+	\addtolength{\longarc}{-0.5em}%
+	\unitlength \longarc%
+	\ensuremath{%
+		\stackrel{\begin{picture}(1,0.2)
+		\qbezier(0,0)(0.5,0.2)(1,0)
+		\end{picture}}
+		{#1}
+	}}
+
+%systèmes 2 équations
+\newcommand{\sysd}[2]{%
+         \left\lbrace%
+	 \begin{array}{@{}l}
+	 #1 \\
+	 #2
+	 \end{array}
+	 \right.}
+	 
+%systèmes 3 équations
+\newcommand{\sysdd}[3]{%
+         \left\lbrace%
+	 \begin{array}{@{}l}
+	 #1 \\
+	 #2 \\
+	 #3
+	 \end{array}
+	 \right.}
+	 
+%%%%%%%%%%% Suites %%%%%%%%%%%%
+\newcommand{\suite}[1]{\left( #1_{n} \right)_{n\in\N}}
+\newcommand{\suitep}[1]{\left( #1_{n} \right)_{n\in\N_{0}}}
+
+
+\usepackage [alwaysadjust]{paralist}
+
+%\hyphenpenalty 10000 % empèche la coupure de mots
+%\renewcommand*{\tabularxcolumn}[1]{m{#1}} %centrage vertical des cellules d'un tableau tabularx
+\newcommand{\Oij}{$\left( {{\mathrm{O}};\vec i,\vec j} \right)$}
+\newcommand{\Oijk}{$\left( {{\mathrm{O}};\vec i,\vec j ,\vec k} \right)$}
+\newcommand{\euro}{\texteuro{}}
+\newcommand{\e}{\mathrm {e}}
+\newcommand{\dd}{\mathrm {d}}
+\DecimalMathComma
+
+%---couleurs------
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+% section
+\usepackage{sectsty}
+%\allsectionsfont{\color{blue}\itshape\underline}
+\sectionfont{\color{myred}\upshape\selectfont}
+\subsectionfont{\color{DarkOrange2}\upshape\selectfont}
+\subsubsectionfont{\color{DodgerBlue3}\upshape\selectfont}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\abovedisplayskip=0.5ex
+\belowdisplayskip=0.5ex
+
+\title{Géométrie analytique dans l'espace\\ MATH64}
+\author{F. \textsc{Lancereau}}
+\date{\today}
+\maketitle
+
+\tableofcontents
+
+\vfill 
+
+$ $ \hfill \includegraphics{geospace.1} \hfill \includegraphics{geospace.2} \hfill \includegraphics{geospace.3} \hfill $ $
+
+
+\vfill
+
+\scalebox{0.5}
+{
+\begin{pspicture*}(0,-2)(6,6)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](0,0)(0,2)(2,4)(4,4)(4,0)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](4,4)(6,6)(6,2)(4,0)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](6,6)(2,6)(1,5)(2,4)(4,4)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](1,5)(0,2)(2,4)
+\end{pspicture*}
+}
+\hspace{2cm}
+\scalebox{0.5}
+{
+\begin{pspicture*}(0,-1)(7.54,9.5)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](3.02,0.98)(3.02,1.98)(4.02,2.98)(4.02,7.98)(5.02,8.98)(5.02,6.98)(7.02,8.98)(7.02,3.98)(3.02,0)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](3.02,0)(2.02,0)(2.02,1.98)(3.02,2.98)(3.02,5.98)(0.02,5.98)(0.02,6.98)(3.02,6.98)(3.02,7.98)(4.02,7.98)(4.02,2.98)(3.02,1.98)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](0.02,6.98)(1.02,7.98)(3.02,7.98)(3.02,6.98)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](3.02,7.98)(4.02,8.98)(5.02,8.98)(4.02,7.98)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](7.02,8.98)(6.02,8.98)(5.02,7.96)(5.02,6.98)
+   \psline(2,2)(3,2)\psline(3,3)(4,3)
+\end{pspicture*}
+}
+\hspace{2cm}
+\scalebox{0.5}
+{
+\begin{pspicture*}(0,-2)(9,7)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](3,0)(8,0)(8,6)(7,6)(7,3)(5,3)(5,4)(3,4)(2,3)(2,2)(3,3)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](-0,2)(2,2)(2,3)(-0,3)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](-0,3)(2,5)(6,5)(5,4)(3,4)(2,3)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](6,5)(6,4)(7,4)(7,3)(5,3)(5,4)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](8,0)(9,1)(9,7)(8,7)(7,6)(8,6)
+   \psline(5,3)(6,4)
+   \psline(8,6)(9,7)
+\end{pspicture*}}
+
+\vfill
+
+
+\thispagestyle{empty}
+\addtocounter{chapter}{1}
+\chapter{\textsc{géométrie dans l'espace}}
+
+
+\section{Rappels}
+\subsection{Généralités}
+\subsubsection*{Axiomes d'incidence}
+
+Les axiomes d'incidence de la géométrie dans l'espace sont des axiomes qui fournissent des relations entre les points, les droites et les plans de cette géométrie.
+
+\begin{definition}[Axiomes]
+\begin{itemize}
+	\item  Par deux points distincts $A$ et $B$ de l'espace il passe une et une seule droite. Cette droite peut être notée $\Delta$, $d_{AB}$ ou encore $(AB)$.
+	\item  Étant donnés deux points $A$ et $B$, il existe $C$ tel que $A$, $B$ et $C$ ne soient pas alignés. Par ces trois points, il passe un et un seul plan. Ce plan peut être noté $\pi$, $\psi$, $\pi_{ABC}$, $\psi_{ABC}$ ou encore $(ABC)$.
+	\item  Si $A$ et $B$ sont deux points d'un plan $\pi$, tous les points de la droite $d_{AB}$ appartiennent au plan $\pi$. La droite $d_{AB}$ est incluse dans $\pi$ ($d_{AB} \subset \pi$)
+\end{itemize}
+\end{definition}
+
+\subsubsection*{Conséquence}
+Un plan peut être déterminé par l'une des conditions suivantes~:
+
+\begin{tabular}{ccc}
+	\includegraphics[scale=0.9]{EspaceFigures.14}  & \includegraphics[scale=0.9]{EspaceFigures.15}  &	\includegraphics[scale=0.9]{EspaceFigures.16} \\ 
+		 Trois points non alignés & Deux droites sécantes & Une droite et un point 
+\end{tabular}
+
+%\subsubsection*{Propriété}
+%\begin{prop}
+%Les résultats de géométrie plane s'appliquent dans chaque plan de l'espace.
+%\end{prop}
+%
+%On peut donc utiliser dans chaque plan le théorème de Pythagore, les caractérisations des triangles semblables et isométriques, la trigonométrie, etc.
+
+
+
+\subsection{Positions relatives de droites et plans}
+\subsubsection*{Deux droites}
+On considère deux droites de l'espace.
+
+\begin{definition}
+\begin{itemize}
+\item s'il existe un plan contenant ces deux droites on dit qu'elles sont coplanaires. Elles sont alors sécantes ou parallèles.
+\item s'il n'existe pas de plan contenant ces deux droites on dit qu'elles sont non coplanaires.
+\end{itemize}
+\end{definition}
+
+\begin{minipage}{4.5cm}
+\includegraphics[scale=0.8]{EspaceFigures.15}
+\end{minipage}
+\hfill
+\begin{minipage}{4.5cm}
+\includegraphics[scale=0.8]{EspaceFigures.17}
+\end{minipage}
+\hfill
+\begin{minipage}{4.5cm}
+\includegraphics[scale=0.8]{EspaceFigures.18}
+\end{minipage}
+
+
+
+\subsubsection*{Une droite et un plan}
+On considère une droite et un plan de l'espace.
+
+%\vspace{2ex}
+\begin{prop}
+\begin{itemize}
+\item s'ils n'ont aucun point commun, la droite est strictement parallèle au plan.
+\item s'ils ont un unique point commun, la droite et le plan sont sécants.
+\item s'ils ont plus d'un point commun, la droite est incluse dans le plan.
+\end{itemize}
+\end{prop}
+
+\begin{minipage}{4.7cm}
+\includegraphics[scale=0.91]{EspaceFigures.30}
+\end{minipage}
+\hfill
+\begin{minipage}{4.7cm}
+\includegraphics[scale=0.91]{EspaceFigures.32}
+\end{minipage}
+\hfill
+\begin{minipage}{4.7cm}
+\includegraphics[scale=0.91]{EspaceFigures.31}
+\end{minipage}
+
+\subsubsection*{Deux plans}
+On considère deux plans de l'espace.
+
+\vspace{2ex}
+\begin{prop}
+\begin{itemize}
+\item s'ils n'ont aucun point commun, les plans sont parallèles.
+\item s'ils ont au moins un point commun mais sont distincts, les plans sont sécants et leur intersection est une droite.
+\item s'ils ont trois points commun non alignés, les plans sont confondus.
+\end{itemize}
+\end{prop}
+\begin{center}
+\begin{minipage}{5cm}
+\includegraphics[scale=0.91]{EspaceFigures.33}
+\end{minipage}
+\hspace{2cm}
+\begin{minipage}{5cm}
+\includegraphics[scale=0.91]{EspaceFigures.13}
+\end{minipage}
+\end{center}
+
+\medskip
+
+\subsection{Parallélisme}
+\subsubsection*{Une droite et un plan}
+\begin{prop}
+Si une droite $\Delta$ est parallèle à une droite $d'$ alors la droite $\Delta$ est parallèle à tout plan contenant $d'$.
+\end{prop}
+\begin{center}
+\includegraphics{EspaceFigures.23}
+\end{center}
+
+
+\bigskip
+
+
+
+\subsubsection*{Deux plans}
+\begin{prop}
+Si deux droites sécantes d'un plan $\pi$ sont respectivement parallèles à deux droites sécantes d'un plan $\psi$, alors les plans $\pi$ et $\psi$ sont parallèles.
+\end{prop}
+\begin{center}
+\includegraphics[scale=0.8]{EspaceFigures.22}
+\end{center}
+
+
+\bigskip
+
+\subsection{A retenir}
+
+$\varoast$ \quad Deux droites de l'espace sont soit coplanaires, soit non coplanaires.
+
+\psset{unit=0.75}
+\begin{center}
+\begin{tabular}{ccc|c}
+\multicolumn{3}{c|}{\color{black}\textbf{Coplanaires (dans un même plan)}}&\textbf{Non coplanaires} \\\hline
+$\Delta$ et $\Delta'$ sécantes & \multicolumn{2}{c|}{$\Delta$ et $\Delta'$ parallèles}& \\
+\begin{pspicture*}(-0.6,-2.7)(4.2,1.2)
+\psline[linecolor=gray](0,0)(0,-2)(2,-2)(2,0)(0,0)(1,0.5)(3,0.5)(3,-1.5)(2,-2)
+\psline[linecolor=gray](2,0)(3,0.5)
+\psline(0,0.5)(3.5,0.5) \uput[u](0,0.4){$\Delta$}
+\psplot[algebraic=true,plotpoints=200]{-0.5}{4}{x/6} \uput[u](-0.1,-0.2){$\Delta'$}
+\psdot[dotstyle=x](3,0.5) \uput[u](3,0.5){$A$}
+\end{pspicture*}
+&
+\begin{pspicture*}(-0.6,-2.7)(4.2,1.2)
+\psline[linecolor=gray](0,0)(0,-2)(2,-2)(2,0)(0,0)(1,0.5)(3,0.5)(3,-1.5)(2,-2)
+\psline[linecolor=gray](2,0)(3,0.5)
+\psline(0,0.5)(3.7,0.5) \uput[u](0,0.4){$\Delta$}
+\psline(-0.5,0)(3.2,0) \uput[u](-0.3,-0.1){$\Delta'$}
+\end{pspicture*}
+&
+\begin{pspicture*}(-0.6,-2.7)(4.2,1.2)
+\psline[linecolor=gray](0,0)(0,-2)(2,-2)(2,0)(0,0)(1,0.5)(3,0.5)(3,-1.5)(2,-2)
+\psline[linecolor=gray](2,0)(3,0.5)
+\psline(-0.5,0.005)(3.2,0.005) \uput[u](-0.3,-0.1){$\Delta$}
+\psline(-0.5,-0.005)(3.2,-0.005) \uput[d](3,0.1){$\Delta'$}
+\end{pspicture*}
+&
+\begin{pspicture*}(-0.6,-2.7)(4.2,1.2)
+\psline[linecolor=gray](0,0)(0,-2)(2,-2)(2,0)(0,0)(1,0.5)(3,0.5)(3,-1.5)(2,-2)
+\psline[linecolor=gray](2,0)(3,0.5)
+\psline(-0.5,0)(3.2,0) \uput[u](-0.3,-0.1){$\Delta$}
+\psplot[algebraic=true,plotpoints=200]{-0.5}{4}{0.5*x-3} \uput[dl](2.1,-2){$\Delta'$}
+\end{pspicture*}\\
+
+\multicolumn{1}{m{3cm}}{\multirow{2}{3cm}{$\Delta$ et $\Delta'$ ont un point d'intersection $A$.}}
+& \multicolumn{1}{m{3cm}}{\multirow{2}{3cm}{$\Delta$ et $\Delta'$ sont strictement parallèles.}} & \multicolumn{1}{m{3cm}|}{\multirow{2}{3cm}{$\Delta$ et $\Delta'$ sont confondues.}} & \multicolumn{1}{m{3cm}}{\multirow{2}{3cm}{Aucun plan ne contient à la fois $\Delta$ et $\Delta'$.}} \\
+& & & \\
+& & & \\
+$\Delta\cap \Delta' = \{ A \}$ & $\Delta\cap \Delta' = \emptyset$ & $\Delta\cap \Delta' = \Delta=\Delta'$ & $\Delta\cap \Delta' = \emptyset$\\
+\end{tabular}
+\end{center}
+
+
+
+$\varoast$ \quad  Une droite et un plan de l'espace sont soit sécants, soit parallèles.
+
+
+\psset{unit=1}
+\begin{center}
+\begin{tabular}{c|cc}
+\textbf{Sécants}&\multicolumn{2}{c}{\textbf{Parallèles}} \\\hline
+&&&\\[-2em]
+\begin{pspicture*}(-0.6,-0.7)(5.5,2.8)
+\pspolygon[fillstyle=solid,fillcolor=DodgerBlue1!30](0,0)(3,0)(5,1)(2,1)
+\pspolygon*[linecolor=white](2,0.5)(3,0.5)(3.5,0.75)(3.5,1.75)(2.5,1.75)(2,1.5)
+\psline[linecolor=gray,linestyle=dotted](2,0.5)(2.5,0.75)(2.5,1.75)
+\psline[linecolor=gray,linestyle=dotted](2.5,0.75)(3.5,0.75)
+\psline[linecolor=gray](2,1.5)(2,0.5)(3,0.5)(3,1.5)(2,1.5)(2.5,1.75)(3.5,1.75)(3.5,0.75)(3,0.5)
+\psline[linecolor=gray](3,1.5)(3.5,1.75)
+\psplot[linestyle=dotted,algebraic=true,plotpoints=200]{2.5}{3.866}{-x+4.25}
+\psplot[algebraic=true,plotpoints=200]{1.5}{2.5}{-x+4.25}
+\psplot[algebraic=true,plotpoints=200]{3.866}{4.75}{-x+4.25}
+\psdot[dotstyle=x](3.5,0.75)
+\uput[r](3.5,0.75){$A$}
+\uput[u](4.6,-0.4){$\Delta$}
+\uput[u](4.6,1){$\pi$}
+\end{pspicture*}
+&
+\begin{pspicture*}(-0.6,-0.7)(5.5,2.8)
+\pspolygon[fillstyle=solid,fillcolor=DodgerBlue1!30](0,0)(3,0)(5,1)(2,1)
+\pspolygon*[linecolor=white](2,0.5)(3,0.5)(3.5,0.75)(3.5,1.75)(2.5,1.75)(2,1.5)
+\psline[linecolor=gray,linestyle=dotted](2,0.5)(2.5,0.75)(2.5,1.75)
+\psline[linecolor=gray,linestyle=dotted](2.5,0.75)(3.5,0.75)
+\psline[linecolor=gray](2,1.5)(2,0.5)(3,0.5)(3,1.5)(2,1.5)(2.5,1.75)(3.5,1.75)(3.5,0.75)(3,0.5)
+\psline[linecolor=gray](3,1.5)(3.5,1.75)
+\psline(0,1.75)(4.5,1.75)
+\uput[l](0,1.75){$\Delta$}
+\uput[u](4.6,1){$\pi$}
+\end{pspicture*}
+&
+\begin{pspicture*}(-0.6,-0.7)(5.5,2.8)
+\pspolygon[fillstyle=solid,fillcolor=DodgerBlue1!30](0,0)(3,0)(5,1)(2,1)
+\pspolygon*[linecolor=white](2,0.5)(3,0.5)(3.5,0.75)(3.5,1.75)(2.5,1.75)(2,1.5)
+\psline[linecolor=gray,linestyle=dotted](2,0.5)(2.5,0.75)(2.5,1.75)
+\psline[linecolor=gray,linestyle=dotted](2.5,0.75)(3.5,0.75)
+\psline[linecolor=gray](2,1.5)(2,0.5)(3,0.5)(3,1.5)(2,1.5)(2.5,1.75)(3.5,1.75)(3.5,0.75)(3,0.5)
+\psline[linecolor=gray](3,1.5)(3.5,1.75)
+\psline(0,0.5)(4.5,0.5)
+\uput[l](0,0.5){$\Delta$}
+\uput[u](4.6,1){$\pi$}
+\end{pspicture*}
+\\
+\multicolumn{1}{m{4cm}|}{$\Delta$ et $\pi$ ont un point d'intersection $A$.}
+& \multicolumn{1}{m{4cm}}{$\Delta$ et $\pi$ sont strictement parallèles.} & \multicolumn{1}{m{4cm}}{$\Delta$ est contenue dans $\pi$} \\
+$\Delta\cap \pi = \{ A \}$ & $\Delta\cap \pi = \emptyset$ & $\Delta\cap \pi = \Delta$\\
+\end{tabular}
+\end{center}
+
+
+
+\medskip
+
+$\varoast$ \quad  Deux plans de l'espace sont soit sécants, soit parallèles.
+
+\psset{unit=0.9}
+\begin{center}
+\begin{tabular}{c|cc}
+\textbf{Sécants}&\multicolumn{2}{c}{\textbf{Parallèles}} \\\hline
+&&&\\[-2em]
+\begin{pspicture*}(-0.6,-0.7)(6,2.8)
+\pspolygon[fillstyle=solid,fillcolor=gray](0,0)(3,0)(5,1)(2,1)
+\pspolygon[fillstyle=solid,fillcolor=lightgray](5,1)(2,1)(0,4)(3,4)
+\pspolygon*[linecolor=white](2.5,1.75)(2.5,0.75)(3.5,0.75)(4,1)(3.5,1.75)
+\psline(3.5,0.75)(4,1)(3.5,1.75)(3.5,0.75)(2.5,0.75)(2.5,1.75)(3.5,1.75)
+\psline[linestyle=dotted](2.5,0.75)(3,1)(3,2)(2.5,1.75)(3,1)(4,1)(4,2)(3.5,1.75)
+\psline[linestyle=dotted](3,2)(4,2)
+\psline[linestyle=dotted](2.5,1)(3,1)
+\psline(1,1)(2,1)\uput[l](1,1){$\Delta$}
+\psline(5,1)(5.5,1)
+\uput[u](0,0){$\pi$}
+\uput[dl](1,2.5){$\pi'$}
+\end{pspicture*}
+&
+\begin{pspicture*}(-0.6,-0.7)(6,2.8)
+\pspolygon[fillstyle=solid,fillcolor=gray](0,0)(3,0)(5,1)(2,1)
+\pspolygon[fillstyle=solid,fillcolor=lightgray](0,1.5)(3,1.5)(5,2.5)(2,2.5)
+\pspolygon*[linecolor=white](1.5,1.75)(2.5,1.75)(3,2)(2,2)
+\pspolygon*[linecolor=white](1.5,0.25)(2.5,0.25)(3,0.5)(3,1.25)(1.5,1.25)
+\psline[linestyle=dotted](2,2)(2,0.5)(1.5,0.25)
+\psline[linestyle=dotted](2,0.5)(3,0.5)
+\psline[linestyle=dotted](1.5,1.75)(1.5,1.5)
+\psline[linestyle=dotted](2.5,1.75)(2.5,1.5)
+\psline[linestyle=dotted](3,2)(3,1.5)
+\psline(1.5,1.5)(1.5,0.25)(2.5,0.25)(2.5,1.5)
+\psline(2.5,0.25)(3,0.5)(3,1.5)
+\psline(1.5,1.75)(2.5,1.75)(3,2)(2,2)(1.5,1.75)
+\uput[u](0,0){$\pi$}
+\uput[u](0,1.5){$\pi'$}
+\end{pspicture*}
+&
+\begin{pspicture*}(-1.4,-0.7)(6.5,2.8)
+\pspolygon[fillstyle=solid,fillcolor=gray](-1,-0.25)(3.25,-.25)(6.25,1.25)(2,1.25)
+\pspolygon[fillstyle=solid,fillcolor=lightgray](0,0)(3,0)(5,1)(2,1)
+\pspolygon*[linecolor=white](2,0.5)(3,0.5)(3.5,0.75)(3.5,1.75)(2.5,1.75)(2,1.5)
+\psline[linecolor=gray,linestyle=dotted](2,0.5)(2.5,0.75)(2.5,1.75)
+\psline[linecolor=gray,linestyle=dotted](2.5,0.75)(3.5,0.75)
+\psline[linecolor=gray](2,1.5)(2,0.5)(3,0.5)(3,1.5)(2,1.5)(2.5,1.75)(3.5,1.75)(3.5,0.75)(3,0.5)
+\psline[linecolor=gray](3,1.5)(3.5,1.75)
+\uput[u](6,1.25){$\pi$}
+\rput(4,0.75){$\pi'$}
+\end{pspicture*}\\
+\multicolumn{1}{m{4cm}|}{$\pi$ et $\pi'$ ont une droite d'intersection $\Delta$.}
+& \multicolumn{1}{m{4cm}}{$\pi$ et $\pi'$ sont strictement parallèles.} & \multicolumn{1}{m{4cm}}{$\pi$ et $\pi'$ sont confondus} \\
+$\pi\cap \pi' = \Delta$ & $\pi\cap \pi' = \emptyset$ & $\pi\cap \pi' = \pi= \pi'$\\
+\end{tabular}
+\end{center}
+
+\medskip
+
+\begin{prop}
+\begin{itemize}
+\item Contrairement au plan, deux droites de l'espace n'ayant pas de point en commun ne sont pas forcément parallèles.
+\item Des droites strictement parallèles sont des droites \textbf{coplanaires et qui n'ont aucun point en commun}.
+	\item On peut définir un plan de plusieurs manières :
+			\begin{itemize}
+				\item[$\bullet$] par la donnée de trois points ;
+				\item[$\bullet$] par la donné de deux droites sécantes ;
+				\item[$\bullet$] par la donnée de deux droites strictement parallèles ;
+				\item[$\bullet$] par la donnée d'une droite et d'un point n'appartenant par à cette droite.
+			\end{itemize}
+\end{itemize}
+\end{prop}
+
+
+Une droite $\Delta$ et un plan $\pi$ sont parallèles s'ils ne sont pas sécants. On note alors $\Delta\sslash \pi$ ou $\pi\sslash \Delta$.
+
+Deux plans $\pi$ et $\pi'$ sont parallèles lorsqu'ils ne sont pas sécants. On note $\pi\sslash \pi'$.
+
+\medskip
+
+\begin{methode}
+\begin{itemize}
+	\item Pour démontrer que trois points sont alignés, il suffit de montrer que les trois points appartiennent à deux plans sécants : comme l'intersection de deux plans sécants est une droite, cela implique que les points sont tous les trois sur cette droite.
+	\item Pour trouver la droite d'intersection de deux plans, il suffit de trouver deux points distincts qui appartiennent aux deux plans : la droite d'intersection est alors celle qui passe par ces deux points. Ces points sont en général des points d'intersection de droites sécantes, l'une contenue dans l'un des plans, l'autre dans l'autre plan.
+\end{itemize}
+\end{methode}
+
+
+
+
+
+\section{Vecteur de l'espace} 
+
+Les définitions et opérations sur les vecteurs du plan se généralisent dans l'espace
+
+\begin{prop}
+\begin{itemize}
+\item Pour tout point $O$ de l'espace et tout vecteur $\vect{u}$, il existe un unique point $A$ tel que $$\vect{OA}=\vect{u}$$
+\item Pour tous points $A$, $B$, $C$ et $D$ de l'espace, $$\vect{AB}=\vect{CD}\Longleftrightarrow \text{ABCD est un parallélogramme}$$
+\item Pour tous points $A$, $B$ et $C$ de l'espace, $\vect{AB}+\vect{BC}=\vect{AC}$ (relation de Chasles)
+\item La définition du produit d'un vecteur par un réel ainsi que les règles de calcul sont les mêmes que celles du plan.
+\end{itemize}
+\end{prop}
+
+
+ \subsection{Vecteurs colinéaires}
+ 
+\begin{definition}
+Dire que deux vecteurs non nuls  $\vec u$ et $\vec v$  sont colinéaires signifie, qu'ils ont la même direction, c'est-à-dire qu'il existe un réel  $\lambda$ tel que $\vec u=\lambda \cdot \vec v$.
+\end{definition}
+
+
+
+Par convention, le vecteur nul $\vec 0$ est colinéaire à tout vecteur.
+
+ 
+\subsubsection{Interprétation géométrique}
+ 
+ 
+\begin{itemize}
+	\item Trois points $A$, $B$ et $C$ sont alignés si, et seulement si, les vecteurs  $\overrightarrow {AB}$ et $\overrightarrow {AC}$ sont colinéaires.
+	\item Les droites $d_{AB}$ et $d_{CD}$ sont parallèles si, et seulement si, les vecteurs  $\overrightarrow {AB}$ et $\overrightarrow {CD}$ sont colinéaires.
+\end{itemize}
+
+
+
+\subsubsection{Caractérisation vectorielle d'une droite}
+
+
+
+\begin{prop}
+\begin{itemize}
+\item Soit $A$ un point de l'espace et $\vect{u}$ un vecteur. L'ensemble des points $M$ de l'espace tels que $\vect{AM}$ et $\vect{u}$ sont colinéaires est la droite passant par $A$ et de vecteur directeur $\vect{u}$. $$\vect{AM}=\lambda \cdot \vect{u} \text{ où } \lambda \text{ est un réel}$$
+\item Soient $A$ et $B$ deux points de l'espace.
+
+La droite $d_{AB}$ est l'ensemble des points $M$ tels que $\vect{AM}$ et $\vect{AB}$ sont colinéaires.
+\end{itemize}
+\end{prop}
+
+ \subsection{Vecteurs coplanaires}
+
+\begin{definition}
+$\vec u$,   $\vec v$ et  $\vec w$ sont trois vecteurs de l'espace tels que  $\vec u$ et  $\vec v$ ne sont pas colinéaires.\\ 
+Les vecteurs $\vec u$,   $\vec v$ et  $\vec w$ sont coplanaires si, et seulement si, il existe deux réels  $\lambda$ et $\mu$  tels que :
+ \[ \vec w =\lambda \vec u +\mu \vec v \]
+\end{definition}
+
+\begin{center}
+\includegraphics[scale=1]{EspaceFigures.3}
+\end{center}
+ 
+\subsubsection{Conséquence}
+
+Pour démontrer qu'un point $D$ appartient à un plan $\pi$ défini par trois points non alignés $A$, $B$ et $C$ on montre que les vecteurs  $\overrightarrow {AB}$, $\overrightarrow {AC}$  et $\overrightarrow {AD}$ sont coplanaires.
+
+
+
+
+
+\subsubsection{Caractérisation vectorielle d'un plan}
+
+
+
+\begin{prop}
+\begin{itemize}
+\item Soient $A$, $B$ et $C$ trois points non alignés de l'espace.
+
+Le plan $\pi_{ABC}$ est l'ensemble des points $M$ du plan tels que $\vect{AM}=x\vect{AB}+y\vect{AC}$.
+\item Soit $A$ un point de l'espace et $\vect{u}$ et $\vect{v}$ deux vecteurs non colinéaires.
+
+L'ensemble des points $M$ de l'espace tels que $\vect{AM}=x\vect{u}+y\vect{v}$ où $x$ et $y$ sont des réels est un plan que l'on note $(A;\vect{u},\vect{v})$.
+\end{itemize}
+\end{prop}
+\begin{center}
+\begin{minipage}{5cm}
+\includegraphics[scale=0.98]{EspaceFigures.1}
+\end{minipage}
+\hspace{2cm}
+\begin{minipage}{5cm}
+\includegraphics[scale=0.98]{EspaceFigures.2}
+\end{minipage}
+\end{center}
+
+\newpage
+
+\section{Repérage dans l'espace}
+
+\subsection{Coordonnées d'un point}
+
+
+
+\begin{minipage}{0.5\linewidth}
+\psset{unit=0.6cm}
+\begin{pspicture}(-4.5,-2.5)(6.5,7)
+\psset{linecolor=gray,Alpha=45,Beta=12}
+\newrgbcolor{bleu}{0.1 0.1 .5}
+\newrgbcolor{prune}{.5 0 .5}
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=5,yMax=8,zMax=6,linecolor=black,linewidth=.75pt]
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=2,yMax=2,zMax=2,nameX=,nameY=,nameZ=,linewidth=1.5pt]
+\pstThreeDBox[linestyle=dashed,dash=3pt  4pt,linecolor=Burlywood4,linewidth=.8pt](0,0,0)(0,0,5)(4,0,0)(0,7,0)
+\pstThreeDDot[dotstyle=*,fillstyle=solid,linecolor= Burlywood4,linewidth=1pt](4,7,5)
+\pstThreeDPut(0,0,-.4){\footnotesize{\textbf{\textsf{O}}}}
+\pstThreeDPut(1.2,-.2,.6){\footnotesize{\red $\vec i$}}
+\pstThreeDPut(-0.2,1.2,.6){\footnotesize{\red $\vec j$}}
+\pstThreeDPut(-.2,.4,1.5){\footnotesize{\red $\vec k$}}
+\pstThreeDLine[linewidth=1.7pt,linecolor=black,arrows=>](4,7,5)(0,0,0)
+\pstThreeDLine[linewidth=1.2pt,linestyle=dotted,linecolor= Burlywood4](4,7,0)(0,0,0)
+\pstThreeDLine[linewidth=1.2pt,linestyle=dotted,linecolor= Burlywood4](4,7,5)(0,0,5)
+\pstThreeDPut(4.5,7.5,5.7){\footnotesize{\textbf{\textsf{\textcolor{Burlywood4}{M}}}}}
+\end{pspicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.5\linewidth}
+Dans un repère \Oijk, pour tout point $M$, il existe un unique triplet $\left(x_M;y_M;z_M\right)$ de réels tels que  \[\overrightarrow {OM}=x_M\cdot \vec i+y_M \cdot \vec j+z_M \cdot \vec k\] 
+$\left(x_M~;~y_M~;~z_M\right)$ est le triplet de coordonnées du point $M$ (ou du vecteur $\overrightarrow {OM}$).
+
+$x_M$ est l'abscisse, $y_M$ est l'ordonnée, $z_M$ est la cote.
+\end{minipage}
+
+Dans cette représentation, le point $M$ a pour coordonnées $\left(4~;~7~;~5\right)$. Par ailleurs,  $\overrightarrow {OM}=4 \vec i + 7 \vec j + 5 \vec k$
+
+
+\subsection{Calculs avec les coordonnées}\label{sec:coord}
+	
+\begin{definition}
+	Dans un repère \Oijk, on considère les vecteurs $\vec u \left( x~;~y~;~z\right)$ et $\vec v \left( x'~;~y'~;~z'\right)$.  
+\begin{itemize}
+	\item $\vec u = \vec v$ si, et seulement si, $x=x'$, $y=y'$ et $z=z'$.
+	\item Le vecteur somme $\vec u + \vec v$ a pour coordonnées $\left( x+x'~;~y+y'~;~z+z'\right)$.
+	\item Pour tout réel $\lambda$, \quad $\lambda \cdot  \vec u = \left( \lambda . x~;~\lambda . y~;~\lambda . z\right)$.\\
+\end{itemize}
+Soit $A(x_A~;~y_A~;~z_A)$ et $B\left(x_B~;~y_B~;~z_B\right)$ deux points de l'espace :
+\begin{itemize}
+	\item le vecteur $\overrightarrow {AB}$ a pour coordonnées $\left(x_B-x_A~;~y_B-y_A~;~z_B-z_A \right)$.
+	\item le milieu $I$ du segment $\left[AB\right]$ a pour coordonnées $\left(\frac{x_A+x_B}{2}~;~\frac{y_A+y_B}{2}~;~\frac{z_A+z_B}{2} \right)$.
+\end{itemize}
+\end{definition}	
+
+
+
+
+\subsubsection*{Distance dans un repère orthonormé}
+
+\begin{definition}
+	Dans un repère \textbf{orthonormal} \Oijk,   
+	
+\begin{itemize}
+	\item La distance entre les points $A(x_A~;~y_A~;~z_A)$ et $B\left(x_B~;~y_B~;~z_B\right)$ est donnée par \[\overline{AB}=\sqrt{{\left(x_B-x_A\right)}^2+{\left(y_B-y_A\right)}^2+{\left(z_B-z_A\right)}^2}\]
+	\item Deux vecteurs  $\vec{u}(u_x\,;\,u_y\,;\,u_z)$ et $\vec{v}(v_x\,;\,v_y\,;\,v_z)$ sont orthogonaux si, et seulement si, $$u_x \cdot v_x + u_y \cdot v_y + u_z \cdot v_z=0$$
+\end{itemize}
+\end{definition}
+
+\subsubsection*{Vecteurs colinéaires}
+
+\begin{definition} Les vecteurs $\vec{u}(u_x\,;\,u_y\,;\,u_z)$ et $\vec{v}(v_x\,;\,v_y\,;\,v_z)$ sont colinéaires lorsqu'il existe $\lambda \in \mathbb{R}_0$ tel que 
+
+$ $ \hfill
+\sysdd{u_x=\lambda \cdot v_x}{u_y=\lambda\cdot v_y}{u_z=\lambda\cdot v_z} \hfill $ $
+\end{definition}
+
+\subsubsection*{Vecteurs coplanaires}
+
+\begin{definition} Les vecteurs $\vec{u}(u_x\,;\,u_y\,;\,u_z)$, $\vec{v}(v_x\,;\,v_y\,;\,v_z)$ et $\vec{w}(w_x\,;\,w_y\,;\,w_z)$ sont coplanaires lorsqu'il existe $\lambda,~\mu  \in \mathbb{R}_0$ tel que $$\sysdd{w_x=\lambda\cdot u_x + \mu\cdot v_x}{w_y=\lambda\cdot u_y + \mu\cdot v_y}{w_z=\lambda\cdot u_z + \mu\cdot v_z}$$
+\end{definition}
+
+
+
+\exemple{
+Montrons en premier lieu que les vecteurs $\vec u (0;4;-2)$, $\vec v (3;-1;2)$ et $\vec w (3;7;-2)$ sont coplanaires.
+}
+
+On vérifie que les vecteurs $\vec u$ et $\vec v$ sont pas colinéaires puis on recherche des réels $\lambda$ et $\mu$ vérifiant :$$\vec w =\lambda \vec u +\mu \vec v$$
+\begin{enumerate}
+\item $\vec u=\lambda \cdot \vec v \iff\sysdd{0=3\lambda}{4=-\lambda}{-2=2\lambda } \iff {\sysdd{\lambda=0}{\lambda=-4}{\lambda =-1}}$ \hfill \begin{minipage}{0.5\linewidth}   
+Comme $\lambda$ ne peut être simultanément égal à 0, -4 et -1, on en conclut la non-colinéarité des vecteurs $\vec u$ et $\vec v$
+\end{minipage}
+\item $\vec w =\lambda \cdot \vec u +\mu \cdot  \vec v \iff \sysdd{3=3\mu}{7=4\lambda-\mu}{-2=-2\lambda+2\mu} \iff \sysdd{\mu=1}{7=4\lambda-1}{-2=-2\lambda+2\mu} \iff \sysdd{\mu=1}{\lambda=2}{-2=-2\lambda+2\mu}$\\  Les vecteurs seront coplanaires si $\lambda$ et $\mu$ sont aussi solutions de la troisième équation. C'est le cas puisque : $$-2 = -2 \cdot (2) + 2 \cdot (1)$$
+\end{enumerate}
+
+
+
+\section{Représentation paramétrique}\label{sec:equparam}
+    
+    Soient une droite vectorielle $d(A,\vec u)$ et un plan vectoriel $\pi(A;\vect{u},\vect{v})$ avec le point d'ancrage $A(x_A;y_A;z_A)$ et les vecteurs directeurs $\vec u(u_x,u_y,u_z)$, $\vec v(v_x,v_y,v_z)$ donnés. Alors : \\     
+    \begin{minipage}{0.5\linewidth}
+      \begin{eqnarray*}
+        & & M(x,y,z) \in d\\
+        & \equi & \vect{AM} \text{ et } \vec u\text{ sont colinéaires} \\
+        & \equi & \exists\;\lambda \in \R \;|\;\vect{AM}=\lambda \cdot \vec u \\
+        & \equi & \exists\;\lambda \in \R \;|\;\left\{ \begin{array}{l} 
+x=x_A + \lambda \cdot u_x \\ 
+y=y_A + \lambda \cdot u_y \\
+z=z_A + \lambda \cdot u_z. 
+\end{array} \right.
+      \end{eqnarray*} 
+    \end{minipage} \hfill
+    \begin{minipage}{0.5\linewidth}
+      \begin{eqnarray*}
+        & & M(x,y,z)\in \pi \\
+        & \equi & \vect{AM}\text{, }\vec u \text{ et } \vec v\text{ sont coplanaires} \\
+        & \equi & \exists\;\lambda ,\mu\in\R\;|\;\vect{AM}=\lambda \cdot \vec u+\mu \cdot \vec v \\
+        & \equi & \exists\;\lambda ,\mu\in\R\;|\;\left\{ \begin{array}{l} 
+x=x_A+\lambda \cdot u_x+\mu \cdot v_x \\ 
+y=y_A+\lambda \cdot u_y+\mu \cdot v_y \\ 
+z=z_A+\lambda \cdot  u_z+\mu \cdot  v_z. \end{array} \right.
+      \end{eqnarray*}
+    \end{minipage} \vspace{2mm}
+    
+    Ce système est appelé \emph{représentation paramétrique de} $d$ (resp. $\pi$). 
+    
+\begin{definition}
+Ci-dessous, les systèmes d'équations paramétriques d'une droite $d$ et d'un plan $\pi$\\
+\begin{minipage}{0.5\linewidth}
+$$d \equiv \left\{ \begin{array}{l} 
+x=x_A + \lambda \cdot u_x \\ 
+y=y_A + \lambda \cdot u_y \\
+z=z_A + \lambda \cdot u_z. 
+\end{array} \right.$$
+    \end{minipage} \hfill
+    \begin{minipage}{0.5\linewidth}
+$$\pi \equiv \left\{ \begin{array}{l} 
+x=x_A+\lambda \cdot u_x+\mu \cdot v_x \\ 
+y=y_A+\lambda \cdot u_y+\mu \cdot v_y \\ 
+z=z_A+\lambda \cdot  u_z+\mu \cdot  v_z. \end{array} \right.$$
+\end{minipage}   
+\end{definition}
+    
+
+\medskip
+
+\exemple{La coordonnée du vecteur directeur $\vec u$ de la droite $d \equiv \left\{ \begin{array}{l} x = \lambda \\
+y = -1 + 2\lambda \\
+z = 5 - 3\lambda
+\end{array} \right.$\\ est $\vec u (1~;~2~;~-3)$. Un point d'ancrage évident est  $A(0~;~-1~;~5)$. Par ailleurs, le point $B(2~;~3~;~-1)$ appartient aussi à cette droite ! (le justifier)                    
+}
+
+
+\medskip
+
+\exemple{Les repr\'esentations param\'etriques suivantes d\'efinissent le m\^eme plan :
+\begin{center}
+$\pi \equiv \left\{ \begin{array}{l}x=2+\lambda+2\mu \\ y=2+2\lambda+\mu \\ z=1-\lambda-\mu \end{array} \right.$ 
+et $\pi' \equiv \left\{ \begin{array}{l} x=1+3\alpha-\beta\\ y=3+3\alpha+\beta\\ z=1-2\alpha \end{array} \right.$
+\end{center} Il suffit de vérifier que trois points appartenant au premier plan se situent également dans le second}
+
+
+\newpage
+
+\section{\'Equations cartésiennes de l'espace}
+
+\subsection{\'Equation d'un plan}
+
+\begin{definition}
+\begin{itemize}
+\item Un plan de l'espace a une équation cartésienne de la forme $$ax+by+cz+d=0$$ avec $a$, $b$ et $c$ des réels non tous nuls.
+\item Réciproquement, toute équation de la forme $ax+by+cz+d=0$, où l'un au moins des réels $a$, $b$ et $c$ n'est pas nul, est une équation cartésienne d'un plan.
+\end{itemize}
+\end{definition}
+
+
+
+
+
+\subsubsection*{Plans particuliers}
+
+Un plan admettant une équation \og incomplète \fg, c'est à dire dans laquelle ne figure qu'une ou deux des trois variables $x$, $y$ et $z$, est parallèle à un plan de coordonnées ou à un axe de coordonnées.
+
+\exemple{
+\begin{itemize}
+	\item le plan $(xOy)$ admet $z = 0$ comme équation cartésienne ;
+	\item le plan $(zOy)$ admet $x = 0$ comme équation cartésienne ;
+	\item Le plan $(xOz)$ admet $y = 0$ comme équation cartésienne.
+\end{itemize}}
+
+
+\exemple{
+\begin{itemize}
+	\item tout plan parallèle à $(xOy)$ admet $z = d$  comme équation cartésienne ;
+	\item tout plan parallèle à $(zOy)$ admet $x = d$ comme équation cartésienne ;
+	\item tout plan parallèle à $(xOz)$ admet $y = d$ comme équation cartésienne.
+\end{itemize}}
+
+\exemple{
+\begin{itemize}
+	\item tout plan parallèle à $(Ox)$ admet pour équation $by+cz = d$ avec $(b\,;\,c)\neq(0\,;\,0)$ %comme équation cartésienne ;
+	\item tout plan parallèle à $(Oy)$ admet pour équation $ax+cz = d$ avec $(a\,;\,c)\neq(0\,;\,0)$ %comme équation cartésienne ;
+	\item tout plan parallèle à $(Oz)$ admet pour équation $ax+by = d$ avec $(a\,;\,b)\neq(0\,;\,0)$ %comme équation cartésienne.
+\end{itemize}
+}
+
+\vspace{1cm}
+
+\begin{tabularx}{16.9cm}{| >{\small\centering \arraybackslash}X| >{\small\centering \arraybackslash}X| >{\small\centering \arraybackslash}p{5.5cm}|} \hline
+Plan $\pi$ d'équation $x=k$ & Plan $\pi$ d'équation $y=k$ & Plan $\pi$ d'équation $z=k$ \\
+\psset{unit=0.45cm}
+\begin{pspicture*}(-4.5,-2.2)(6.5,6.8)
+\psset{linecolor=gray,Alpha=45,Beta=12}
+\newrgbcolor{bleu}{0.1 0.1 .5}
+\newrgbcolor{prune}{.5 0 .5}
+\definecolor{mauveClair} {rgb}{.95 .9 .95}
+\pscustom[fillstyle=solid,fillcolor=LemonChiffon2,linewidth=.5pt,linecolor=LemonChiffon2]{
+ \parametricplotThreeD[plotstyle=line,xPlotpoints=2](6,0){4 0 t}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,10){4 t 0}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,6){4 10 t}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](10,0){4 t 6}
+}
+\psset{linewidth=1pt,linecolor=LemonChiffon4}{
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](6,0){4 0 t}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,10){4 t 0}
+}
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=5,yMax=8,zMax=6,linecolor=black,linewidth=.75pt]
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=2,yMax=2,zMax=2,nameX=,nameY=,nameZ=,linewidth=1pt]
+\pstThreeDPut(0,0,-.4){\footnotesize{\textbf{\textsf{O}}}}
+\pstThreeDPut(1.2,-.2,.6){\footnotesize{\red $\vec i$}}
+\pstThreeDPut(-0.2,1.2,.6){\footnotesize{\red $\vec j$}}
+\pstThreeDPut(-.2,.4,1.5){\footnotesize{\red $\vec k$}}
+\end{pspicture*} &
+\psset{unit=0.45cm} 
+\begin{pspicture*}(-4.5,-2.2)(6.5,6.8)
+\psset{linecolor=gray,Alpha=45,Beta=12}
+\newrgbcolor{bleu}{0.1 0.1 .5}
+\newrgbcolor{prune}{.5 0 .5}
+\definecolor{mauveClair} {rgb}{.95 .9 .95}
+\pscustom[fillstyle=solid,fillcolor=LemonChiffon2,linewidth=.5pt,linecolor=LemonChiffon2]{
+ \parametricplotThreeD[plotstyle=line,xPlotpoints=2](6,0){8 6 t}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](8,0){t 6 0}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,6){0 6 t}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,8){t 6 6}
+}
+\psset{linewidth=1pt,linecolor= LemonChiffon4}{
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](8,0){t 6 0}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,6){0 6 t}}
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=5,yMax=8,zMax=6,linecolor=black,linewidth=.75pt]
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=2,yMax=2,zMax=2,nameX=,nameY=,nameZ=,linewidth=1pt]
+\pstThreeDPut(0,0,-.4){\footnotesize{\textbf{\textsf{O}}}}
+\pstThreeDPut(1.2,-.2,.6){\footnotesize{\red $\vec i$}}
+\pstThreeDPut(-0.2,1.2,.6){\footnotesize{\red $\vec j$}}
+\pstThreeDPut(-.2,.4,1.5){\footnotesize{\red $\vec k$}}
+\end{pspicture*} &
+\psset{unit=0.45cm} 
+\begin{pspicture*}(-4.5,-2)(6.5,6.8)
+\psset{linecolor=gray,Alpha=45,Beta=12}
+\newrgbcolor{bleu}{0.1 0.1 .5}
+\newrgbcolor{prune}{.5 0 .5}
+\definecolor{mauveClair} {rgb}{.95 .9 .95}
+\pscustom[fillstyle=solid,fillcolor=LemonChiffon2,linewidth=.5pt,linecolor=LemonChiffon2]{
+ \parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,6.5){t 0 4.5}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,8.5){6.5 t 4.5}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](6.5,0){t 8.5 4.5}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](8.5,0){0 t 4.5}
+}
+\psset{linewidth=1pt,linecolor= LemonChiffon4}{
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](8.5,0){0 t 4.5}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,6.5){t 0 4.5}}
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=5,yMax=8,zMax=6,linecolor=black,linewidth=.75pt]
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=2,yMax=2,zMax=2,nameX=,nameY=,nameZ=,linewidth=1pt]
+\pstThreeDPut(0,0,-.4){\footnotesize{\textbf{\textsf{O}}}}
+\pstThreeDPut(1.2,-.2,.6){\footnotesize{\red $\vec i$}}
+\pstThreeDPut(-0.2,1.2,.6){\footnotesize{\red $\vec j$}}
+\pstThreeDPut(-.2,.4,1.5){\footnotesize{\red $\vec k$}}
+\end{pspicture*} \\ 
+$\pi // (y\mathrm {O}z)$ & $\pi // (x\mathrm {O}z)$ & $\pi // (x\mathrm {O}y)$ \\ \hline
+Plan $\pi$ d'équation $ax+by=d$ & Plan $\pi$ d'équation $ax+cz=d$ & Plan $\pi$ d'équation $by+cz=d$ \\
+\psset{unit=0.45cm}
+\begin{pspicture*}(-4.5,-2.2)(6.5,6.8)
+\psset{linecolor=gray,Alpha=45,Beta=12}
+\newrgbcolor{bleu}{0.1 0.1 .5}
+\newrgbcolor{prune}{.5 0 .5}
+\definecolor{mauveClair} {rgb}{.95 .9 .95}
+ \pscustom[fillstyle=solid,fillcolor=LemonChiffon2,linewidth=.5pt,linecolor=LemonChiffon2]{
+ \parametricplotThreeD[plotstyle=line,xPlotpoints=2](6,0){4 0 t}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,4){t -1.625 t mul 6.5 add 0}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,6){0 6.5 t}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](4,0){t -1.625 t mul 6.5 add 6}
+}
+\psset{linewidth=1pt,linecolor= LemonChiffon4}{
+\parametricplotThreeD[plotstyle=line,xPlotpoints=6](6,0){4 0 t}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,4){t -1.625 t mul 6.5 add 0}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,6){0 6.5 t}
+}\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=5,yMax=8,zMax=6,linecolor=black,linewidth=.75pt]
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=2,yMax=2,zMax=2,nameX=,nameY=,nameZ=,linewidth=1pt]
+\pstThreeDPut(0,0,-.4){\footnotesize{\textbf{\textsf{O}}}}
+\pstThreeDPut(1.2,-.2,.6){\footnotesize{\red $\vec i$}}
+\pstThreeDPut(-0.2,1.2,.6){\footnotesize{\red $\vec j$}}
+\pstThreeDPut(-.2,.4,1.5){\footnotesize{\red $\vec k$}}
+\end{pspicture*} &
+\psset{unit=0.45cm} 
+\begin{pspicture*}(-4.5,-2.2)(6.5,6.8)
+\psset{linecolor=gray,Alpha=45,Beta=12}
+\newrgbcolor{bleu}{0.1 0.1 .5}
+\newrgbcolor{prune}{.5 0 .5}
+\definecolor{mauveClair} {rgb}{.95 .9 .95}
+\pscustom[fillstyle=solid,fillcolor=LemonChiffon2,linewidth=.5pt,linecolor=LemonChiffon2]{
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,4){t 0 -1.25 t mul 5 add}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,8){4 t 0}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](4,0){t 8 -1.25 t mul 5 add}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](8,0){0 t 5}
+}
+\psset{linewidth=1pt,linecolor= LemonChiffon4}{
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,4){t 0 -1.25 t mul 5 add}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,8){4 t 0}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](8,0){0 t 5}}
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=5,yMax=8,zMax=6,linecolor=black,linewidth=.75pt]
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=2,yMax=2,zMax=2,nameX=,nameY=,nameZ=,linewidth=1pt]
+\pstThreeDPut(0,0,-.4){\footnotesize{\textbf{\textsf{O}}}}
+\pstThreeDPut(1.2,-.2,.6){\footnotesize{\red $\vec i$}}
+\pstThreeDPut(-0.2,1.2,.6){\footnotesize{\red $\vec j$}}
+\pstThreeDPut(-.2,.4,1.5){\footnotesize{\red $\vec k$}}
+\end{pspicture*} &
+\psset{unit=0.45cm} 
+\begin{pspicture*}(-4.8,-2.2)(6.5,6.8)
+\psset{linecolor=gray,Alpha=45,Beta=12}
+\newrgbcolor{bleu}{0.1 0.1 .5}
+\newrgbcolor{prune}{.5 0 .5}
+\definecolor{mauveClair} {rgb}{.95 .9 .95}
+\pscustom[fillstyle=solid,fillcolor=LemonChiffon2,linewidth=.5pt,linecolor=LemonChiffon2]{
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](7,0){t 0 5}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](5,0){0  -1.3 t mul 6.5 add t}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,7){t 6.5 0}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,5){7  -1.3 t mul 6.5 add t}
+}
+\psset{linewidth=1pt,linecolor=LemonChiffon4}{
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](7,0){t 0 5}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](5,0){0  -1.3 t mul 6.5 add t}
+\parametricplotThreeD[plotstyle=line,xPlotpoints=2](0,7){t 6.5 0}}
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=5,yMax=8,zMax=6,linecolor=black,linewidth=.75pt]
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=2,yMax=2,zMax=2,nameX=,nameY=,nameZ=,linewidth=1pt]
+\pstThreeDPut(0,0,-.4){\footnotesize{\textbf{\textsf{O}}}}
+\pstThreeDPut(1.2,-.2,.6){\footnotesize{\red $\vec i$}}
+\pstThreeDPut(-0.2,1.2,.6){\footnotesize{\red $\vec j$}}
+\pstThreeDPut(-.2,.4,1.5){\footnotesize{\red $\vec k$}}
+\end{pspicture*} \\ 
+$\pi // (\mathrm {O}z)$ & $\pi // (\mathrm {O}y)$ & $\pi // (\mathrm {O}x)$ \\ \hline
+\end{tabularx}
+
+
+
+
+
+\subsubsection*{Déterminer une équation cartésienne d'un plan}\label{sec:equcartplan}
+
+
+\begin{encadre}{}
+Dans l'espace muni d'un repère \Oijk, montrer que les points $A \left( 1; 0; 3 \right)$, $B \left( 1; -1; 0 \right)$ et $C \left( -1; -2; 1 \right)$ définissent un plan et déterminer une équation de ce plan.
+\end{encadre}
+
+
+%\medskip
+
+Les vecteurs $\overrightarrow{AB} \left( 0; -1; -3 \right)$ et $\overrightarrow{AC} \left( -2; -2; -2 \right)$ ne sont pas colinéaires donc les points $A$, $B$ et $C$ ne sont pas alignés, ils définissent un plan $(ABC)$.
+
+On peut déterminer une équation cartésienne du plan $(ABC)$ par deux méthodes :
+
+\begin{enumerate}
+	\item Une équation cartésienne du plan $(ABC)$ est de la forme $$ax+by+cz=d$$ où $a$, $b$, $c$ et $d$ sont des réels.
+
+\begin{center}
+\begin{minipage}{10cm}
+\begin{tabular}{lcr}
+$A \left( 1; 0; 3 \right) \in (ABC)$ & $\Longleftrightarrow$ & $a+3c=d$\\
+$B \left( 1; -1; 0 \right) \in (ABC)$ & $\Longleftrightarrow$ & $a-b=d$\\
+$C \left( -1; -2; 1 \right) \in (ABC)$ & $\Longleftrightarrow$ & $-a-2b+c=d$
+\end{tabular}
+\end{minipage}
+\end{center}
+
+
+Ainsi, $a$, $b$ et $c$	sont solutions du système :
+\[\begin{split} 
+	\displaystyle\left\lbrace
+	\begin{array}{rcl}a+3c&=& d\\a-b &=& d\\-a-2b+c &=& d
+	\end{array}
+	\right. & \Leftrightarrow  	
+						\displaystyle\left\lbrace
+						\begin{array}{rcl}c&=& \dfrac{d-a}{3}\\b &=& a-d\\-a-2(a-d)+\dfrac{d-a}{3} &=& d
+						\end{array}
+	\right. \\
+	&\Leftrightarrow  \displaystyle\left\lbrace
+\begin{array}{rcl}c&=& \dfrac{d-a}{3}\\b &=& a-d\\-\dfrac{10a}{3} &=& -\dfrac{4d}{3}
+\end{array}
+\right.\\
+		&\Leftrightarrow  \displaystyle\left\lbrace
+\begin{array}{rcl}c&=& \dfrac{d}{5}\\b &=& -\dfrac{3d}{5}\\a &=& \dfrac{2d}{5}
+\end{array}
+\right.\\
+	\end{split}
+	\]
+En choisissant, $d=5$ on obtient $a=2$, $b=-3$ et $c=1$	donc le plan $(ABC)$ a pour équation $$2x-3y+z=5$$
+	 	\item	$M(x;y;z)$ est un point du plan $(ABC)$ si, et seulement si, les points $A$, $B$, $C$ et $M$ sont coplanaires.
+	 	
+	 	C'est à dire, si et seulement si, il existe deux réels $\alpha$ et $\beta$ tels que  \[ \overrightarrow{AM} =\alpha \overrightarrow{AB} +\beta \overrightarrow{AC} \]
+	 	Or $\overrightarrow{AM} \left( x-1; y; z-3 \right)$, $\overrightarrow{AB} \left( 0; -1; -3 \right)$ et $\overrightarrow{AC} \left( -2; -2; -2 \right)$ d'où 
+	 	\[\begin{split} 
+	\displaystyle\left\lbrace
+\begin{array}{rcl}x-1&=& -2\beta\\y &=& -\alpha -2\beta \\z-3 &=&  -3\alpha -2\beta
+\end{array}
+\right. &\Leftrightarrow  	\displaystyle\left\lbrace
+\begin{array}{rcl}\dfrac{1-x}{2}&=& \beta\\x-y-1 &=& \alpha  \\z-3 &=&  -3(x-y-1) +(x-1)
+\end{array}
+\right. \\
+	&\Leftrightarrow  \displaystyle\left\lbrace
+\begin{array}{rcl}\dfrac{1-x}{2}&=& \beta\\x-y-1 &=& \alpha  \\2x-3y+z &=&5
+\end{array}
+\right.\\		
+	\end{split}
+	\]
+	
+	Ainsi, le plan $(ABC)$ a pour équation $2x-3y+z=5$
+\end{enumerate}
+
+\begin{center}\scalebox{0.9}{
+\psset{unit=0.75}
+\psset{viewpoint=45 -20 20,Decran=60,fontsize=10}
+\begin{pspicture*}(-7,-5)(7,9)
+\psframe(-7,-5)(7,9)
+\psset{solidmemory}
+\psSolid[object=plan,name=monplan,
+   definition=equation,
+   args={[2 -3 1 -5] -7},
+   fillcolor= LemonChiffon2,
+   base=-3 5 -7 1,
+   %showBase,
+   %plangrid,   
+   intersectionplan={[0 0 1 0] [1 0 0 0] [0 1 0 0]},
+   intersectioncolor=(noir),	intersectionlinewidth=2,	intersectiontype=0,
+   opacity=.4]
+\psProjection[object=texte,text=(ABC),fontsize=15,plan=monplan](3,0)%
+\composeSolid
+\psSolid[object=point,linecolor=black,linewidth=1pt,args=0 -1.666 0]
+\psSolid[object=point,linecolor=black,linewidth=1pt,args=2.5 0 0]
+\psSolid[object=point,linecolor=black,linewidth=1pt,args=0 0 5]
+\axesIIID[linewidth=1pt,linecolor=black,arrowsize=5pt,
+          arrowinset=0,
+          labelsep=10pt](-1,-5,-1)(8,5,7)
+\end{pspicture*}}
+\end{center}
+
+
+
+\subsection{Vecteur orthogonal à un plan}
+  
+
+ 
+On dit qu'un vecteur $\vec n$ est orthogonal (ou normal) à un plan $\pi$ si la direction de $\vec n$ est une droite orthogonale au plan $\pi$. C'est à dire une droite orthogonale à toutes les droites contenues dans le plan $\pi$.
+
+\begin{center}
+\psset{xunit=1.0cm,yunit=1.0cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+\begin{pspicture*}(-1.92,-0.2)(4.58,3.2)
+\psline[linewidth=1pt,linecolor=LemonChiffon3](-0.12,1.88)(-1.18,0.28)
+\psline[linewidth=2pt,linecolor=LemonChiffon4](-1.18,0.28)(3,0.24)
+\psline[linewidth=1pt,linecolor=LemonChiffon3](-0.12,1.88)(4.06,1.84)
+\psline[linewidth=2pt,linecolor=LemonChiffon4](4.06,1.84)(3,0.24)
+\psline[linecolor=red]{->}(0.68,1.3)(0.7,2.88)
+\psline(0.7,2.88)(0.7,3.44)
+\psline[linestyle=dotted](0.67,0.26)(0.68,1.3)
+\psline(0.67,0.26)(0.66,-0.52)
+\psline{->}(0.68,1.3)(3.02,0.73)
+\rput[tl](-1.56,0.52){$P$}
+\rput[tl](0.32,2.8){\red $\vec{n}$}
+\rput[tr](3.3,1.2){$M$}
+\rput[br](0.6,1.3){$A$}
+\end{pspicture*}
+\end{center}
+ 
+\fbox{\begin{minipage}{\linewidth}
+\textbf{Dans un repère othonormal}, le vecteur $\vec n \left( a;b;c\right)$ est orthogonal au plan $$\pi \equiv ax+by+cz+d=0$$ La réciproque de cette affirmation est vraie.
+\end{minipage}
+}
+
+\medskip 
+
+\exemple{Soit $\pi$ le plan d'équation $3x-4y+5z-7=0$. Un vecteur normal de $\pi$ est $\vec{n}(3~;~-4~;~5)$}
+
+
+\subsection{Distance d'un point \`a un plan}\label{sec:distptplan}
+
+
+\begin{prop}
+  Soient le plan $\pi$ d'\'equation $ax+by+cz+d=0$ ($a$,$b$ et $c$
+  non tous nuls) et le point $M$ de coordonn\'ees $(x_M;y_M;z_M)$.\par
+  La distance du point $M$ au plan $\pi$ est \'egale \`a
+\[ {\text{d}(M,\pi)=\dfrac{|a\cdot x_M+b\cdot y_M+c\cdot z_M+d|}{\sqrt{a^2+b^2+c\mathtwosuperior}}} \]
+\end{prop}
+\begin{dem}
+On part de la formule 
+%\[ \boxed{\text{d}(M,\pi)=\dfrac{\left|\vect{AM}\cdot\vect{n}\right|}{\left\|\vect{n}\right\|}}.\]
+\[ {\text{d}(M,\pi)=\dfrac{\left|\vect{AM}\cdot\vect{n}\right|}{\left\|\vect{n}\right\|}}\]
+\end{dem}
+
+
+
+\subsection{Plans parallèles}
+ 
+\begin{definition}
+Deux plans $\pi$ et $\pi'$ d'équations respectives $ax+by+cz = d$ et $a'x+b'y+c'z = d'$ sont parallèles si, et seulement si, les coefficients $a$, $b$, $c$ et $a'$, $b'$, $c'$ sont proportionnels.
+\end{definition}
+
+
+
+
+
+
+\psset{unit=0.8cm}
+\begin{pspicture}(-4,-3.5)(5,5.5)
+%\psframe(-4,-3.5)(5,5.5)
+\psset{Alpha=135,coorType=1}
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=4,yMax=4,zMax=4.5,linecolor=black,linewidth=0.75pt]
+\pstThreeDPut(0.1,0.15,-.1){O}
+\pstThreeDLine[linecolor= Burlywood4,linewidth=1.25pt](3.2,0,0)(0,3.5,0)(0,0,3.8)(3.2,0,0)
+\pstThreeDLine[linecolor= DodgerBlue3,linewidth=1.25pt](2,0,0)(0,2.3,0)(0,0,2.6)(2,0,0)
+\pstThreeDPut(2.5,0,2){\small{\textbf{\color{Burlywood4} $\pi_1$}}}
+\pstThreeDPut(0,1.3,1.5){\small{\textbf{\color{DodgerBlue3} $\pi_2$}}}
+\rput(.25,-3.2){Plans parallèles}
+\end{pspicture}\hfill
+\begin{pspicture}(-4,-3.5)(5,5.5)
+%\psframe(-4,-3.5)(5,5.5)
+\psset{Alpha=135,coorType=1}
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=4,yMax=4,zMax=4.5,linecolor=black,linewidth=0.75pt]
+\pstThreeDPut(0.1,0.15,-.1){O}
+\pstThreeDLine[linecolor= Burlywood4,linewidth=1.25pt](3.2,0,0)(0,2.5,0)(0,0,3.8)(3.2,0,0)
+\pstThreeDLine[linecolor= DodgerBlue3,linewidth=1.25pt](2,0,0)(0,3.5,0)(0,0,2.6)(2,0,0)
+\pstThreeDLine[linecolor=red,linewidth=1pt,linestyle=dashed](-.957,1.406,2.8)(1.885,1.817,-1.2)
+\pstThreeDLine[linecolor=red,linewidth=1pt](1.032,1.694,0)(0,1.544,1.453)
+\pstThreeDPut(-1,1.7,2.8){\small{\textbf{\red $\Delta$}}}
+\pstThreeDDot[dotstyle=*,dotscale=1.2,linecolor=red](1.032,1.694,0)
+\pstThreeDDot[dotstyle=*,dotscale=1.2,linecolor=red](0,1.544,1.453)
+\pstThreeDPut(2.5,0,2){\small{\textbf{\color{Burlywood4} $\pi_1$}}}
+\pstThreeDPut(0,3,1){\small{\textbf{\color{DodgerBlue3} $\pi_2$}}}
+\rput(.25,-3.2){Plans sécants selon une droite $\Delta$}
+\end{pspicture}
+
+
+
+\subsection{Système d'équations cartésiennes d'une droite}
+ 
+\begin{definition}
+L'espace est muni d'un repère \Oijk. Un point $M\left(x ; y ; z \right)$ appartient à une droite $\Delta$ de l'espace si, et seulement si, ses coordonnées vérifient un système d'équations de la forme 	
+\[\displaystyle \Delta \equiv \left\lbrace
+\begin{array}{lcl}ax+by+cz&=& d\\a'x+b'y+c'z &=& d'
+\end{array}
+\right. \text{ où }  a\text{, } b\text{, } c \text{ et }  a'\text{, } b'\text{, } c' \text{ ne sont pas proportionnels.}
+\]
+\end{definition}
+
+\begin{center}
+\psset{unit=0.85}
+\psset{lightsrc=viewpoint}
+\psset{viewpoint=40 30 20,Decran=50,fontsize=10}%,lightsrc=50 10 20}
+\begin{pspicture*}(-7,-3)(7,6)
+\psset{solidmemory}
+\psframe(-7,-3)(7,6)
+\psSolid[object=plan,action=none,definition=equation,args={[1 0 1 -2]},name=P]
+\psSolid[object=grille,base=-4 2 -5 5,RotY=90,RotZ=15,plansepare=P,action=none,name=parts_plan](0,0,0)
+\psSolid[object=load,load=parts_plan1,fillcolor=DodgerBlue1!30,opacity=0.6]
+\psSolid[object=plan,definition=equation,args={[1 0 1 -2]},fillcolor=Burlywood3!30,action=draw*,
+base=-3 3 -5 5,%showBase,
+   intersectionplan={[1.932 0.518 0 0]},
+   intersectioncolor=(bleu),	intersectionlinewidth=2,	intersectiontype=0,
+   opacity=1]
+\psSolid[object=load,load=parts_plan0,fillcolor=DodgerBlue1!30,opacity=0.6]
+\axesIIID(0,0,0)(6,6,6)
+\rput(-4.8,1.2){\blue $\Delta$}
+\end{pspicture*}
+\end{center}
+
+$$\Delta \equiv \left\lbrace
+\begin{array}{rcl}x+z&=& 2\\ 1,932 \cdot x + 0,518 \cdot y &=& 0
+\end{array}
+\right.$$
+
+\subsubsection*{Système d'équations cartésiennes des axes}
+
+Le plan étant muni d'un repère \Oijk, on a :
+\begin{itemize}
+	\item l'axe $(Ox)$ admet $\left\{\begin{array}{l} y=0 \\ z=0 \end{array}\right.$ comme système d'équations cartésiennes ;
+	\item l'axe $(Oy)$ admet $\left\{\begin{array}{l} x=0 \\ z=0 \end{array}\right.$ comme système d'équations cartésiennes ;
+	\item l'axe $(Oz)$ admet $\left\{\begin{array}{l} y=0 \\ a=0 \end{array}\right.$ comme système d'équations cartésiennes.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Exercices résolus}
+
+
+\exo
+
+{Soient les points $A(-3;0;0)$, $B(0;4;0)$ et $C(0;0;-2)$ de l'espace.
+\begin{enumerate}[\bf a. ]
+\item Déterminer une équation cartésienne du plan $(ABC)$.
+\item Déterminer une équation cartésienne du plan $\pi$ passant par $O$ (l'origine des axes) et parallèle au plan $(ABC)$.
+\item Déterminer une équation cartésienne du plan $\pi'$ passant par $O$ et par les milieux des segments $[CA]$ et $[CB]$.
+\item Déterminer une représentation paramétrique de la droite $d$, intersection des plans $\pi$ et 
+$\pi'$.
+%\item Déterminer la position relative des droites $d$ et $(AB)$.
+\end{enumerate}
+}
+
+\begin{sol}
+
+\begin{enumerate}[\bf a. ]
+\item Une équation du plan $(ABC)$ est $a x + b y + c z + d=0$ avec  $a$, $b$, $c$ et
+$d$ sont des réels non tous nuls.\\
+Les coordonnées respectives des trois points $A$, $B$ et $C$ 
+la vérifient, donc $-3 a+d=0$, $4 b + d=0$ et $-2 c+d=0$.\\
+Ainsi, puisque les réels $a$, $b$ et $c$ sont non nuls on a $a=\frac{d}3$, 
+$b=-\frac{d}4$ et $c=\frac{d}2$, et le réel $d$ est non nul puisque 
+$a$, $b$, $c$ et
+$d$ ne sont pas tous nuls, d'où, après une simplification par $d$, une équation du plan $(ABC)$ est 
+$$\frac{x}{3}-\frac{y}{4}+\frac{z}{2}+1=0$$ ou mieux : $$(ABC) \equiv 4x-3y+6z+12=0$$
+
+\item Le plan $\pi$ est parallèle au plan $(ABC)$, il a donc le même vecteur normal : $$\pi \equiv 4x-3y+6z+k=0 \qquad (k \in \R_0)$$
+De plus les coordonnées du point $O$ vérifient cette équation, d'où $k=0$.\\
+Une équation du plan 
+$\pi$ est $$4x-3y+6z=0$$
+
+\item Le plan $\pi'$ passe par le point $O(0;0;0)$ donc il a une équation cartésienne du type $ux+vy+wz=0$, 
+les réels $u$, $v$ et $w$ étant non tous nuls.\\
+Les milieux des segments $[CA]$ et $[CB]$ ont pour coordonnées respectives $\left(-\frac{3}2;0;-1\right)$ et 
+$\left(0;2;-1\right)$ et ils appartiennent au plan $\pi'$ donc 
+$-\frac{3}2 u - w = 0$ et $2v - w = 0$.\\
+En choisissant $w=-6$ on obtient $v=-3$ et $u=4$, d'où une équation du plan $\pi'$ : $$4x-3y-6z=0$$
+
+\item Les plans $\pi$ et $\pi'$ ont en commun les milieux des segments $[CA]$ et $[CB]$ mais
+pas le point $0$ qui n'appartient qu'au second donc $\pi$ et $\pi'$ sont bien sécants et ont pour 
+intersection la droite $d$ passant par les milieux des segments $[CA]$ et $[CB]$. \\
+Les coordonnées respectives de
+ces deux points sont $\left(-\frac{3}2;0;-1\right)$ et 
+$\left(0;2;-1\right)$ d'où les coordonnées d'un vecteur directeur de la droite $d$ : 
+$\left(\frac{3}2;2;0\right)$ ; ou pour simplifier l'écriture celle d'une autre : $(3;4;0)$ ;\\
+on en déduit une représentation paramétrique de la droite $d$ :
+$\left\{\begin{array}{lcl}
+x & = & 3 \lambda \\
+y & = & 4 \lambda + 2 \qquad (\lambda \in \R) \\
+z & = & -1 
+\end{array}\right.$
+
+%\item La droite $d$ passe par les milieux des segments $[CA]$ et $[CB]$ donc d'après le théorème de la droite des
+%milieux (ou la réciproque du théorème de Thalès), les droites $d$ et $(AB)$ sont parallèles.
+
+\end{enumerate}
+
+\end{sol}
+
+\exo
+
+L'espace est rapporté au repère orthonormé \Oijk. On considère les points $A(3~;~0~;~6)$ et $I(0~;~0~;~6)$, et l'on appelle $\Delta$~ la droite passant par $A$ et $I$. On appelle $\pi$ le plan d'équation $2y + z - 6 = 0$ et $\psi$ le plan d'équation $y - 2z + 12 = 0$.
+\begin{enumerate}
+\item Démontrer que $\pi$ et $\psi$ sont perpendiculaires.
+\item Démontrer que l'intersection des plans $\pi$ et $\psi$  est la droite $\Delta$.
+\item Démontrer que $\pi$ et $\psi$ coupent l'axe $\left(\text{O}~;~\vect{\jmath}\right)$ (l'axe $(Oy)$) et déterminer les coordonnées des points $B$ et $C$, intersections respectives de $\pi$ et $\psi$ avec l'axe $\left(\text{O}~;~\vect{\jmath}\right)$.
+\item Démontrer qu'une équation du plan $\mu$ passant par $B$ et de vecteur normal $\vect{AC}$ est $ \qquad  x+4y+2z-12=0.$
+\item Donner une représentation paramétrique de la droite $(OA)$.\\
+Démontrer que la droite $(\text{O}A)$ et le plan $\mu$ sont sécants en un point $H$ dont on déterminera les coordonnées.
+%\item Que représente le point $H$ pour le triangle $ABC$~? Justifier.
+\end{enumerate}
+
+\vspace{10mm}
+
+\begin{center}
+\psset{xunit=6mm,yunit=6mm}
+\begin{pspicture}(-13,-2)(9,9)
+	\pstGeonode[PosAngle=135](-12,-2){C}
+	\pstGeonode[PosAngle=-90](3,0.5){B}
+	\pstGeonode[PosAngle=45](0,6){I}
+	\pstGeonode[PosAngle=-130](0,0){O}
+	\pstGeonode[PointSymbol=none,PointName=none](-8.475,-2.974){E}
+	\pstGeonode[PointSymbol=none,PointName=none](3.53,5.029){F}
+	\pstGeonode[PointSymbol=none,PointName=none](6.529,-0.471){H}
+	\pstGeonode[PointSymbol=none,PointName=none](-13.567,-2.261){N}
+	\pstGeonode[PointSymbol=none,PointName=none](9,1.5){R}
+	\pstGeonode[PointSymbol=none,PointName=none](0,10){Q}
+	\pstGeonode[PointSymbol=none,PointName=none](9,3.53){T}
+	\pstGeonode[PointSymbol=none,PointName=none](-5.353,-0.892){D}
+	\pstGeonode[PointSymbol=none,PointName=none](5.749,0.958){G}
+	\pstGeonode[PointSymbol=none,PointName=none](0,2.678){J}
+	\pstGeonode[PointSymbol=none,PointName=none](-12,9.3){S}
+	\pstGeonode[PointSymbol=none,PointName=none](9,-2.475){P}
+	\pstGeonode[PointSymbol=none,PointName=none](1,0.166666){Y}
+	\pstGeonode[PointSymbol=none,PointName=none](0.835,-0.228){X}
+	\pstGeonode[PointSymbol=none,PointName=none](0,1){Z}
+	\pstGeonode[PointSymbol=none,PointName=none](2.558,4.402){K}
+	\pspolygon[fillstyle=solid,fillcolor=Burlywood3!30](B)(H)(F)(I)
+	\pspolygon[fillstyle=solid,fillcolor= LemonChiffon2](C)(E)(F)(I)
+	\pstGeonode[PosAngle=45](2.492,5.315){A}
+	\psline(N)(C)
+	\psline[linestyle= dotted](C)(D)
+	\psline(D)(B)
+	\psline[linestyle= dotted](B)(G)
+	\psline(G)(R)
+	\psline(O)(J)
+	\psline[linestyle= dotted](J)(I)
+	\psline(I)(Q)
+	\psline(S)(T)
+	\psline(O)(P)
+	\psline[linewidth=1.5pt]{->}(O)(X)
+	\psline[linewidth=1.5pt]{->}(O)(Y)
+	\psline[linewidth=1.5pt]{->}(O)(Z)
+	\psline(C)(A)
+	\psline[linestyle=dotted](A)(K)
+	\psline(K)(B)
+	\uput[-45](E){$\psi$}
+	\uput[-45](H){$\pi$}
+	\uput[45](T){$\Delta$}
+	\uput[45](P){\tiny$x$}
+	\uput[-45](R){\tiny$y$}
+	\uput[-45](Q){\tiny$z$}
+	\uput[180](X){$\tiny\vect{i}$}
+	\uput[135](Y){$\tiny\vect{j}$}
+	\uput[-135](Z){$\tiny\vect{k}$}
+\end{pspicture}
+\end{center}
+
+\bigskip
+
+\begin{sol}
+%\noindent \textbf{Commun \`a tous les candidats}\\
+%L'espace est rapport\'e au rep\`ere orthonorm\'e $\left(O;\vect{i},\vect{j},\vect{k}\right)$. On consid\`ere les points $A(3,0,6)$ et $I(0,0,6)$, et l'on appelle $(D)$ la droite passant par $A$ et $I$.\\
+%On appelle $(P)$ le plan d'\'equation $2y+z-6=0$ et $(Q)$ le plan d'\'equation $y-2z+12=0$.
+\begin{enumerate}
+\item Les plans $\pi$ et $\psi$ ont pour vecteurs normaux respectifs $\vect{n}(0;2;1)$ et $\vect{n'}(0~;~1~;~-2)$. On a $\vect{n}\cdot\vect{n'}=0$, donc $\vect{n}\perp\vect{n'}$ et par suite, les plans $\pi$ et $\psi$ sont perpendiculaires.
+%D\'emontrer que $\pi$ et $\psi$ sont perpendiculaires.
+\item L'intersection des plans $\pi$ et $\psi$ est une droite (plans perpendiculaires). \\
+$A\in\pi$ car $2\times 0+6-6=0$ et $A\in\psi$ car $0-12+12=0$, donc $A\in\pi\cap\psi$;\\
+on montre de la même fa\c con que $I\in\pi\cap\psi$.\\
+Les points $A$ et $I$ \'etant distincts, la droite d'intersection des plans $\pi$ et $\psi$ est donc la droite $(AI)$, c'est-\`a-dire la droite $\Delta$.
+%D\'emontrer que l'intersection des plans $\pi$ et $\psi$  est la droite $\Delta$.
+\item Soit $M(x~;~y~;~z)$ un point de l'espace. $M$ appartient \`a l'axe $\left(O;\vect{j}\right)$ si et seulement si $\left\{\begin{array}{rcl}x&=&0\\ z&=&0\end{array}\right.$.\\
+$M$ appartient \`a l'axe $\left(O;\vect{j}\right)$ et au plan $\pi$ si et seulement si $\left\{\begin{array}{ccl}x&=&0\\z&=&0\\2y+z-6&=&0\end{array}\right.$ c'est-\`a-dire si et seulement si $\left\{\begin{array}{rcl}x&=&0\\y&=&3\\z&=&0\end{array}\right.$. Le plan $\pi$ coupe donc l'axe $\left(O;\vect{j}\right)$ au point $B(0~;~3~;~0)$.\\
+Un raisonnement analogue montre que le plan $\psi$ coupe l'axe $\left(O;\vect{j}\right)$ en un  point $C(0~;~-12~;~0)$.\\
+%D\'emontrer que $\pi$ et $\psi$ coupent l'axe $\left(O;\vect{j}\right)$ et d\'eterminer les coordonn\'ees des points $B$ et $C$, intersections respectives de $\pi$ et $\psi$ avec l'axe $\left(O;\vect{j}\right)$.
+\item On a $\vect{AC}(-3~;~-12~;~-6)$ donc le plan $\mu$ a une \'equation cart\'esienne de la forme:
+$-3x-12y-6z+d=0$. Et $B(0~;~3~;0)\in\mu$, donc $0-12\times 3-0+d=0$, d'où $d=36$.\\ Le plan $\mu$ a donc pour \'equation cart\'esienne $-3x-12y-6z+36=0$, ou encore, en simplifiant par $-3$: $x+4y+2z-12=0$.
+%D\'emontrer qu'une \'equation du plan $\mu$ passant par $B$ et de vecteur normal $\vect{AC}$ est
+%$$x+4y+2z-12=0.$$
+\item La droite $(OA)$ passe par $O(0~;~0~;~0)$ et  a pour vecteur directeur $\vect{OA}(3~;~0~;~6)$. Une repr\'esentation param\'etrique de $(OA)$ est donc: $\left\{\begin{array}{rcl}x&=&3t\\y&=&0\qquad(t\in\mathbb{R})\\z&=&6t\end{array}\right.$.\\
+Un point $M$ appartient \`a la droite $(OA)$ et au plan $\mu$ si et seulement si il existe un r\'eel $t$ tel que $M(3t~;~0~;~6t)$ et $(3t)+4\times 0+2\times (6t)-12=0$, ce qui donne une unique valeur: $t=\dfrac45$. La droite $(OA)$ et le plan $\mu$ sont donc s\'ecants en un point $H$ qui a pour coordonn\'ees $\left(3\times\dfrac45~;~0~;~6\times\dfrac45\right)$, c'est-\`a-dire $H\left(\dfrac{12}{5}~;~0~;~\dfrac{24}{5}\right)$.
+%Donner une repr\'esentation param\'etrique de la droite $(OA)$.\\
+%D\'emontrer que la droite $(OA)$ et le plan $\mu$ sont s\'ecants en un point $H$ dont on d\'eterminera les coordonn\'ees.
+%\item Les points $B$ et $H$ appartiennent au plan $\mu$ qui a pour vecteur normal $\vect{OA}$, donc $(BH)\perp(AC)$: le point $H$ appartient \`a la hauteur issue de $B$ du triangle $ABC$.\\
+%$\vect{AH}\left(-\dfrac35;0;-\dfrac65\right)$ et $\vect{BC}(0~;~-15~;~0)$, donc $\vect{AH}\cdot\vect{BC}=0$ et $(AH)\perp(BC)$: le point $H$ 	appartient donc \`a la hauteur issue de $A$ du triangle $ABC$.\\
+%Le point $H$ est donc l'orthocentre du triangle $ABC$.
+ 
+%Que repr\'esente le point $H$ pour le triangle $ABC$~? Justifier.
+\end{enumerate}
+\end{sol}
+
+
+\newpage
+
+\section{Exercices}
+
+\subsection{Echauffements}
+
+\exo
+
+Donner le nombre de faces de chacun des solides suivants :
+\begin{center}
+\scalebox{0.5}{
+\begin{pspicture*}(0,-2)(6,6)
+   \pspolygon[linecolor=black,fillcolor=lightgray!50,fillstyle=solid](0,0)(0,2)(2,4)(4,4)(4,0)
+   \pspolygon[linecolor=black,fillcolor=lightgray!50,fillstyle=solid](4,4)(6,6)(6,2)(4,0)
+   \pspolygon[linecolor=black,fillcolor=lightgray!50,fillstyle=solid](6,6)(2,6)(1,5)(2,4)(4,4)
+   \pspolygon[linecolor=black,fillcolor=lightgray!50,fillstyle=solid](1,5)(0,2)(2,4)
+\end{pspicture*}
+}
+\hspace{2cm}
+\scalebox{0.5}
+{
+\begin{pspicture*}(0,-1)(7.54,9.5)
+   \pspolygon[linecolor=black,fillcolor=lightgray!50,fillstyle=solid](3.02,0.98)(3.02,1.98)(4.02,2.98)(4.02,7.98)(5.02,8.98)(5.02,6.98)(7.02,8.98)(7.02,3.98)(3.02,0)
+   \pspolygon[linecolor=black,fillcolor=lightgray!50,fillstyle=solid](3.02,0)(2.02,0)(2.02,1.98)(3.02,2.98)(3.02,5.98)(0.02,5.98)(0.02,6.98)(3.02,6.98)(3.02,7.98)(4.02,7.98)(4.02,2.98)(3.02,1.98)
+   \pspolygon[linecolor=black,fillcolor=lightgray!50,fillstyle=solid](0.02,6.98)(1.02,7.98)(3.02,7.98)(3.02,6.98)
+   \pspolygon[linecolor=black,fillcolor=lightgray!50,fillstyle=solid](3.02,7.98)(4.02,8.98)(5.02,8.98)(4.02,7.98)
+   \pspolygon[linecolor=black,fillcolor=lightgray!50,fillstyle=solid](7.02,8.98)(6.02,8.98)(5.02,7.96)(5.02,6.98)
+   \psline(2,2)(3,2)\psline(3,3)(4,3)
+\end{pspicture*}
+}
+\hspace{2cm}
+\scalebox{0.5}
+{
+\begin{pspicture*}(0,-2)(9,7)
+   \pspolygon[linecolor=black,fillcolor=lightgray!50,fillstyle=solid](3,0)(8,0)(8,6)(7,6)(7,3)(5,3)(5,4)(3,4)(2,3)(2,2)(3,3)
+   \pspolygon[linecolor=black,fillcolor=lightgray!50,fillstyle=solid](-0,2)(2,2)(2,3)(-0,3)
+   \pspolygon[linecolor=black,fillcolor=lightgray!50,fillstyle=solid](-0,3)(2,5)(6,5)(5,4)(3,4)(2,3)
+   \pspolygon[linecolor=black,fillcolor=lightgray!50,fillstyle=solid](6,5)(6,4)(7,4)(7,3)(5,3)(5,4)
+   \pspolygon[linecolor=black,fillcolor=lightgray!50,fillstyle=solid](8,0)(9,1)(9,7)(8,7)(7,6)(8,6)
+   \psline(5,3)(6,4)
+   \psline(8,6)(9,7)
+\end{pspicture*}}
+\end{center}
+
+
+\exo 
+
+ABCDEFGH est un pavé, I est le milieu de [EF] et J le milieu de [HG]. \\
+\begin{center}
+  \begin{pspicture}(-1,0)(5,3)
+      \psset{xunit=1.8}
+      \pspolygon(0,0)(2,0)(3,1)(3,3)(1,3)(0,2)
+      \psline(0,2)(2,2)(2,0)
+      \psline(2,2)(3,3)
+      \psline[linestyle=dashed,linecolor=gray](0,0)(1,1)(3,1)
+      \psline[linestyle=dashed,linecolor=gray](1,1)(1,3)
+      \psdots(1,2)(2,3)
+      \rput(-0.2,-0.2){A}
+      \rput(2,-0.2){B}
+      \rput(1.1,2.3){I}
+      \rput(2.1,3.3){J}
+      \rput(2.2,1.8){F}
+      \rput(-0.2,2){E}
+      \rput(0.8,1.1){D}
+      \rput(3.2,1){C}
+      \rput(3.1,3.3){G}
+      \rput(1,3.3){H}
+   \end{pspicture}
+\end{center}
+
+\begin{enumerate}
+   \item Donner respectivement :
+   \begin{enumerate}
+      \item Une droite parallèle à la droite (IJ), non coplanaire au plan (EHF) et sécante à la droite (GB).
+      \item Un plan parallèle au plan (IJG) et sécant au plan (EAD).
+      \item Une droite parallèle au plan (ABC), sécante au plan (FGC) et confondue dans le plan (HGF).
+   \end{enumerate}
+   \item Étudier la position relative des droites suivantes :
+   \begin{enumerate}
+      \item La droite (BH) et la droite (BC).
+      \item La droite (EG) et la droite(BC).
+      \item La droite (EG) et la droite(AC).
+   \end{enumerate}
+   \item Quel est, dans chacun des cas suivants, l'intersection des deux plans :
+   \begin{enumerate}
+      \item Le plan (EIA) et le plan (FIC).
+      \item Le plan (EHI) et le plan (FJG).
+      \item Le plan (DAB) et le plan (FJG).
+   \end{enumerate}
+\end{enumerate}
+
+
+
+\exo
+
+ABCDEFGH est un cube dont l'arête mesure 2 cm. P et Q sont les centres respectifs des faces EFGH et BCGF. \\
+\begin{minipage}{10cm}
+   \begin{enumerate}
+      \item Tracer en vraie grandeur le patron du cube (avec les points P et Q).
+      \item Calculer $\overline{EP}$.
+      \item Le triangle AEP est-il rectangle ? Justifier.
+      \item En déduire que $\overline{AP}=\sqrt{6}$ cm.
+      \item En utilisant le triangle BEG, calculer $\overline{PQ}$.
+      \item Quel nom peut-on donner au solide GEBF ? Calculer alors son volume.
+   \end{enumerate}
+\end{minipage}
+\begin{minipage}{5cm}
+   \begin{pspicture}(-1,0)(3,4)
+      \psset{unit=1.2}
+      \pspolygon(0,0)(2,0)(3,1)(3,3)(1,3)(0,2)
+      \psline(0,2)(2,2)(2,0)
+      \psline(2,2)(3,3)
+      \psline[linestyle=dashed](0,0)(1,1)(3,1)
+      \psline[linestyle=dashed](1,1)(1,3)
+      \rput(-0.2,-0.2){A}
+      \rput(2,-0.2){B}
+      \rput(2.2,2){F}
+      \rput(-0.2,2){E}
+      \rput(0.8,1){D}
+      \rput(3.2,1){C}
+      \rput(3,3.2){G}
+      \rput(1,3.2){H}
+      \psline[linestyle=dotted,linewidth=0.03](2,0)(3,3)(0,2)
+      \psline[linestyle=dotted,linewidth=0.03](1,3)(2,2)(3,1)
+      \rput(1.5,2.7){P}
+      \rput(2.7,1.5){Q}
+   \end{pspicture}
+\end{minipage}
+
+
+
+\subsection{Exercices de routine}
+ 
+
+\exo
+
+%\medskip
+
+Dans l'espace muni d'un repère $\left( {{\mathrm{O}};\vec i,\vec j,\vec k} \right)$,  on considère les points $A(5;0;0)$, $B(5;9;0)$, $C(0;9;0)$ et $S(0;9;9)$. 
+
+\begin{center}
+\psset{unit=0.8cm}
+\begin{pspicture}(-7,-4)(11.5,10.5)
+\psset{linewidth=0.1pt,linecolor=darkgray,subticks=10,coorType=1,Alpha=150}
+\newrgbcolor{bleu}{0.1 0.1 .5}
+\newrgbcolor{prune}{.5 0 .5}
+\psset{xsubticks=7,ysubticks=11}
+\pstThreeDPlaneGrid[planeGrid=xy,Dx=1,Dy=1](0,0)(7,11)
+\psset{xsubticks=7,ysubticks=10}
+\pstThreeDPlaneGrid[planeGrid=xz](0,0)(7,10)
+\psset{xsubticks=11,ysubticks=10}
+\pstThreeDPlaneGrid[planeGrid=yz](0,0)(11,10)
+\pstThreeDLine[linecolor=bleu,linewidth=1.25pt](0,9,9)(5,0,0)(5,9,0)(0,9,0)(0,9,9)(5,9,0)
+\pstThreeDLine[linecolor=bleu,linewidth=.75pt,linestyle=dashed,dash=3pt  4pt](5,0,0)(0,9,0)
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=7,yMax=11,zMax=10,linecolor=black,linewidth=1pt]
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=1,yMax=1,zMax=1,nameX=,nameY=,nameZ=,linewidth=1.5pt]
+\psset{dotstyle=+,linecolor=prune,linewidth=2pt}
+\pstThreeDDot(2,5,5)
+\pstThreeDDot(4,9,6)
+\pstThreeDPut(0,0,-.3){O}
+\pstThreeDPut(.4,-.2,.4){\red $\vec i$}
+\pstThreeDPut(-0.2,.8,.4){\red $\vec j$}
+\pstThreeDPut(-.2,.2,1){\red $\vec k$}
+\pstThreeDPut(5,0,-.3){\footnotesize{\textsf{\textbf{\bleu A}}}}
+\pstThreeDPut(-0.2,9.2,0.2){\footnotesize{\textsf{\textbf{\bleu C}}}}
+\pstThreeDPut(5,9,-.3){\footnotesize{\textsf{\textbf{\bleu B}}}}
+\pstThreeDPut(-0.6,9,9){\footnotesize{\textsf{\textbf{\bleu S}}}}
+\pstThreeDPut(2,5,5.4){\footnotesize{\textbf{\textsf{\prune F}}}}
+\pstThreeDPut(4,9,6.4){\footnotesize{\textbf{\textsf{\prune G}}}}
+\end{pspicture}
+ \end{center} 
+\begin{enumerate}
+	\item Placer le point $E$ de coordonnées $(6;4;7)$ dans le repère précédent.
+	\item L'abscisse du point $F$ est égale à 2, lire les coordonnées du point $F$.
+	\item $G$ est un point du plan $(SBC)$, lire les coordonnées du point $G$.
+	\item Les points $E$, $F$ et $G$ sont-ils alignés ?
+\end{enumerate}
+
+\exo{} Donner une représentation paramétrique de la droite $d$ dans chacun des cas suivants :
+\begin{multicols}{2}
+\begin{enumerate}
+\item $d$ passe par $A(-1;2;3)$ et $B(1;-1;1)$.
+\item $d$ passe par $A(5;6;7)$ et possède le vecteur directeur  $\vec{u}\;(0;1;2)$.
+\item $d$ passe par $A(-1;-5;3)$ et $B(5;-1;1)$.
+\item $d$ passe par $A(3;-6;7)$ et est dirigée par $\vec{v}\;(3;-1;-2)$.
+\end{enumerate}
+\end{multicols}
+
+\exo 
+
+Les quatre points $A$, $B$, $C$ et $D$ de l'espace 
+sont-ils coplanaires ? Si oui, donner le système d'équations paramétriques du plan qui les contient :\begin{multicols}{2}
+\begin{enumerate}
+\item $A(1,2,2)$,  $B(-1,-2,-1)$, $C(3,4,4)$  et $D(-2,3,1)$.
+\item  $A(0,1,3)$,  $B(1,2,-1)$, $C(1,1,-1)$  et $D(1,2,2)$.
+\item  $A(-1,2,4)$,  $B(3,-3,0)$, $C(1,3,4)$  et $D(5,1,-6)$.
+\item  $A(2,-1,0)$,  $B(0,-4,5)$, $C(4,-13,13)$  et $D(-4,5,-3)$.
+\end{enumerate}\end{multicols}
+(Voir section~\ref{sec:equparam} page~\pageref{sec:equparam})
+
+\exo
+
+%\medskip
+
+Dans l'espace muni d'un repère \Oijk, on considère les points  $A(2;-1;3)$, $B(3;2;1)$, $C(-2;3;1)$ et $D(6;3;0)$.
+
+\begin{enumerate}
+	\item Les points $A$, $B$  et $C$ déterminent-ils un plan ? Si oui, chercher son équation cartésienne.\\(Voir section~\ref{sec:equcartplan} page~\pageref{sec:equcartplan})
+	\item Calculer les coordonnées du point $I$ milieu du segment $[BC]$. (voir section \ref{sec:coord} page \pageref{sec:coord})
+	\item Les points $A$, $B$, $C$ et $D$ sont-ils coplanaires ?
+\end{enumerate}
+
+\exo
+
+Le plan $(ABC)$, dessiné ci-dessous dans un repère de l'espace, a pour équation
+
+\medskip
+
+\begin{tabularx}{\linewidth}{@{}>{{\footnotesize{\textbullet}}~}X@{\hspace{1cm}} >{{\footnotesize{\textbullet}}~}m{5cm} @{\hspace{1cm}} >{{\footnotesize{\textbullet}}~}X@{}}
+ $3x + 6y + 4z = 9$ &  $2x + y - z = 6$ & $4x + 2y + 3z = 12$ \\
+\end{tabularx} 
+\end{enumerate}
+
+
+\begin{center}
+\psset{xunit=0.8cm,yunit=0.8cm}
+\begin{pspicture*}(-6,-2.5)(6.9,5.9)
+\newrgbcolor{bleu}{0.1 0.05 .5}
+\psset{Beta=20,Alpha=45,dotsize=2pt,linecolor=darkgray,subticks=5}
+%\pstThreeDPlaneGrid[linecolor=lightgray](0,0)(8.5,8.5)
+\pstThreeDCoor[linecolor=black, xMin=-5,xMax=7,yMin=-5,yMax=8,zMin=-2.5,zMax=5.5,nameX={\footnotesize{$x$}},nameY={\footnotesize{$y$}},nameZ={\footnotesize{$z$}}]
+\pstThreeDPut(1,0,-0.2){\footnotesize{1}}
+\pstThreeDPut(0,1,-0.2){\footnotesize{1}}
+\pstThreeDPut(0,.2,1){\footnotesize{1}}
+\pstThreeDTriangle[fillstyle=hlines,hatchwidth=.5pt,hatchcolor=prune,hatchwidth=.5pt,hatchcolor=prune,hatchsep=6pt,hatchangle=45,linecolor=bleu,linewidth=1.25pt](3,0,0)(0,6,0)(0,0,4)
+\multido{\n=-4+1}{11}{\pstThreeDDot(\n,0,0)}
+\multido{\n=-4+1}{12}{\pstThreeDDot(0,\n,0)}
+\multido{\n=-2+1}{8}{\pstThreeDDot(0,0,\n)}
+\pstThreeDPut(3.2,-.2,0.2){\bleu{\footnotesize{$A$}}}
+\pstThreeDPut(-.2,6.2,0.2){\bleu{\footnotesize{$B$}}}
+\pstThreeDPut(.2,-.2,4.2){\bleu{\footnotesize{$C$}}}
+\end{pspicture*}
+\end{center}
+
+
+\exo{} Déterminer une équation cartésienne du plan $\psi$ dans chacun des cas suivants :
+\begin{multicols}{2}
+\begin{enumerate}
+\item $\psi$ passe par $A(-1;2;3)$ et est orthogonal à $\vec{n}(2;3;5)$
+\item $\psi$ passe par $A(-1;-2;-3)$ et est orthogonal à $\vec{n}(0;1;2)$ \columnbreak
+\item $\psi$ passe par $A(2;6;7)$, $B(-3;4;6)$ et $C(1;0;0)$
+\item $\psi$ passe par $A(1;2;3)$, $B(4;5;6)$ et $C(7;8;9)$
+\end{enumerate}
+\end{multicols}
+
+
+\exo{} Déterminer l'intersection éventuelle de la droite $d$ et du plan $\pi$ sachant qu'une représentation paramétrique de $d$ est 
+ $\left\{ \begin{array}{l} x=2+3t\\ y=1-2t \\ z=3  \end{array} \right.\; \text{où } t\in\R$
+ et une équation cartésienne de $\pi$ est  $ 3x-2y+z=3$
+
+
+
+
+\exo{} Calculer la distance du point $A$ au plan $\pi$ :
+\begin{enumerate}
+\item $A(1;0;2)$ et $\pi \equiv 2x-2y=3$
+\item $A(2;1;1)$ et $\pi$ est le plan passant par $B(1;0;0)$, de vecteur normal $\vec{n}(2;3;4)$.
+\end{enumerate}
+(Voir section~\ref{sec:distptplan} page~\pageref{sec:distptplan})
+
+
+\exo 
+
+Trouver une \'equation du plan $\pi$ 
+d\'efini par les \'el\'ements suivants.
+\begin{enumerate}
+	\item  \begin{multicols}{2}	$A$, $B$ et $C$ sont des points de $\pi$
+	\begin{enumerate}
+		\item $A(0,0,1)$, $B(1,0,0)$ et $C(0,1,0)$.
+		\item $A(1,1,1)$, $B(2,0,1)$ et $C(-1,2,4)$.
+		\item $A(5,0,-1)$, $B(1,3,-2)$ et $C(-2,4,5)$.
+		\end{enumerate} \end{multicols}
+\item $A$ est un point de $\pi$,  $\vec{u}$ et $\vec{v} $ sont des vecteurs directeurs de $\pi$
+	\begin{multicols}{2}		\begin{enumerate}
+		\item $A(1,2,1)$, $\vec{u} (4,0,3)$ et $\vec{v} (1,3,-1)$.
+		\item $A(1,0,2)$, $\vec u(2,-1,3)$ et  $\vec v(-1,4,5)$.
+		\end{enumerate}\end{multicols}
+	\item  $A$ est un point de $\pi$,  $D$ est une droite contenue dans $\pi$
+\begin{multicols}{2}\begin{enumerate}
+\item $A(4,1,-3)$ et $ (D) : \left\{ \begin{array}{l}
+                                           x + y - z + 3 = 0 \\
+                                           4x - y + 2z = 0 
+                                         \end{array} \right.$
+\item $A(1,1,0)$ et $(D) : \left\{ \begin{array}{l}
+                                         x = t \\
+                                         y = -1 + 2t \\
+                                         z = 1 - 3t
+\end{array} \right.$
+\end{enumerate}  \end{multicols}      
+\end{enumerate}   
+
+
+
+\exo
+
+%\medskip
+
+Dans l'espace muni d'un repère \Oijk, on considère les points  $A(2;-1;3)$, $B(3;2;1)$, $C(-2;3;1)$ et $D(6;3;0)$.
+
+\begin{enumerate}
+	\item Les points $A$, $B$  et $C$ déterminent-ils un plan ?
+	\item Calculer les coordonnées du point $I$ milieu du segment $[BC]$.
+	\item Les points $A$, $B$, $C$ et $D$ sont-ils coplanaires ?
+\end{enumerate}
+ 
+ 
+
+
+\exo
+
+%\medskip
+
+L'espace est rapporté à un repère orthonormé \Oijk. On considère les points $A(2;-1;3)$, $B(-2;3;1)$, $C(-2;0;4)$, $D(9;-5;8)$  et  $E(x;y;6)$.
+
+\begin{enumerate}
+	\item Montrer que les points $A$, $B$ et $C$ déterminent un plan.
+	\item Le point $E$ appartient à la droite $(AB)$. Déterminer son abscisse et son ordonnée.
+	\item Montrer que les vecteurs  $\overrightarrow {ED}$ et $\overrightarrow {AB}$ sont orthogonaux.
+	\item Montrer que la droite $(ED)$ est perpendiculaire au plan $(ABC)$.  
+\end{enumerate}
+
+
+
+\exo 
+
+%\medskip
+
+Dans l'espace muni d'un repère  \Oijk, on considère les points $A(-2;3;-1)$ et  $B(1;3;2)$.
+\begin{enumerate}
+	\item Déterminer les coordonnées du point $C$ intersection de la droite $(AB)$ avec le plan $(xOy)$.
+	\item Déterminer les coordonnées du point $D$ intersection de la droite $(AB)$ avec le plan $(yOz)$.
+	\item La droite $(AB)$ est-elle sécante avec le plan $(xOz)$ ?
+\end{enumerate}
+
+
+
+ 
+\exo %\hfill (\emph{D'après Sujet Bac Polynésie 2005})
+
+%\medskip
+ 
+L'espace est muni d'un repère orthonormal \Oijk.
+
+La figure ci-dessous, représente un pavé droit ; le point O est le milieu de $[AD]$.
+
+Soit $P$ le milieu du segment $[EF]$.
+
+\begin{center}
+\psset{unit=2cm}
+\begin{pspicture}(-1,-1.25)(2.5,2.75)
+%\psset{Alpha=145,coorType=1}
+\psset{Beta=20,Alpha=34}
+\newrgbcolor{bleu}{0.1 0.1 .5}
+\newrgbcolor{prune}{.5 0 .5}
+\pstThreeDBox[linecolor=DodgerBlue1,linewidth=1.5pt](-1,0,0)(0,0,2)(2,0,0)(0,1,0)
+\pstThreeDCoor[xMin=-2,yMin=-2,zMin=-1,xMax=1.75,yMax=2,zMax=2.5,linecolor=black,linewidth=1pt]
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=1,yMax=1,zMax=1,nameX=,nameY=,nameZ=,linewidth=1.75pt]
+\pstThreeDPut(0.1,0.15,-.1){O}
+\pstThreeDPut(0.5,-.05,.05){\red $\vec i$}
+\pstThreeDPut(-0.1,0.5,.05){\red $\vec j$}
+\pstThreeDPut(-.1,.05,0.5){\red $\vec k$}
+\pstThreeDPut(0,-0.1,2.1){\small{\textsf{\textbf{\bleu 2}}}}
+\pstThreeDPut(1.1,0.1,0){\small{\textsf{\textbf{\bleu A}}}}
+\pstThreeDPut(1.1,1.1,0){\small{\textsf{\textbf{\bleu B}}}}
+\pstThreeDPut(-1,1.1,0){\small{\textsf{\textbf{\bleu C}}}}
+\pstThreeDPut(-1.1,-0.2,0){\small{\textsf{\textbf{\bleu D}}}}
+\pstThreeDPut(-1,1,2.1){\small{\textsf{\textbf{\bleu G}}}}
+\pstThreeDPut(-1,0,2.1){\small{\textsf{\textbf{\bleu H}}}}
+\pstThreeDPut(1,-.1,2){\small{\textsf{\textbf{\bleu E}}}}
+\pstThreeDPut(1,1,2.1){\small{\textsf{\textbf{\bleu F}}}}
+\end{pspicture}
+ \end{center} 
+
+
+\begin{enumerate}
+\item \begin{enumerate}
+\item Quel ensemble de points de l'espace a pour équation $z =2$ ?
+
+\item Déterminer une équation du plan $(ABF)$.
+
+\item En déduire un système d'équations qui caractérise la droite $(EF)$.
+
+\end{enumerate}
+
+\item \begin{enumerate}\item Quelles sont les coordonnées des points $A$, $G$ et $P$ ? 
+
+\item Placer sur la figure le point $Q$ de coordonnées $(0 ; 0,5 ; 0)$. 
+
+\item Déterminer une équation cartésienne du plan $(APQ)$.
+
+\end{enumerate}
+
+\item	\begin{enumerate}\item Construire sur la figure les segments $[PQ]$ et $[AG]$. 
+
+\item Le point $G$ appartient-il au plan $(APQ)$ ? Justifier.
+
+\end{enumerate}
+
+\item On construit la figure précédente à l'aide d'un logiciel de géométrie, puis on demande au logiciel de représenter le point d'intersection des droites $(AG)$ et $(PQ)$. Quelle pourrait être la réponse de l'ordinateur ?
+
+\end{enumerate}
+
+%\pagebreak
+
+\exo
+
+%\medskip
+
+Dans l'espace muni d'un repère  \Oijk, on considère les points $A(-1;6;7,5)$ et  $B(-2;8;9)$.
+
+\begin{enumerate}
+	\item Déterminer une équation cartésienne du plan $P$ parallèle à l'axe $(Oz)$ et passant par les points $A$ et $B$.
+	\item Déterminer une équation cartésienne du plan $Q$ parallèle à l'axe $(Oy)$ et passant par les points $A$ et $B$.
+	\item Soit $d$ la droite caractérisée par le système :
+	\[\displaystyle\left\lbrace
+\begin{array}{lcr}2x+y &=& 4\\3x+2z &=& 12
+\end{array}
+\right. 
+\]
+	Les points $A$ et $B$ sont-ils sur la droite $d$ ?
+	\item Dans le repère \Oijk  ci-dessous, représenter les plans $P$ et $Q$ par leurs traces avec les plans de base ainsi que la droite $(AB)$.
+\end{enumerate}
+
+
+\begin{center}
+\psset{unit=.9cm}
+\begin{pspicture}(-10,-4)(10,9)
+\psset{linewidth=0.1pt,linecolor=darkgray,subticks=10,Alpha=47,Beta=19}
+\pstThreeDPlaneGrid(0,0)(10,10)
+\pstThreeDPlaneGrid[planeGrid=xz](0,0)(10,10)
+\pstThreeDPlaneGrid[planeGrid=yz](0,0)(10,10)
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=10,yMax=10,zMax=10,linecolor=black,linewidth=1pt]
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=1,yMax=1,zMax=1,nameX=,nameY=,nameZ=,linewidth=1.5pt]
+\pstThreeDPut(0,0,-.3){O}
+\pstThreeDPut(.4,-.2,.4){\red $\vec i$}
+\pstThreeDPut(-0.2,.8,.4){\red $\vec j$}
+\pstThreeDPut(-.2,.2,1){\red $\vec k$}
+\end{pspicture}
+ \end{center}
+ 
+  \bigskip
+  
+  \exo
+
+%\medskip
+
+ L'espace est muni d'un repère \Oijk orthonormal représenté en annexe ci-dessous.
+
+
+\begin{enumerate}
+\item Tracer les droites d'intersection du plan $\pi$ d'équation  $5x+5y+6z=15$ avec les plans de coordonnées du repère $\left( {{\mathrm{O}};\vec i,\vec j,\vec k} \right)$.
+\item On considère le plan $\psi\equiv 3x+4y=6$.
+\begin{enumerate}
+	\item Préciser la nature de l'ensemble $\Delta$  des points $M$ de l'espace dont les coordonnées vérifient : 
+	\[\left\{ {\begin{array}{rcr}
+5x+5y+6z &=& 15 \\
+3x+4y &=& 6 \\
+\end{array}} \right. \]
+\item Représenter l'ensemble $\Delta$ dans le repère \Oijk.
+\end{enumerate}
+
+\item On donne les points  $D\left(1;0;0\right)$, $E\left(0;-3;0\right)$,  $F\left(-1;-3;4\right)$ et $G\left(0;0;4\right)$.
+\begin{enumerate}
+	\item Montrer que les points $D$, $E$ et $F$ déterminent un plan.
+	\item Les points $D$, $E$, $F$ et $G$ sont-ils coplanaires ?
+	\item Déterminer une équation du plan $\mu$ qui contient les points $D$, $E$, $F$.
+	\item Représenter l'intersection des trois plans $\pi$, $\psi$ et $\mu$ dans le repère $\left( {{\mathrm{O}};\vec i,\vec j,\vec k} \right)$
+\end{enumerate}
+
+\item Résoudre le système suivant et en donner une interprétation graphique.
+ \[\left\{ {\begin{array}{rcr}
+12x-4y+3z &=& 12 \\
+5x+5y+6z &=& 15 \\
+3x+4y &=& 6 \\
+\end{array}} \right. \]
+\end{enumerate}
+
+\psset{unit=1cm}
+\begin{center}
+\begin{pspicture}(-8,-5)(9,9)
+\psset{linewidth=0.1pt,linecolor=darkgray,subticks=17,Alpha=145,coorType=1}
+\pstThreeDPlaneGrid(0,0)(8.5,8.5)
+\pstThreeDPlaneGrid[planeGrid=xz](0,0)(8.5,8.5)
+\pstThreeDPlaneGrid[planeGrid=yz](0,0)(8.5,8.5)
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=8.5,yMax=8.5,zMax=8.5,linecolor=black,linewidth=1pt]
+\pstThreeDCoor[xMin=0,yMin=0,zMin=0,xMax=2,yMax=2,zMax=2,nameX=,nameY=,nameZ=,linewidth=1.5pt]
+\pstThreeDPut(0,0,-.3){O}
+\pstThreeDPut(1.5,-.2,.4){\red $\vec i$}
+\pstThreeDPut(-0.2,1.5,.4){\red $\vec j$}
+\pstThreeDPut(-.2,.2,1.5){\red $\vec k$}
+\end{pspicture}
+ \end{center} 
+ 
+
+
+\exo %\hfill (\emph{D'après sujet bac France Métropolitaine Septembre 2009})
+
+ %\medskip 
+
+L'espace est muni d'un repère orthonormal \Oijk.
+
+Sur le dessin joint en annexe, on a placé les points $A(0~;~2~;~0)$, $B(0~;~0~;~6)$, $C(4~;~0~;~0)$, $D(0~;~4~;~0)$ et $E(0~;~0~;~4)$.
+
+Soit $\pi$ le plan d'équation $3y + z = 6$.
+
+Il est représenté par ses traces sur le plan de base sur le dessin joint en annexe.
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+		\item Démontrer que les points $C$, $D$ et $E$ déterminent un plan que l'on notera $(CDE)$.
+		\item Vérifier que le plan $(CDE)$ a pour équation $x + y + z = 4$.
+	\end{enumerate}
+\item
+	\begin{enumerate}
+		\item Justifier que les plans $\pi$ et $(CDE)$ sont sécants. On note $\Delta$ leur intersection.
+		\item Sans justifier, représenter $\Delta$ en couleur (ou à défaut en traits pointillés) sur la figure en annexe.
+	\end{enumerate}
+\item On considère les points $F(2~;~0~;~0)$ et $G(0~;~3~;~0)$.
+
+On note $\psi$ le plan parallèle à l'axe $\left(\text{O};~\vec{k}\right)$ et contenant les points $F$ et $G$.
+	\begin{enumerate}
+		\item Placer sur la figure en annexe les points $F$ et $G$.
+		
+		Sans justifier, représenter le plan $\psi$ par ses traces sur les plans de base, d'une autre couleur (ou à défaut en larges pointillés), sur la figure en annexe.
+		\item Déterminer les réels $a$ et $b$ tels que $ax + by = 6$ soit une équation du plan $\psi$.
+	\end{enumerate}
+\item L'intersection des plans $(CDE)$ et $\psi$ est la droite $\Delta'$.
+
+Sans justifier, représenter la droite $\Delta'$, d'une troisième couleur (ou à défaut en très larges pointillés), sur la figure en annexe.
+\item On considère le système de trois équations à trois inconnues suivant :
+
+\[\left\{\begin{array}{r c l}
+3y + z&=&6\\
+x + y + z&=&4\\
+\multicolumn{1}{l}{3x + 2y}&=&6
+\end{array}\right.\]
+
+	\begin{enumerate}
+		\item Résoudre ce système.
+		\item Que peut-on alors en déduire pour les droites $\Delta$ et $\Delta'$ ?
+	\end{enumerate}
+\end{enumerate}
+
+\begin{center}
+\psset{unit=0.8cm}
+\begin{pspicture}(-4,-2.75)(4.5,8)
+\rput(.25,7.5){\textbf{\textsc{\textsf{annexe}}}}
+\newrgbcolor{bleu}{0.1 0.05 .5}
+\newrgbcolor{prune}{.6 0 .48}
+\newrgbcolor{rougef}{.8 0.1 .1}
+\def\pshlabel#1{\footnotesize #1}
+\def\psvlabel#1{\footnotesize #1}
+%\psset{unit=.5cm}
+\psgrid[gridwidth=0.1pt,gridcolor=gray,subgriddiv=0,gridlabels=0](0,0)(-4,-2.75)(4.5,7.5)%(-16,-11)(18,26)
+%\psset{unit=2cm}
+\psaxes[labels=none,linewidth=.75pt,ticksize=-2pt 2pt]{->}(0,0)(4.5,6.5)
+\psline[linewidth=.75pt]{->}(0,0)(-4,-2.6667)
+\psline[linewidth=1.25pt,linecolor=rougef]{->}(0,0)(1,0)
+\psline[linewidth=1.25pt,linecolor=rougef]{->}(0,0)(0,1)
+\psline[linewidth=1.25pt,linecolor=rougef]{->}(0,0)(-.75,-.5)
+\uput[d](-.35,-.25){\rougef $\vec i$} \uput[d](.5,0){\rougef $\vec j$} \uput[l](0,.5){\rougef $\vec k$}
+\uput[dl](0,0){\footnotesize{O}}
+\psline[linewidth=1.5pt,linecolor=bleu](-4.02,3.32)(0,6)(2,0)(-2.125,-2.75)
+\pspolygon[linewidth=1.5pt,linecolor=prune](-3,-2)(4,0)(0,4)
+\psdots[dotstyle=x,dotsize=6pt,linecolor=rougef](0,6)(2,0)(-3,-2)(4,0)(0,4)
+\uput[r](-4,-2.7){$x$} \uput[d](4.4,0){$y$} \uput[ul](0,6.25){$z$}
+\uput[dr](2,0){\bleu $A$} \uput[ur](0,6){\bleu $B$} \uput[d](-3,-2){\prune $C$} \uput[d](4,0){\prune $D$} \uput[l](0,4){\prune $E$}
+\end{pspicture}
+\end{center}
+
+
+
+\exo{} On donne $A(5;0;1)$, $B(2;3;4)$, $C(1;1;1)$ et $D(0;0;3)$. 
+Etudier l'intersection des droites $(AB)$ et $(CD)$.
+
+\exo{} On considère les plans $\pi$ d'équation $x+y-2=0$ et $\psi$ d'équation $-x+2y+z=0$. Déterminer l'éventuelle intersection des plans $\pi$ et $\psi$. 
+
+\exo{}  On considère trois plans $\pi$, $\psi$ et $\phi$ dont on connaît une équation cartésienne :
+$$ \pi \equiv 2x-y+z=2\quad \text{ et }\quad \psi \equiv  4x-2y+3z=1\quad \text{ et }\quad \phi \equiv x+y+z=1$$
+Etudier l'intersection des plans $\pi$, $\psi$ et $\phi$.
+
+
+
+
+\end{document}
+
+
+
+
+\psset{xunit=0.75cm , yunit=0.75cm}
+\begin{pspicture*}(-0.8,-0.8)(9.2,8.2)
+\def\xmin{-0.6} \def\xmax{9} \def\ymin{-0.6} \def\ymax{8}
+%\psframe[linewidth=0.3pt,linecolor=gray](-0.8,-0.8)(9.2,8.2)
+\def\pshlabel#1{\psframebox*[framesep=1pt]{\small #1}}
+\def\psvlabel#1{\psframebox*[framesep=1pt]{\small #1}}
+\psclip{%
+\psframe[linestyle=none](\xmin,\ymin)(\xmax,\ymax)
+}
+\psset{linecolor=black, linewidth=.5pt, arrowsize=2pt 4}
+\psline(0.0000,0.0000)(6.0000,0.0000)
+\psline(0.0000,0.0000)(0.0000,6.0000)
+%\psline[linestyle=dashed](0.0000,0.0000)(2.0000,1.0000)
+\psline(6.0000,0.0000)(8.0000,1.0000)
+\psline(6.0000,0.0000)(6.0000,6.0000)
+%\psline[linestyle=dashed](8.0000,1.0000)(2.0000,1.0000)
+\psline(8.0000,1.0000)(8.0000,7.0000)
+%\psline[linestyle=dashed](2.0000,1.0000)(2.0000,7.0000)
+\psline(0.0000,6.0000)(6.0000,6.0000)
+\psline(0.0000,6.0000)(2.0000,7.0000)
+\psline(6.0000,6.0000)(8.0000,7.0000)
+\psline(8.0000,7.0000)(2.0000,7.0000)
+\uput[d](0,0){$P$}
+\uput[d](6,0){$Q$}
+\uput[dr](8,1){$R$}
+\uput[dr](2,1){$O$}
+\uput[l](0,6){$T$}
+\uput[u](6,6){$U$}
+\uput[u](8,7){$V$}
+\uput[ur](2,7){$S$}
+\psline[linestyle=dashed]{<->}(\xmax,1)(2,1)(2,\ymax)
+\psline[linestyle=dashed]{->}(2,1)(-0.4,-0.2)
+\uput[u](2.5,1){$\vec{\jmath}$}
+\uput[l](2,1.5){$\vec{k}$}
+\uput[d](1.833,0.917){$\vec{\imath}$}
+\psline{<->}(1.667,0.833)(2,1)(3,1)
+\psline{->}(2,1)(2,2)
+\endpsclip
+\end{pspicture*}
+
+\psset{xunit=0.75cm , yunit=0.75cm}
+\begin{pspicture*}(-3.2,-2.2)(7.2,5.2)
+\def\xmin{-3} \def\xmax{7} \def\ymin{-2} \def\ymax{5}
+%\psframe[linewidth=0.3pt,linecolor=gray](-0.8,-0.8)(9.2,8.2)
+\def\pshlabel#1{\psframebox*[framesep=1pt]{\small #1}}
+\def\psvlabel#1{\psframebox*[framesep=1pt]{\small #1}}
+\psclip{%
+\psframe[linestyle=none](\xmin,\ymin)(\xmax,\ymax)
+}
+\psset{linecolor=black, linewidth=.5pt, arrowsize=2pt 4}
+\uput[d](0,0){$A$}
+\uput[d](6,0){$D$}
+\uput[ul](0,4){$E$}
+\uput[dr](-2,-1){$B$}
+\uput[ul](-2,3){$F$}
+\uput[d](4,-1){$C$}
+\uput[u](6,4){$H$}
+\uput[ul](4,3){$G$}
+\psline[linestyle=dashed]{<->}(\xmax,0)(0,0)(0,\ymax)
+\psline[linestyle=dashed]{->}(0,0)(-3,-1.5)
+\psline(-2,3)(-2,-1)(4,-1)(4,3)(-2,3)(0,4)(6,4)(6,0)(4,-1)
+\psline(4,3)(6,4)
+\psdots[dotstyle=x](1,0)(0,1)(-1,-0.5)
+\uput[d](1,0){$J$}
+\uput[l](0,1){$K$}
+\uput[u](-1,-0.5){$I$}
+\psline{<->}(-1,-0.5)(0,0)(1,0)
+\psline{->}(0,0)(0,1)
+\endpsclip
+\end{pspicture*}
+
+\newpage
+
+
+\emph{Dans cet exercice, une r\'eponse par \og VRAI \fg{} ou \og FAUX \fg{}, sans justification, est demand\'ee au candidat en regard d'une liste d'affirmations. Toute r\'eponse conforme \`a la r\'ealit\'e math\'ematique donne} 0,4 \emph{point. Toute r\'eponse erron\'ee enl\`eve} 0,1 \emph{point. L'absence de r\'eponse n'est pas comptabilis\'ee. Le total ne saurait  \^etre n\'egatif.}
+
+\vspace{0,5cm}
+
+\noindent\parbox{0,5\textwidth}{On donne le cube ABCDEFGFH, d'ar\^ete de longueur 1, et les milieux I et J des ar\^etes [AB] et [CG]. Les \'el\'ements utiles de la figure sont donn\'es ci-contre.\\
+ \emph{Le candidat est appel\'e \`a juger chacune des} 10 \emph{affirmations suivantes.}} 
+ \hfill
+\parbox{0,45\textwidth}{\begin{center}\begin{pspicture}(4.5,5)
+\pspolygon(0.4,1.05)(2.7,0.4)(4.4,2.2)(2,2.8)%ABCD
+\pspolygon(0,3.2)(2.4,2.6)(4,4.4)(1.7,5)%EFGH
+\pspolygon(0,3.2)(1.55,0.725)(4.2,3.3)%EIJ
+\psline(0.4,1.05)(0,3.2) \psline(2.7,0.4)(2.4,2.6) \psline(4.4,2.2)(4,4.4)
+\psline(2,2.8)(1.7,5)
+\uput[dl](0.4,1.05){A}  \uput[dr](2.7,0.4){B}  \uput[dr](4.4,2.2){C}  \uput[ul](2,2.8){D}  
+\uput[ul](0,3.2){E}  \uput[dr](2.4,2.6){F}  \uput[ur](4,4.4){G}  \uput[ul](1.7,5){H}  
+\uput[dl](1.55,0.725){I}  \uput[r](4.2,3.3){J}  
+\end{pspicture} \end{center}}
+
+%\vspace{0,5cm}
+%
+%\noindent \textbf{On utilisera pour r\'epondre la feuille annexe, qui sera rendue avec la copie.}
+%\begin{center}\begin{tabular}{|l|l|c|}\hline
+%&Affirmation&	VRAI ou FAUX\\\hline\hline
+%\textbf{1.}~~&$\vect{\text{AC}}\cdot \vect{\text{AI}} = \dfrac{1}{2}$& \\ \hline
+%\textbf{2.}~~&$\vect{\text{AC}}\cdot \vect{\text{AI}} = \vect{\text{AI}}\cdot \vect{\text{AB}}$&\\ \hline
+%\textbf{3.}~~&$\vect{\text{AB}}\cdot \vect{\text{IJ}} = \vect{\text{AB}}\cdot \vect{\text{IC}}$& \\ \hline
+%\textbf{4.}~~&$\vect{\text{AB}}\cdot \vect{\text{IJ}} = \text{AB} \times \text{IC} \times \cos \dfrac{\pi}{3}$\hspace{4,3cm} & \\ \hline
+%\end{tabular}
+%\vspace{0,5cm}
+
+On utilise \`a pr\'esent le rep\`ere orthonormal $\left(\text{A}~;~\vect{\text{AB}},~\vect{\text{AD}},~\vect{\text{AE}}\right)$.
+
+
+\begin{tabular}{|l|l|c|}\hline
+&Affirmation&	VRAI ou FAUX\\\hline\hline
+\textbf{5.}~~&	
+Une repr\'esentation param\'etrique de la droite (IJ) est : & \\
+&$\left\{\begin{array}{l c l}
+x&=&t+1\\
+y& =& 2t\\
+z&=&t\\
+\end{array}\right.$,~le param\`etre $t$ d\'ecrivant $\R$.& \\ \hline
+\textbf{6.}~~& Une repr\'esentation param\'etrique  de la droite (IJ) est :	&\\ 
+&$\left\{\begin{array}{l c l}
+x & = & \dfrac{1}{2}t + 1\\
+y &=& t + 1\\
+z &=&\dfrac{1}{2}t + \dfrac{1}{2}\\
+\end{array}\right.$,~le param\`etre $t$ d\'ecrivant $\R$ & \\ \hline
+\textbf{7.}~~&$6x - 7y + 8z - 3 = 0$ est une \'equation cart\'esienne& \\ 
+&  de la droite (IJ). &\\\hline
+\textbf{8.}~~&	L'intersection des plans (FIJ) et (ABC) est la droite  &\\ 
+ &passant par l et par le milieu de l'ar \^ete [DC].& \\ \hline
+\textbf{9.}~~&Le vecteur de coordonn\'ees 	$\left(\begin{array}{l}-4\\ 1\\2\\ \end{array}\right)$ 	est un vecteur &\\
+ &normal  au plan (FIJ). &\\ \hline
+\textbf{10.}~~&	Le volume du t\'etra\`edre EFIJ est \'egal \`a $\dfrac{1}{6}$.& \\ \hline
+\end{tabular}
+
+\end{document}

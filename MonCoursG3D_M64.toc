@@ -1,0 +1,28 @@
+\select@language {french}
+\contentsline {chapter}{\numberline {2}\textsc {g\'eom\'etrie dans l'espace}}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Rappels}{3}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}G\'en\'eralit\'es}{3}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Positions relatives de droites et plans}{3}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}Parall\'elisme}{4}{subsection.2.1.3}
+\contentsline {subsection}{\numberline {2.1.4}A retenir}{5}{subsection.2.1.4}
+\contentsline {section}{\numberline {2.2}Vecteur de l'espace}{6}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Vecteurs colin\'eaires}{6}{subsection.2.2.1}
+\contentsline {subsubsection}{Interpr\'etation g\'eom\'etrique}{6}{section*.9}
+\contentsline {subsubsection}{Caract\'erisation vectorielle d'une droite}{7}{section*.10}
+\contentsline {subsection}{\numberline {2.2.2}Vecteurs coplanaires}{7}{subsection.2.2.2}
+\contentsline {subsubsection}{Cons\'equence}{7}{section*.11}
+\contentsline {subsubsection}{Caract\'erisation vectorielle d'un plan}{7}{section*.12}
+\contentsline {section}{\numberline {2.3}Rep\'erage dans l'espace}{8}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Coordonn\'ees d'un point}{8}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Calculs avec les coordonn\'ees}{8}{subsection.2.3.2}
+\contentsline {section}{\numberline {2.4}Repr\'esentation param\'etrique}{9}{section.2.4}
+\contentsline {section}{\numberline {2.5}\'Equations cart\'esiennes de l'espace}{10}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}\'Equation d'un plan}{10}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Vecteur orthogonal \`a un plan}{12}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}Distance d'un point \`a un plan}{12}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.4}Plans parall\`eles}{12}{subsection.2.5.4}
+\contentsline {subsection}{\numberline {2.5.5}Syst\`eme d'\'equations cart\'esiennes d'une droite}{13}{subsection.2.5.5}
+\contentsline {section}{\numberline {2.6}Exercices r\'esolus}{13}{section.2.6}
+\contentsline {section}{\numberline {2.7}Exercices}{16}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}Echauffements}{16}{subsection.2.7.1}
+\contentsline {subsection}{\numberline {2.7.2}Exercices de routine}{17}{subsection.2.7.2}

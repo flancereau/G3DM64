@@ -1,0 +1,38 @@
+%!PS
+%%BoundingBox: -1 -1 143 58 
+%%HiResBoundingBox: -0.99626 -0.99626 142.72852 57.68916 
+%%Creator: MetaPost 1.504
+%%CreationDate: 2012.11.02:1038
+%%Pages: 1
+%*Font: cmmi10 9.96265 9.96265 19:8100000000e00a0000f0280ff
+%*Font: cmr10 9.96265 9.96265 01:8
+%*Font: cmsy7 6.97385 6.97385 30:8
+%%BeginProlog
+%%EndProlog
+%%Page: 1 1
+ 0 0 0 setrgbcolor 0 0.5 dtransform truncate idtransform setlinewidth pop
+ [] 0 setdash 1 setlinecap 1 setlinejoin 10 setmiterlimit
+newpath 0 0 moveto
+28.34645 56.6929 lineto stroke
+newpath 28.34645 56.6929 moveto
+141.73225 56.6929 lineto stroke
+ 0 1.99252 dtransform truncate idtransform setlinewidth pop
+newpath 0 0 moveto
+113.3858 0 lineto stroke
+newpath 113.3858 0 moveto
+141.73225 56.6929 lineto stroke
+4.93481 2.09999 moveto
+(\031) cmmi10 9.96265 fshow
+ 0 0.49814 dtransform truncate idtransform setlinewidth pop
+newpath 22.67725 28.34645 moveto
+113.3858 42.51968 lineto stroke
+newpath 28.34645 45.35449 moveto
+102.0474 11.33841 lineto stroke
+116.3858 39.11578 moveto
+(\001) cmr10 9.96265 fshow
+105.0474 7.59355 moveto
+(\001) cmr10 9.96265 fshow
+113.3496 11.20895 moveto
+(0) cmsy7 6.97385 fshow
+showpage
+%%EOF
