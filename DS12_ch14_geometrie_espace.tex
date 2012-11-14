@@ -1,0 +1,211 @@
+\documentclass[a4paper,10pt,dvips]{article}
+\usepackage{hyperref}
+\usepackage[cp1252]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{hmargin=2cm,vmargin=2cm}
+\usepackage{graphicx}
+\usepackage{pstricks,pst-plot,pst-tree}
+%\usepackage{pst-eucl}
+\usepackage{framed}
+\usepackage{amsmath,bm}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{epsfig}
+\usepackage{pifont}
+\usepackage[framed]{ntheorem}
+\usepackage[frenchb]{babel}
+\usepackage{tabularx}
+
+
+\lhead[]{\small classe ISI}
+\chead[]{\textsc{Géométrie dans l'espace}}
+\rhead[]{\small date}
+\lfoot{\small \url{http://mathematiques.daval.free.fr}}
+\rfoot{\small -\thepage-}
+\cfoot{}
+
+\def\R{{\mathbb R}}
+%\def\Q{{\mathbb Q}}
+%\def\Z{{\mathbb Z}}
+%\def\D{{\mathbb D}}
+%\def\N{{\mathbb N}}
+%\def\C{{\mathbb C}}
+
+\pagestyle{fancy}
+
+
+\def\theoremframecommand{\psshadowbox*[framearc=0.5]}
+\newshadedtheorem{Partie}{Partie}
+\theoremstyle{break}
+\theorembodyfont{\upshape}
+%\newframedtheorem{Prop}{Propriété}
+%\newtheorem{Rem}{Remarque}
+\theorembodyfont{\rmfamily}
+%\theorempostwork{\hrule}
+\newtheorem{Exo}{\ding{50}~~Exercice}
+
+%\theorembodyfont{\small \sffamily}
+%\newtheorem{Ex}{Exemple}
+%\theorembodyfont{\slshape}
+%\newframedtheorem{Def}{Définition}
+%\renewcommand\thesection{\Roman{section}}
+\renewcommand\FrenchLabelItem{\textbullet}
+\newcommand{\V}{\overrightarrow}
+\newcommand{\Rep}{(O;\V{i};\V{j})}
+%\newcommand{\Int}[2]{[\, #1 ; #2 \,]}
+%\newcommand{\Reel}{\mathfrak{Re}}
+%\newcommand{\Ima}{\mathfrak{Im}}
+%\newcommand{\Abs}[1]{\left \lvert#1\right \rvert}
+\newcommand{\Coor}[2]{\begin{pmatrix} #1\\#2 \end{pmatrix}}
+\newcommand{\Syst}[2]{\left\{\begin{array}{ccccc} #1\\ #2 \end{array}\right.}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1cm}}
+%\renewcommand{\arraystretch}{1.2}
+%\renewcommand{\baselinestretch}{1.2}
+
+%\setlength{\parskip}{3ex plus 1ex minus 1ex}
+%\setlength{\parindent}{0cm}
+
+\begin{document}
+
+
+\textbf{\begin{center}
+\shadowbox{\Huge{Devoir surveillé n°12}}
+\end{center}}
+
+\smallskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%% EXO 1 %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{Exo}
+Donner le nombre de faces de chacun des solides suivants :\\
+
+\scalebox{0.5}
+{
+\begin{pspicture*}(0,-2)(6,6)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](0,0)(0,2)(2,4)(4,4)(4,0)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](4,4)(6,6)(6,2)(4,0)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](6,6)(2,6)(1,5)(2,4)(4,4)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](1,5)(0,2)(2,4)
+\end{pspicture*}
+}
+\hspace{2cm}
+\scalebox{0.5}
+{
+\begin{pspicture*}(0,-1)(7.54,9.5)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](3.02,0.98)(3.02,1.98)(4.02,2.98)(4.02,7.98)(5.02,8.98)(5.02,6.98)(7.02,8.98)(7.02,3.98)(3.02,0)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](3.02,0)(2.02,0)(2.02,1.98)(3.02,2.98)(3.02,5.98)(0.02,5.98)(0.02,6.98)(3.02,6.98)(3.02,7.98)(4.02,7.98)(4.02,2.98)(3.02,1.98)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](0.02,6.98)(1.02,7.98)(3.02,7.98)(3.02,6.98)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](3.02,7.98)(4.02,8.98)(5.02,8.98)(4.02,7.98)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](7.02,8.98)(6.02,8.98)(5.02,7.96)(5.02,6.98)
+   \psline(2,2)(3,2)\psline(3,3)(4,3)
+\end{pspicture*}
+}
+\hspace{2cm}
+\scalebox{0.5}
+{
+\begin{pspicture*}(0,-2)(9,7)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](3,0)(8,0)(8,6)(7,6)(7,3)(5,3)(5,4)(3,4)(2,3)(2,2)(3,3)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](-0,2)(2,2)(2,3)(-0,3)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](-0,3)(2,5)(6,5)(5,4)(3,4)(2,3)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](6,5)(6,4)(7,4)(7,3)(5,3)(5,4)
+   \pspolygon[linecolor=black,fillcolor=lightgray,fillstyle=solid](8,0)(9,1)(9,7)(8,7)(7,6)(8,6)
+   \psline(5,3)(6,4)
+   \psline(8,6)(9,7)
+\end{pspicture*}}
+
+
+\end{Exo}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% EXO 2 %%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{Exo}
+ABCDEFGH est un pavé, I est le mileiu de [EF] et J le milieu de [HG]. \\
+\begin{center}
+  \begin{pspicture}(-1,0)(5,3)
+      \psset{xunit=1.8}
+      \pspolygon(0,0)(2,0)(3,1)(3,3)(1,3)(0,2)
+      \psline(0,2)(2,2)(2,0)
+      \psline(2,2)(3,3)
+      \psline[linestyle=dashed](0,0)(1,1)(3,1)
+      \psline[linestyle=dashed](1,1)(1,3)
+      \psdots(1,2)(2,3)
+      \rput(-0.2,-0.2){A}
+      \rput(2,-0.2){B}
+      \rput(1.1,2.2){I}
+      \rput(2.1,3.2){J}
+      \rput(2.2,2){F}
+      \rput(-0.2,2){E}
+      \rput(0.8,1){D}
+      \rput(3.2,1){C}
+      \rput(3.1,3.2){G}
+      \rput(1,3.2){H}
+   \end{pspicture}
+\end{center}
+
+\begin{enumerate}
+   \item Donner respectivement :
+   \begin{enumerate}
+      \item Une droite parallèle à la droite (IJ), non coplanaire au plan (EHF) et sécante à la droite (GB).
+      \item Un plan parallèle au plan (IJG) et sécant au plan (EAD).
+      \item Une droite parallèle au plan (ABC), sécante au plan (FGC) et confondue dans le plan (HGF).
+   \end{enumerate}
+   \item Étudier la position relative des droites suivantes :
+   \begin{enumerate}
+      \item La droite (BH) et la droite (BC).
+      \item La droite(EG) et la droite(BC).
+      \item La droite(EG) et la droite(AC).
+   \end{enumerate}
+   \item Quel est, dans chacun des cas suivants, l'intersection des deux plans :
+   \begin{enumerate}
+      \item Le plan (EIA) et le plan (FIC).
+      \item Le plan (EHI) et le plan (FJG).
+      \item Le plan (DAB) et le plan (FJG).
+   \end{enumerate}
+\end{enumerate}
+
+\end{Exo}
+
+\smallskip
+
+\begin{Exo}
+ABCDEFGH est un cube dont l'arête mesure 2 cm. P et Q sont les centres respectifs des faces EFGH et BCGF. \\
+\begin{minipage}{12cm}
+   \begin{enumerate}
+      \item Tracer en vraie grandeur le patron du cube (avec les points P et Q).
+      \item Calculer EP.
+      \item En quoi le triangle AEP est-il rectangle ? Justifier.
+      \item En déduire que AP $=\sqrt{6}$ cm.
+      \item En utilisant le triangle BEG, calculer PQ.
+      \item Quel nom peut-on donner au solide GEBF ? Calculer alors son volume.
+   \end{enumerate}
+\end{minipage}
+\begin{minipage}{5cm}
+   \begin{pspicture}(-1,0)(3,4)
+      \psset{unit=1.2}
+      \pspolygon(0,0)(2,0)(3,1)(3,3)(1,3)(0,2)
+      \psline(0,2)(2,2)(2,0)
+      \psline(2,2)(3,3)
+      \psline[linestyle=dashed](0,0)(1,1)(3,1)
+      \psline[linestyle=dashed](1,1)(1,3)
+      \rput(-0.2,-0.2){A}
+      \rput(2,-0.2){B}
+      \rput(2.2,2){F}
+      \rput(-0.2,2){E}
+      \rput(0.8,1){D}
+      \rput(3.2,1){C}
+      \rput(3,3.2){G}
+      \rput(1,3.2){H}
+      \psline[linestyle=dotted,linewidth=0.05](2,0)(3,3)(0,2)
+      \psline[linestyle=dotted,linewidth=0.05](1,3)(2,2)(3,1)
+      \rput(1.5,2.7){P}
+      \rput(2.7,1.5){Q}
+   \end{pspicture}
+\end{minipage}
+\end{Exo}
+
+\end{document}

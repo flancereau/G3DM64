@@ -1,0 +1,429 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[latin1]{inputenc}
+% Fourier for math | Utopia (scaled) for rm | Helvetica for ss | Latin Modern for tt
+\usepackage{fourier} % math & rm
+\usepackage[scaled=0.875]{helvet} % ss
+\renewcommand{\ttdefault}{lmtt} %tt
+\usepackage{amsmath,amssymb,makeidx}
+\usepackage{fancybox,fancyhdr}
+%\usepackage{pdfsync}
+\usepackage[normalem]{ulem}
+\usepackage{pifont}
+\usepackage{lscape}
+\usepackage{textcomp}
+\usepackage{multirow,multicol}
+%\usepackage{slashbox}
+\usepackage{geometry}
+\geometry{hmargin={2cm,2cm},vmargin={2cm,2cm}}
+\usepackage{tabularx}
+\newcommand{\euro}{\eurologo{}}
+\def\psvlabel#1{\nombre{$#1$}}
+\newcommand{\vect}[1]{\mathchoice%
+{\overrightarrow{\displaystyle\mathstrut#1\,\,}}%
+{\overrightarrow{\textstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptscriptstyle\mathstrut#1\,\,}}}
+\makeatletter
+\def\pshlabel#1{\expandafter\LabelVirgule#1..\@nil}
+\def\psvlabel#1{\expandafter\LabelVirgule#1..\@nil}
+\def\LabelVirgule#1.#2.#3\@nil{%
+\ifx#1\@emptyO\else#1\fi
+\ifx#2\@empty\else,#2\fi}
+\makeatother
+\usepackage{fancyhdr} 
+\usepackage[frenchb]{babel}
+\usepackage[np]{numprint}
+\usepackage{pst-solides3d}
+
+%Tapuscrit : Denis Verg\`es Denis.Verges@wanadoo.fr
+\usepackage{pstricks,pst-plot,pst-text,pst-tree,pstricks-add}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+%\setlength{\textheight}{26,25cm}
+%\setlength{\voffset}{-2,75cm}
+\renewcommand{\theenumi}{\textbf{\arabic{enumi}}}
+\renewcommand{\labelenumi}{\textbf{\theenumi.}}
+\renewcommand{\theenumii}{\textbf{\alph{enumii}}}
+\renewcommand{\labelenumii}{\textbf{\theenumii.}}
+\def\Oij{$\left(\text{O},~\vect{\imath},~\vect{\jmath}\right)$}
+\def\Oijk{$\left(\text{O},~\vect{\imath},~ \vect{\jmath},~ \vect{k}\right)$}
+\def\Ouv{$\left(\text{O},~\vect{u},~\vect{v}\right)$}
+%\makeatletter%graduations d\'ecimales
+%\def\pshlabel#1{\expandafter\LabelVirgule#1..\@nil}
+%\def\psvlabel#1{\expandafter\LabelVirgule#1..\@nil}
+%\def\LabelVirgule#1.#2.#3\@nil{%
+%\ifx#1\@emptyO\else#1\fi
+%\ifx#2\@empty\else,#2\fi}
+%\makeatother
+
+\newcommand{\QCM}[3]{ $\bullet$ \quad #1 \hfill 
+$\bullet$ \quad #2 \hfill 
+$\bullet$ \quad #3 }
+
+\newcommand{\QCMc}[4]{   #1 \\ 
+\makebox[4cm][l]{\psframe(.25,.25) \qquad #2 }\\%\hfill 
+\makebox[4cm][l]{\psframe(.25,.25) \qquad #3 }\\%\hfill 
+\makebox[4cm][l]{\psframe(.25,.25) \qquad #4 }} % QCM avec cases à cocher%
+
+\newtheorem{prop}{Proposition}
+\newtheorem{theo}{Théorème}
+\newtheorem{ex}{Exemple}[section]
+\newtheorem{exo}{Exercice}
+\newtheorem{res}{Résolution}[section]
+\newtheorem{meth}{Méthode}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%réglages de pages
+%\textheight 24.2 cm  %25.2cm
+%\topmargin -2.6cm %Denis met - 2cm%%%%%%%%%%
+%\headheight15 mm
+%\headsep 10 mm
+%\footskip 0 mm
+\parindent 0pt
+%\textwidth 175 mm
+%\oddsidemargin -10 mm
+%\evensidemargin -10 mm
+%
+
+%%%%Intervalles------------ Utiliser les mêmes en macro emacs.
+\newcommand{\intf}[2]{\left[ #1\, ; #2 \right]}
+\newcommand{\into}[2]{\left] #1\, ; #2 \right[}
+\newcommand{\intfo}[2]{\left[ #1\, ; #2 \right[}
+\newcommand{\intof}[2]{\left] #1\, ; #2 \right]}
+%%%%%%%%%%%%% COORD ----
+\usepackage{xparse}
+\ExplSyntaxOn
+\NewDocumentCommand{\coord}{sO{}m}
+ {
+  \IfBooleanTF{#1}
+   {\left(\coord_print:n {#3}\right)}
+   {\mathopen{#2(}\coord_print:n {#3}\mathclose{#2)}}
+ }
+
+\seq_new:N \l_coord_list_seq
+\tl_new:N \l_coord_last_tl
+\cs_new_protected:Npn \coord_print:n #1
+ {
+  \seq_set_split:Nnn \l_coord_list_seq { , } { #1 }
+  \seq_pop_right:NN \l_coord_list_seq \l_coord_last_tl
+  \seq_map_inline:Nn \l_coord_list_seq { ##1 , }
+  \tl_use:N \l_coord_last_tl
+ }
+\ExplSyntaxOff
+% ex. d'utilisation
+%$\coord{0,1,0}$
+%$\coord[\Big]{0,1,2,3,4}$
+%$\coord*{\dfrac{1}{2},2}$
+%$\coord{1}$
+%%%%----
+\newrgbcolor{qqzzqq}{0 0.6 0}
+\newrgbcolor{ffqqtt}{1 0 0.2}
+\newrgbcolor{ccqqcc}{0.8 0 0.8}
+%-----
+\newcommand{\Pointilles}[1][3]{%
+\vspace{1mm}
+{ \setlength{\parskip}{0.5cm}
+\multido{}{#1}{%
+\makebox[\linewidth]{\gray\dotfill}\\[\parskip] 
+}}\vspace{-8mm}}
+%_--------
+\begin{document}
+\lhead{\small Niveau 6 - Math 4h/sem.}
+\rhead{\small NOM: ............................................................ n\up{$\circ$}.....}%tapez un titre
+\lfoot{\small{Lycée Mater Dei}}
+\rfoot{\small{F. Lancereau}}
+\cfoot{}
+\renewcommand \footrulewidth{.3pt}%
+\pagestyle{fancy}
+%\thispagestyle{empty}
+
+\begin{center} {\Large{\textbf{ \decofourleft \quad Interrogation : G3D$_1$ - 2 \quad \decofourright}}} \end{center}
+%\begin{center} {\Large{\textbf{ \decofourleft~Devoir Maison \decofourright}}} \end{center}
+%\vspace{0,5cm}
+\begin{itemize}
+	\item Vous répondez exclusivement sur cette feuille.
+	%\item La clarté des raisonnements, la maîtrise du vocabulaire et des notions mathématiques, la qualité de la rédaction et la propreté interviennent dans l'appréciation globale de la copie.
+	%\item Cote ramenée à 5 au bulletin.
+\end{itemize}
+
+
+%\vspace{0.3cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo} QCM - une seule réponse possible (0 ou 1 point) - axiomatique (C1) \end{exo}
+
+\begin{enumerate}
+	\item  \QCMc{Parmi les affirmations suivantes, quelle est celle qui est exacte ?}
+	{Deux plans parallèles à une même droite sont parallèles entre eux.}
+	{Deux droites parallèles à un même plan sont parallèles entre elles.}
+	{Une droite parallèle à deux plans sécants est parallèle à leur intersection.}
+
+	\item  \QCMc{La figure représente un cube ABCDEFGH. Que peut-on dire du triangle FDB ?}
+	{FDB est rectangle en B.}
+	{FDB est isocèle en F.}
+	{FDB est rectangle en D.} \vspace{-3em}
+	\begin{center}
+      \begin{pspicture}(2,3)
+         \pspolygon(0,0)(2,0)(3,1)(3,3)(1,3)(0,2)
+         \psline(0,2)(2,2)(2,0)
+         \psline(2,2)(3,3)
+         \psline[linestyle=dashed](0,0)(1,1)(3,1)
+         \psline[linestyle=dashed](1,1)(1,3)
+         \rput(-0.2,-0.2){$E$}
+         \rput(2,-0.2){$H$}
+         \rput(2.2,1.9){$D$}
+         \rput(-0.3,2){$A$}
+         \rput(0.8,1.1){$F$}
+         \rput(3.2,1.1){$G$}
+         \rput(3.2,3.1){$C$}
+         \rput(0.8,3.1){$B$}
+      \end{pspicture}
+   \end{center}
+   \item  \QCMc{La figure représente un cube ABCDEFGH. Parmi les trois droites suivantes, quelle est celle qui est orthogonale à (CD) ?}
+	{(CH)}
+	{(BG)}
+	{(CF)} \vspace{-3em}
+	\begin{center}
+      \begin{pspicture}(2,3)
+         \pspolygon(0,0)(2,0)(3,1)(3,3)(1,3)(0,2)
+         \psline(0,2)(2,2)(2,0)
+         \psline(2,2)(3,3)
+         \psline[linestyle=dashed](0,0)(1,1)(3,1)
+         \psline[linestyle=dashed](1,1)(1,3)
+         \rput(-0.2,-0.2){$E$}
+         \rput(2,-0.2){$H$}
+         \rput(2.2,1.9){$D$}
+         \rput(-0.3,2){$A$}
+         \rput(0.8,1.1){$F$}
+         \rput(3.2,1.1){$G$}
+         \rput(3.2,3.1){$C$}
+         \rput(0.8,3.1){$B$}
+      \end{pspicture}
+   \end{center}
+	\item  \QCMc{Parmi les affirmations suivantes, quelle est celle qui est exacte ?}{Deux droites perpendiculaires à une même troisième sont parallèles entre elles.}{Deux plans perpendiculaires à une même droite sont parallèles entre eux.}{Deux plans perpendiculaires à un même troisième sont parallèles entre eux.}
+   \item  \QCMc{La figure représente un prisme droit ABCDEF. Le triangle ABC est rectangle en A. M est le milieu de [BC]. Que peut-on dire du triangle AMD ?}
+	{AMD est rectangle en M.}
+	{AMD est isocèle en D.}
+	{AMD est rectangle en A.} \vspace{-4em}
+\begin{flushright}
+\psset{unit=0.6cm}
+\begin{pspicture}(5,5)
+\psline(4.7,5)(3.2,4)(0,5)(4.7,5)(4.7,1.6)(3.2,0.6)(0,1.6)(0,5)
+\psline(3.2,0.6)(3.2,4)
+\psline[linestyle=dashed](0,1.6)(4.7,1.6)
+\psline(2.8,4.1)(3.1,4.3)(3.43,4.18)
+\psline[linestyle=dashed](2.8,0.7)(3.1,0.9)(3.43,0.78)
+\uput[d](3.5,4.2){A}  \uput[l](0,5){B}  \uput[r](4.7,5){C}  
+\uput[d](3.5,0.6){D}  \uput[l](0,1.6){E}  \uput[r](4.7,1.6){F}  
+\end{pspicture}
+\end{flushright}
+
+
+
+   \item  \QCMc{La figure représente un cube ABCDEFGH. Parmi les droites suivantes, quelle est celle qui est perpendiculaire au plan (EBC) ?}
+	{(DG)}
+	{(AH)}
+	{(CF)} \vspace{-3em}
+	\begin{center}
+      \begin{pspicture}(2,3)
+         \pspolygon(0,0)(2,0)(3,1)(3,3)(1,3)(0,2)
+         \psline(0,2)(2,2)(2,0)
+         \psline(2,2)(3,3)
+         \psline[linestyle=dashed](0,0)(1,1)(3,1)
+         \psline[linestyle=dashed](1,1)(1,3)
+         \rput(-0.2,-0.2){$E$}
+         \rput(2,-0.2){$H$}
+         \rput(2.2,1.9){$D$}
+         \rput(-0.3,2){$A$}
+         \rput(0.8,1.1){$F$}
+         \rput(3.2,1.1){$G$}
+         \rput(3.2,3.1){$C$}
+         \rput(0.8,3.1){$B$}
+      \end{pspicture}
+   \end{center}
+
+
+\end{enumerate}
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{minipage}{9cm}
+   \begin{center}
+      Un pavé droit (parallélépipède rectangle) a toutes ses faces rectangles.\\
+      \begin{pspicture}(0,-0.5)(5,3.5)
+         \pspolygon(0,0)(4,0)(5,1)(5,3)(1,3)(0,2)
+         \psline(0,2)(4,2)(4,0)
+         \psline(4,2)(5,3)
+         \psline[linestyle=dashed](0,0)(1,1)(5,1)
+         \psline[linestyle=dashed](1,1)(1,3)
+      \end{pspicture}
+      \fbox{Volume = longueur $\times$ largeur  $\times$ hauteur}
+   \end{center}
+\end{minipage}
+\begin{minipage}{9cm}
+   \begin{center}
+      Un cube a toutes ses faces carrées.
+      \begin{pspicture}(-1.5,-0.5)(5,4)
+         \pspolygon(0,0)(2,0)(3,1)(3,3)(1,3)(0,2)
+         \psline(0,2)(2,2)(2,0)
+         \psline(2,2)(3,3)
+         \psline[linestyle=dashed](0,0)(1,1)(3,1)
+         \psline[linestyle=dashed](1,1)(1,3)
+      \end{pspicture}
+      \fbox{Volume = côté $\times$ côté $\times$ côté}
+   \end{center}
+\end{minipage}
+
+   \begin{center}
+      \begin{pspicture}(2,3)
+         \pspolygon(0,0)(2,0)(3,1)(3,3)(1,3)(0,2)
+         \psline(0,2)(2,2)(2,0)
+         \psline(2,2)(3,3)
+         \psline[linestyle=dashed](0,0)(1,1)(3,1)
+         \psline[linestyle=dashed](1,1)(1,3)
+         \rput(-0.3,-0.3){$A$}
+         \rput(2,-0.3){$B$}
+         \rput(2.3,1.8){$C$}
+         \rput(-0.3,2){$D$}
+         \rput(0.7,1){$E$}
+         \rput(3.3,1){$F$}
+         \rput(3,3.3){$G$}
+         \rput(1,3.3){$H$}
+         \psline[linecolor=red]{*-*}(1,0)(2,1)
+      \end{pspicture}
+   \end{center}
+   
+\begin{center}
+\psset{xunit=1cm , yunit=0.8cm}
+\begin{pspicture*}(-0.7,-0.7)(9.2,8.2)
+\def\xmin{-0.5} \def\xmax{9} \def\ymin{-0.5} \def\ymax{8}
+\psset{linecolor=black, linewidth=.5pt, arrowsize=2pt 4}
+\psline(0.0000,0.0000)(6.0000,0.0000)
+\psline(0.0000,0.0000)(0.0000,6.0000)
+\psline[linestyle=dashed](0.0000,0.0000)(2.0000,1.0000)
+\psline(6.0000,0.0000)(8.0000,1.0000)
+\psline(6.0000,0.0000)(6.0000,6.0000)
+\psline[linestyle=dashed](8.0000,1.0000)(2.0000,1.0000)
+\psline(8.0000,1.0000)(8.0000,7.0000)
+\psline[linestyle=dashed](2.0000,1.0000)(2.0000,7.0000)
+\psline(0.0000,6.0000)(6.0000,6.0000)
+\psline(0.0000,6.0000)(2.0000,7.0000)
+\psline(6.0000,6.0000)(8.0000,7.0000)
+\psline(8.0000,7.0000)(2.0000,7.0000)
+\psdots(0.6667,6.3300)(5.0000,7.0000)(7.0000,0.5000)
+\uput[d](0,0){$A$}
+\uput[d](6,0){$B$}
+\uput[r](8,1){$C$}
+\uput[d](2,1){$D$}
+\uput[l](0,6){$E$}
+\uput[u](6,6){$F$}
+\uput[u](8,7){$G$}
+\uput[u](2,7){$H$}
+\uput[u](0.667,6.333){$I$}
+\uput[u](5,7){$J$}
+\uput[dr](7,0.5){$K$}
+\end{pspicture*}                \end{center}   
+
+\begin{center}
+  \begin{pspicture}(-1,0)(5,3)
+      \psset{xunit=1.8}
+      \pspolygon(0,0)(2,0)(3,1)(3,3)(1,3)(0,2)
+      \psline(0,2)(2,2)(2,0)
+      \psline(2,2)(3,3)
+      \psline[linestyle=dashed](0,0)(1,1)(3,1)
+      \psline[linestyle=dashed](1,1)(1,3)
+      \psdots(1,2)(2,3)
+      \rput(-0.2,-0.2){A}
+      \rput(2,-0.2){B}
+      \rput(1.1,2.2){I}
+      \rput(2.1,3.2){J}
+      \rput(2.2,2){F}
+      \rput(-0.2,2){E}
+      \rput(0.8,1){D}
+      \rput(3.2,1){C}
+      \rput(3.1,3.2){G}
+      \rput(1,3.2){H}
+   \end{pspicture}
+\end{center}
+
+   
+\begin{center}
+\psset{xunit=0.75cm , yunit=0.5cm}
+\begin{pspicture*}(-0.7,-0.7)(5.7,5.7)
+\def\xmin{-0.5} \def\xmax{5.5} \def\ymin{-0.5} \def\ymax{5.5}
+
+\psset{linecolor=black, linewidth=.5pt, arrowsize=2pt 4}
+\psline(0.0000,1.0000)(3.0000,0.0000)
+\psline(3.0000,0.0000)(5.0000,1.0000)
+\psline[linestyle=dashed](5.0000,1.0000)(4.0000,2.0000)
+\psline[linestyle=dashed](4.0000,2.0000)(2.0000,2.0000)
+\psline[linestyle=dashed](2.0000,2.0000)(0.0000,1.0000)
+\psline(0.0000,4.0000)(3.0000,3.0000)
+\psline(0.0000,1.0000)(0.0000,4.0000)
+\psline(3.0000,0.0000)(3.0000,3.0000)
+\psline(3.0000,3.0000)(5.0000,4.0000)
+\psline(5.0000,1.0000)(5.0000,4.0000)
+\psline(5.0000,4.0000)(4.0000,5.0000)
+\psline[linestyle=dashed](4.0000,2.0000)(4.0000,5.0000)
+\psline(4.0000,5.0000)(2.0000,5.0000)
+\psline(2.0000,5.0000)(0.0000,4.0000)
+\psline[linestyle=dashed](2.0000,5.0000)(2.0000,2.0000)
+\rput(2.5,1.3){\emph{base}}
+\psline{<->}(-0.2,1)(-0.2,4)
+\rput(-0.4,2.5){$h$}
+
+\end{pspicture*}
+\end{center}
+
+
+\begin{center}
+\psset{xunit=0.75cm , yunit=0.5cm}
+\begin{pspicture*}(-0.7,-0.7)(5.7,5.7)
+\def\xmin{-0.5} \def\xmax{5.5} \def\ymin{-0.5} \def\ymax{5.5}
+
+\psset{linecolor=black, linewidth=.5pt, arrowsize=2pt 4}
+\psline(0.0000,0.0000)(3.0000,0.0000)
+\psline(3.0000,0.0000)(3.0000,3.0000)
+\psline(3.0000,3.0000)(0.0000,3.0000)
+\psline(0.0000,3.0000)(0.0000,0.0000)
+\psline[linestyle=dashed](2.0000,1.0000)(5.0000,1.0000)
+\psline(5.0000,1.0000)(5.0000,4.0000)
+\psline(5.0000,4.0000)(2.0000,4.0000)
+\psline[linestyle=dashed](2.0000,4.0000)(2.0000,1.0000)
+\psline[linestyle=dashed](0.0000,0.0000)(2.0000,1.0000)
+\psline(3.0000,0.0000)(5.0000,1.0000)
+\psline(3.0000,3.0000)(5.0000,4.0000)
+\psline(0.0000,3.0000)(2.0000,4.0000)
+\rput(2.3,0.5){\emph{base}}
+\psline{<->}(-0.2,0)(-0.2,3)
+\rput(-0.4,1.5){$h$}
+
+\end{pspicture*}
+\end{center}
+
+\begin{center}
+\psset{xunit=0.75cm , yunit=0.25cm}
+\begin{pspicture*}(-0.6,-1.2)(5.6,11.1)
+\def\xmin{-0.5} \def\xmax{5.5} \def\ymin{-1.1} \def\ymax{11}
+
+\def\F{1 4 x 2 sub 2 exp sub 0.5 exp add}
+\psplot[linecolor=black,linestyle=dashed]{0}{4}{\F}
+\def\G{1 4 x 2 sub 2 exp sub 0.5 exp sub}
+\psplot[linecolor=black,linestyle=solid]{0}{4}{\G}
+\def\H{8 4 x 2 sub 2 exp sub 0.5 exp add}
+\psplot[linecolor=black,linestyle=solid]{0}{4}{\H}
+\def\I{8 4 x 2 sub 2 exp sub 0.5 exp sub}
+\psplot[linecolor=black,linestyle=solid]{0}{4}{\I}
+\psline(0,1)(0,8)
+\psline(4,1)(4,8)
+\rput(2,1){\emph{base}}
+\psline{<->}(4.5,1)(4.5,8)
+\rput(5,4.5){$h$}
+
+\end{pspicture*}
+\end{center}
+

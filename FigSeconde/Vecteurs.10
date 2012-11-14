@@ -1,0 +1,116 @@
+%!PS
+%%BoundingBox: -3 -10 145 95 
+%%Creator: MetaPost
+%%CreationDate: 2006.12.04:1929
+%%Pages: 1
+%*Font: futr8r 9.16562 9.96265 41:f002
+%%EndProlog
+%%Page: 1 1
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+ 0.9 setgray
+newpath 0 0 moveto
+113.3858 0 lineto
+141.73225 85.03935 lineto
+28.34645 85.03935 lineto
+ closepath fill
+ 0.4 setgray 0 1.8 dtransform truncate idtransform setlinewidth pop
+ [] 0 setdash 1 setlinejoin 10 setmiterlimit
+newpath 0 0 moveto
+113.3858 0 lineto
+141.73225 85.03935 lineto
+28.34645 85.03935 lineto
+ closepath stroke
+ 0 setgray 0.5 0 dtransform exch truncate exch idtransform pop setlinewidth
+ 1 setlinecap
+newpath 34.5083 24.74481 moveto
+34.64285 16.74588 lineto stroke
+newpath 36.2233 25.7738 moveto
+36.35785 17.77487 lineto stroke
+newpath 105.37442 67.2645 moveto
+105.50897 59.26556 lineto stroke
+newpath 107.08942 68.29349 moveto
+107.22397 60.29456 lineto stroke
+ 0 0.5 dtransform truncate idtransform setlinewidth pop
+newpath 88.26225 20.22456 moveto
+95.98967 22.29512 lineto stroke
+newpath 91.09068 17.39613 moveto
+93.16124 25.12355 lineto stroke
+newpath 45.74258 62.74425 moveto
+53.47 64.8148 lineto stroke
+newpath 48.57101 59.91582 moveto
+50.64157 67.64323 lineto stroke
+newpath 0 0 moveto
+141.73225 85.03935 lineto stroke
+newpath 113.3858 0 moveto
+28.34645 85.03935 lineto stroke
+-2.9091 -9.4857 moveto
+(A) futr8r 9.16562 fshow
+110.4269 -9.4857 moveto
+(B) futr8r 9.16562 fshow
+138.599 88.22365 moveto
+(C) futr8r 9.16562 fshow
+24.77484 88.03935 moveto
+(D) futr8r 9.16562 fshow
+60.88234 39.36897 moveto
+(O) futr8r 9.16562 fshow
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+showpage
+%%EOF

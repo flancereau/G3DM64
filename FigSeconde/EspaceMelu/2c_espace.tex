@@ -1,0 +1,311 @@
+%&latex
+\documentclass[10pt,a4paper,dvips]{article}
+% \usepackage[applemac]{inputenc}
+% \usepackage[latin1]{inputenc}
+\usepackage{geometry,graphicx}
+% ==============================================================================
+\newtheorem{propriete}{Propriété}
+\newtheorem{definition}{Définition}
+\newtheorem{theoreme}{Théorème}
+\def\Vect#1{\overrightarrow{\strut #1}}
+\def\vect#1{\overrightarrow{\strut #1}}
+\everymath{\displaystyle}
+\geometry{ hmargin=1.5cm , vmargin=1cm}
+% ==============================================================================
+\begin{document}
+\begin{center}\huge
+Géométrie dans l'espace en seconde	
+\end{center}
+\section{Généralités}
+La géométrie élémentaire de l'espace  est née du souci d'étudier les propriétés de 
+l'espace dans lequel nous vivons. Les objets élémentaires de cette 
+géométrie sont les points, les droites et les plans. On considère 
+ces notions comme des notions premières, c'est-à-dire suffisamment 
+familières pour ne pas les définir. Pour leur étude il sera nécessaire 
+d'admettre un certain nombre de propriétés de base.\\
+Un point désigne un endroit précis. On le représente par un 
+point ($.$) ou une croix $(\times)$, et on lui donne un nom. Mais 
+il faut bien comprendre qu'il ne s'agit que d'une représentation de 
+l'objet théorique, "point", qui n'a pas d'étendue.\\
+Une droite est un ensemble de points, qu'on représente par un 
+"segment", et auquel on donne un nom. il faut bien comprendre qu'il ne 
+s'agit que d'une représentation de l'objet théorique, "droite", 
+qui n'a pas de largeur, et qui est illimité dans les deux sens.\\
+Un plan est un ensemble de points. La feuille de papier est une bonne 
+représentation d'un plan. Lorsque l'on veut représenter plusieurs 
+plans de l'espace, on représente chacun d'entre eux par un 
+parallélogramme, censé représenter un rectangle en "perspective". Il 
+ne s'agit là que d'une représentation de l'objet théorique "plan" qui 
+n'a pas d'épaisseur et illimité dans tous les sens.
+\begin{center}
+\includegraphics[scale=1]{fig2c_espace.1}		
+\end{center}
+\begin{propriete}
+	Les résultats de géométrie du plan sont applicables dans 
+chaque plan de l'espace.
+\end{propriete}
+
+\section{Axiomes d'incidence}
+Les axiomes d'incidences de la géométrie dans l'espace sont des 
+axiomes qui fournissent des relations entre les points, les droites 
+et les plans de cette géométrie. 
+\begin{enumerate}
+	\item  Par deux points distincts de l'espace il passe une et une 
+	seule droite. Cette droite peut-être notée $(AB)$.
+	
+	\item  Par trois points non alignés, $A,B$ et $C$ passe un et un seul plan. 
+	Ce plan peut-être noté $(ABC)$.\\
+
+	\item  Si $A$ et $B$ sont deux points d'un plan $P$, tous les points 
+	de la droite $(AB)$ appartiennent au plan.
+\end{enumerate}
+Il en résulte qu'un plan peut être déterminé par l'une des conditions 
+suivantes~:\\[1em] 
+\begin{tabular}{ccc}
+	 trois points non alignés & deux droites sécantes & une droite et un 
+	 point extérieur à celle-ci \\
+	\includegraphics[scale=1]{fig2c_espace.3}	 	
+		  & 
+	\includegraphics[scale=1]{fig2c_espace.4}	 	
+	      &
+	\includegraphics[scale=1]{fig2c_espace.5}	 	 	
+	       \\
+\end{tabular}
+\section{Positions relatives de droites et plans}
+\begin{enumerate}
+	\item $d$ et $d'$ sont deux droites de l'espace. Il n'existe que 
+	deux possibilités~:
+	\begin{enumerate}
+	   \item  il n'existe aucun plan contenant ces deux droites, elles 
+	   sont dites non coplanaires,
+	   \begin{center}
+	    \includegraphics[scale=1]{fig2c_espace.7}		
+	   \end{center}
+	   
+	   \item  il existe un plan contenant ces deux droites, elles sont 
+	   dites coplanaires (elles sont alors sécantes ou parallèles dans ce 
+	   plan).
+	\end{enumerate}
+	
+	\item $d$ est une droite et $P$ un plan de l'espace. Il n'existe que 
+	trois possibilités~:
+	\begin{enumerate}
+		\item la droite et le plan n'ont qu'un point commun,
+		la droite et le plan sont dits sécants (voir la figure précédente),
+		
+		\item la droite est incluse dans le plan,
+		
+		\item la droite et le plan n'ont aucun point commun.
+	\end{enumerate}
+    
+	\item $P$ et $Q$ sont deux plans de l'espace. Il n'existe que trois 
+	possibilités~:
+	\begin{enumerate}
+	\item les plans ont un point commun et sont distincts, alors ils sont sécants 
+	suivant une droite passant par ce point, (ainsi deux plans distincts 
+	qui ont deux points communs sont sécants suivant la droite définie 
+	par ces deux points)
+	\begin{center}
+	\includegraphics[scale=1]{fig2c_espace.2}		
+	\end{center}
+	
+	\item les plans sont confondus,
+	
+	\item ils n'ont aucun point commun.
+	\end{enumerate}
+\end{enumerate}
+\section{Parallélisme dans l'espace}
+La liste des propriétés n'est pas exhaustive$\ldots$certaines 
+propriétés "évidentes" concernant le parallélisme dans l'espace 
+n'apparaissent pas dans cette section.
+\subsection{Définitions}
+\begin{definition}\hfill 
+\begin{itemize}
+	\item  Deux droites sont parallèles lorsqu'elles sont coplanaires  et 
+	non sécantes. Il en est ainsi de deux droites confondues ou bien 
+	coplanaires et sans point commun.
+
+	\item  Deux plans sont parallèles lorsqu'ils ne sont pas sécants. Il 
+	en est ainsi de deux plans confondus ou sans point commun.
+
+	\item Une droite et un plan sont parallèles lorsqu'ils ne pas 
+	sécants. Il en est ainsi d'une droite incluse dans un plan ou d'une 
+	droite et d'un plan sans point commun. 
+\end{itemize}
+\end{definition}
+\noindent Remarques~:
+\begin{itemize}
+	\item  Le fait que deux droites n'aient aucun point 
+commun ne suffit pas pour conclure, dans l'espace, qu'elles sont parallèles. 
+
+	\item  Deux droites strictement parallèles définissent un plan.
+	\begin{center}
+		\includegraphics[scale=1]{fig2c_espace.6}
+	\end{center}
+\end{itemize}
+
+\subsection{Parallélisme entre droites}
+\begin{theoreme}
+	Deux droites parallèles à une même troisième droite sont parallèles 
+	entre elles.
+\end{theoreme}
+\parbox[]{10cm}{
+\begin{theoreme} 
+	Si $P$ et $Q$ sont deux plans parallèles, alors tout plan  qui 
+	coupe $P$ coupe aussi $Q$ et les droites d'intersection sont 
+	parallèles.
+\end{theoreme}
+                 }
+\parbox[]{6cm}{\begin{center}\includegraphics[scale=1]{fig2c_espace.8}\end{center}}\\
+\parbox[]{10cm}{
+\begin{theoreme} 
+	Si une droite est parallèle à deux plans sécants alors elle est 
+	parallèle à leur droite d'intersection.
+\end{theoreme}
+                 }
+\parbox[]{6cm}{\begin{center} \includegraphics[scale=1]{fig2c_espace.9}\end{center}}\\
+\parbox[]{10cm}{
+\begin{theoreme} "Théorème du toit"\\
+	$d$ et $d'$ sont deux droites parallèles. $P$ est un plan 
+	contenant $d$ et $P'$ un plan contenant $d'$.\\
+	Si, en outre, les plans $P$ et $P'$ sont sécants, alors la droite 
+	$\Delta$ d'intersection de ces plans est parallèle à $d$ et $d'$.
+\end{theoreme}
+                 }
+\parbox[]{6cm}{\begin{center} \includegraphics[scale=1]{fig2c_espace.10}\end{center}}\\
+\subsection{Parallélisme entre plans}
+\begin{theoreme}
+	Deux plans parallèles à un même troisième plan sont parallèles 
+	entre eux.
+\end{theoreme}
+\parbox[]{10cm}{
+\begin{theoreme} 
+	Si deux droites sécantes d'un plan $P$ sont respectivement parallèles 
+	à deux droites sécantes d'un plan $Q$, alors les plans $P$ et $Q$ 
+	sont parallèles.
+\end{theoreme}
+                 }
+\parbox[]{6cm}{\begin{center} \includegraphics[scale=1]{fig2c_espace.11}\end{center}}\\
+\subsection{Parallélisme entre droite et plan}
+\parbox[]{10cm}{
+\begin{theoreme} 
+Si une droite $d$ est parallèle à une droite $d'$, alors la droite 
+$d$ est parallèle à tout plan $P$ contennant la droite $d'$.
+\end{theoreme}
+                 }
+\parbox[]{6cm}{\begin{center} \includegraphics[scale=1]{fig2c_espace.12}\end{center}}\\
+\section{Orthogonalité dans l'espace}
+\subsection{Définitions}
+\noindent \parbox[]{10cm}{
+\begin{definition}
+Deux droites $d$ et $\Delta$ (non nécessairement coplanaires) sont orthogonales 
+si les parallèles à ces 
+deux droites menées par un point $I$ quelconque sont 
+perpendiculaires. ( Nous admettrons alors que les parallèles à $d$ et 
+$\Delta$ passant par n'importe quel autre  point sont également 
+perpendiculaires)
+\end{definition}
+                       }
+\parbox[]{6cm}{\begin{center} \includegraphics[scale=1]{fig2c_espace.13}\end{center}}\\
+\noindent Exemple~: $ABCDEFGH$ est un cube alors $(AD) \perp (HG)$.\\
+\noindent Remarques~:
+\begin{itemize}
+	\item  Deux droites orthogonales ne sont pas nécessairement 
+perpendiculaires, elles ne le sont que si elles sont coplanaires. En 
+revanche la réciproque est vraie par définition de droites 
+orthogonales.
+
+	\item  Deux droites orthogonales à une même troisième ne sont pas 
+	nécessairement parallèles. (facile à voir dans un cube)
+\end{itemize}
+\begin{definition}
+Une droite $d$ est orthogonale à un plan lorsqu'elle est orthogonale 
+à toutes les droites de ce plan.
+\end{definition}
+\subsection{Orthogonalité d'une droite et d'un plan}
+\noindent \parbox[]{10cm}{
+\begin{theoreme}
+	Pour qu'une droite $\Delta$ soit orthogonale à un plan $P$ il suffit que 
+	$\Delta$ soit orthogonale à deux droites sécantes de $P$.
+\end{theoreme}
+                       }
+\parbox[]{6cm}{\begin{center} \includegraphics[scale=1]{fig2c_espace.14}\end{center}}\\
+\noindent \parbox[]{10cm}{
+\begin{theoreme}\hfill
+\begin{itemize} 
+	\item  Deux plans orthogonaux à une même droite sont parallèles.
+
+	\item  Si deux plans sont parallèles, toute droite orthogonale à 
+	l'un est orthogonale à l'autre.
+\end{itemize}
+\end{theoreme}
+                       }
+\parbox[]{6cm}{\begin{center} \includegraphics[scale=1]{fig2c_espace.15}\end{center}}\\
+\noindent \parbox[]{10cm}{
+\begin{theoreme}\hfill
+\begin{itemize}
+	\item  Si deux droites sont parallèles, tout plan orthogonal à l'une 
+	est orthogonal à l'autre.
+
+	\item  Deux droites orthogonales à un même plan sont parallèles.
+\end{itemize}
+\end{theoreme}
+                       }
+\parbox[]{6cm}{\begin{center} \includegraphics[scale=1]{fig2c_espace.16}\end{center}}\\
+\subsection{Orthogonalité de deux droites de l'espace}
+\begin{theoreme}
+	Si deux droites sont parallèles, toute droite orthogonale à l'une est 
+	orthogonale à l'autre.
+\end{theoreme}
+\subsection{Plans perpendiculaires}
+\noindent \parbox[]{10cm}{
+\begin{definition}
+	Un plan $Q$ est perpendiculaire à un plan $P$  ($Q \perp P$), si il 
+	existe une droite de $Q$ orthogonale à $P$. (Dans ce cas on a 
+	aussi $P \perp Q$). %preuve dans le Durande lycee 1981
+\end{definition}
+                       }
+\parbox[]{6cm}{\begin{center} \includegraphics[scale=1]{fig2c_espace.17}\end{center}}\\
+\noindent Remarques~:
+\begin{itemize}
+	\item l'exemple qu'il faut avoir en tête est celui d'un cube~: deux 
+	faces quelconques non parallèles sont perpendiculaires.
+	
+	\item  Si $P \perp Q$ alors toute droite de l'un n'est pas 
+	orthogonale à l'autre, c'est vrai pour l'une d'entre elles.( Dans un 
+	cube $ABCDEFGH$ les faces $ABFE$ et $ABCD$ sont perpendiculaires 
+	mais la droite $(AF)$ n'est pas orthogonale à la face $ABCD$ car elle 
+	n'est pas orthogonale à (AB))
+	
+	\item  Si $P \perp Q$ et $P' \perp Q$ alors $P$ et $P'$ ne sont pas 
+	nécessairement parallèles (facile à voir dans un cube avec les 
+	faces). Cette relation de perpendicularité de plans est donc moins 
+	souple que celle de perpendicularité de droites.
+\end{itemize}
+\noindent \parbox[]{10cm}{
+\begin{theoreme}
+	Si $P$ et $P'$, deux plans sécants, sont perpendiculaires à un même 
+	plan $Q$, alors leur intersection est orthogonale à $Q$.
+\end{theoreme}
+                       }
+\parbox[]{6cm}{\begin{center} 
+\includegraphics[scale=1]{fig2c_espace.18}\end{center}}\\
+\begin{theoreme}
+Si $P \perp Q$, toute droite de l'un, qui est orthogonale à leur 
+	intersection, est orthogonale à l'autre. (voir la figure de la 
+	définition précédente)
+\end{theoreme}
+\section{Vecteurs de l'espace}
+La notion de vecteur (sens, direction, longueur) vue en géométrie plane se 
+généralise sans difficultés à l'espace. Les notions suivantes aussi~:
+\begin{enumerate}
+	\item  Pour tout point $O$ de l'espace et tout vecteur $\vect{u}$, il 
+	existe un point $A$ et un seul tel que $\Vect{OA}=\vect{u}$.
+    \item  Égalité de deux vecteurs à l'aide de la définition (sens, 
+	direction, longueur) ou caractérisation à l'aide d'un parallélogramme.
+	\item  Les règles de calculs (Relation de Chasles, règle du 
+	parallèlogramme, multiplication d'un vecteur par un réel)
+	\item  La colinéarité de deux vecteurs et son application au parallélisme 
+	ou bien à l'alignement de trois points.
+\end{enumerate} 
+\end{document}

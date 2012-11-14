@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=latex 2012.2.11)  14 NOV 2012 18:15
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=latex 2012.2.11)  14 NOV 2012 18:23
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1496,22 +1496,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 840--841
 
  []
 
-/Users/fred/depotsGithub/G3DM64/./MonCoursG3D_M64.tex:868: Missing $ inserted.
-<inserted text> 
-                $
-l.868 ...y=\lambda\cdot v_y}{u_z=\lambda\cdot v_z}
-                                                   \hfill $ $
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/Users/fred/depotsGithub/G3DM64/./MonCoursG3D_M64.tex:869: Missing $ inserted.
-<inserted text> 
-                $
-l.869 \end{definition}
-                      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
 [8]
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 8.75pt on input line 880.
@@ -1694,28 +1678,6 @@ fnc/m/n/10 (\FMS/fncm/m/n/10 ^^@\T1/fnc/m/n/10 2; 3; 1)$ et $\FML/fncmi/m/it/10
  []
 
 [17] (/usr/local/texlive/2011/texmf-dist/tex/latex/fouriernc/ts1fnc.fd)
-
-/Users/fred/depotsGithub/G3DM64/./MonCoursG3D_M64.tex:1794: LaTeX Error: \begin
-{document} ended by \end{enumerate}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1794 \end{enumerate}
-                      
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-/Users/fred/depotsGithub/G3DM64/./MonCoursG3D_M64.tex:1794: Extra \endgroup.
-<recently read> \endgroup 
-                          
-l.1794 \end{enumerate}
-                      
-Things are pretty mixed up, but I think the worst is over.
-
-
 Overfull \hbox (0.41002pt too wide) in paragraph at lines 1880--1881
 []\T1/fnc/m/n/10 Dans l'es-pace muni d'un re-père $[]$, on consi-dère les point
 s $\FML/fncmi/m/it/10 A\T1/fnc/m/n/10 (2; \FMS/fncm/m/n/10 ^^@\T1/fnc/m/n/10 1;
@@ -1753,13 +1715,13 @@ Package rerunfilecheck Info: File `MonCoursG3D_M64.out' has not changed.
 (rerunfilecheck)             Checksum: 65BFE131DC229B6B5B2C2F08969E166F;539.
  ) 
 Here is how much of TeX's memory you used:
- 16615 strings out of 493630
- 245597 string characters out of 3143346
+ 16614 strings out of 493630
+ 245592 string characters out of 3143346
  1065987 words of memory out of 3000000
- 19502 multiletter control sequences out of 15000+200000
+ 19501 multiletter control sequences out of 15000+200000
  81121 words of font info for 127 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
  41i,23n,54p,600b,650s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on /Users/fred/depotsGithub/G3DM64/./MonCoursG3D_M64.dvi (22 pag
-es, 1740588 bytes).
+es, 1740572 bytes).

@@ -1,0 +1,201 @@
+%!PS
+%%BoundingBox: -40 -21 159 80 
+%%Creator: MetaPost
+%%CreationDate: 2006.12.04:1929
+%%Pages: 1
+%*Font: futr8r 9.16562 9.96265 28:c000100005
+%*Font: fourier-ms 9.16562 9.96265 21:800000000000000000000000000000008
+%*Font: futri8r 9.16562 9.96265 69:c0018
+%%EndProlog
+%%Page: 1 1
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+ 0 0 1 setrgbcolor 0 0.5 dtransform truncate idtransform setlinewidth pop
+ [] 0 setdash 1 setlinecap 1 setlinejoin 10 setmiterlimit
+newpath -39.68484 0 moveto
+158.73938 0 lineto stroke
+newpath -3.96843 -19.84242 moveto
+15.87372 79.36969 lineto stroke
+ 0 setgray
+15.37132 -6.7957 moveto
+(\241) fourier-ms 9.16562 fshow
+15.14792 -6.7957 moveto
+(!) fourier-ms 9.16562 fshow
+17.83992 -13.4109 moveto
+(i) futri8r 9.16562 fshow
+-9.95798 12.45175 moveto
+(\241) fourier-ms 9.16562 fshow
+-10.18138 12.45175 moveto
+(!) fourier-ms 9.16562 fshow
+-6.99617 5.83655 moveto
+(j) futri8r 9.16562 fshow
+newpath 0 0 moveto
+39.68484 0 lineto stroke
+newpath 35.98915 -1.53084 moveto
+39.68484 0 lineto
+35.98915 1.53084 lineto
+ closepath
+gsave fill grestore stroke
+newpath 0 0 moveto
+3.96843 19.84242 lineto stroke
+newpath 4.74475 15.91843 moveto
+3.96843 19.84242 lineto
+1.74261 16.51883 lineto
+ closepath
+gsave fill grestore stroke
+ 0 1 0 setrgbcolor [3 3 ] 0 setdash
+newpath 59.52727 0 moveto
+67.46413 39.68484 lineto stroke
+ 0.4 setgray
+newpath 7.93686 39.68484 moveto
+67.46413 39.68484 lineto stroke
+ 1 0 0 setrgbcolor [] 0 setdash
+newpath 0 0 moveto
+67.46413 39.68484 lineto stroke
+newpath 65.05515 36.49193 moveto
+67.46413 39.68484 lineto
+63.50299 39.1306 lineto
+ closepath
+gsave fill grestore stroke
+ 0 setgray
+52.63092 44.92645 moveto
+(M) futr8r 9.16562 fshow
+61.27852 44.92645 moveto
+(\() futr8r 9.16562 fshow
+64.68571 44.92645 moveto
+(x) futri8r 9.16562 fshow
+70.05553 44.92645 moveto
+(;) futr8r 9.16562 fshow
+73.95862 44.92645 moveto
+(y) futri8r 9.16562 fshow
+79.08942 44.92645 moveto
+(\)) futr8r 9.16562 fshow
+ 0 3 dtransform truncate idtransform setlinewidth pop
+newpath 67.46413 39.68484 moveto 0 0 rlineto stroke
+25.91637 29.38785 moveto
+(\241) fourier-ms 9.16562 fshow
+29.14926 29.38785 moveto
+(\241) fourier-ms 9.16562 fshow
+32.38206 29.38785 moveto
+(!) fourier-ms 9.16562 fshow
+25.91637 22.97694 moveto
+(O) futr8r 9.16562 fshow
+32.90016 22.97694 moveto
+(M) futr8r 9.16562 fshow
+ 0 1 0 setrgbcolor
+52.47081 -13.4109 moveto
+(x) futri8r 9.16562 fshow
+57.84071 -6.7957 moveto
+(\241) fourier-ms 9.16562 fshow
+57.61731 -6.7957 moveto
+(!) fourier-ms 9.16562 fshow
+60.30931 -13.4109 moveto
+(i) futri8r 9.16562 fshow
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+showpage
+%%EOF

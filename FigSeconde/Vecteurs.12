@@ -1,0 +1,104 @@
+%!PS
+%%BoundingBox: -3 -10 145 95 
+%%Creator: MetaPost
+%%CreationDate: 2006.12.04:1929
+%%Pages: 1
+%*Font: futr8r 9.16562 9.96265 41:f
+%%EndProlog
+%%Page: 1 1
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+gsave newpath -283.46451 -141.73225 moveto
+-283.46451 283.46451 lineto
+340.15741 283.46451 lineto
+340.15741 -141.73225 lineto
+ closepath clip
+ 0.9 setgray
+newpath 0 0 moveto
+113.3858 0 lineto
+141.73225 85.03935 lineto
+28.34645 85.03935 lineto
+ closepath fill
+ 0.4 setgray 0 1.8 dtransform truncate idtransform setlinewidth pop
+ [] 0 setdash 1 setlinejoin 10 setmiterlimit
+newpath 0 0 moveto
+113.3858 0 lineto
+141.73225 85.03935 lineto
+28.34645 85.03935 lineto
+ closepath stroke
+ 0 setgray
+-2.9091 -9.4857 moveto
+(A) futr8r 9.16562 fshow
+110.4269 -9.4857 moveto
+(B) futr8r 9.16562 fshow
+138.599 88.22365 moveto
+(C) futr8r 9.16562 fshow
+24.77484 88.03935 moveto
+(D) futr8r 9.16562 fshow
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+grestore
+showpage
+%%EOF

@@ -1,0 +1,141 @@
+%!PS
+%%BoundingBox: -130 -17 130 42 
+%%Creator: MetaPost
+%%CreationDate: 2006.10.02:1604
+%%Pages: 1
+%*Font: futr8r 9.16562 9.96265 30:d81000600014
+%*Font: fourier-ms 9.16562 9.96265 31:8000000000000000000000000000800000000c
+%*Font: cmsy10 9.96265 9.96265 00:8
+%*Font: cmr10 9.96265 9.96265 31:fc
+%%EndProlog
+%%Page: 1 1
+ 0 0.5 dtransform truncate idtransform setlinewidth pop [] 0 setdash
+ 1 setlinecap 1 setlinejoin 10 setmiterlimit
+newpath -128.97575 0 moveto
+128.97575 0 lineto stroke
+newpath 125.28116 -1.5304 moveto
+128.97575 0 lineto
+125.28116 1.5304 lineto
+ closepath
+gsave fill grestore stroke
+ 0.5 setgray 0.5 0 dtransform exch truncate exch idtransform pop setlinewidth
+newpath -19.84242 -2.83464 moveto
+-19.84242 2.83464 lineto stroke
+newpath -39.68484 -2.83464 moveto
+-39.68484 2.83464 lineto stroke
+newpath -59.52727 -2.83464 moveto
+-59.52727 2.83464 lineto stroke
+newpath -79.36969 -2.83464 moveto
+-79.36969 2.83464 lineto stroke
+newpath -99.21211 -2.83464 moveto
+-99.21211 2.83464 lineto stroke
+newpath -119.05453 -2.83464 moveto
+-119.05453 2.83464 lineto stroke
+-26.20747 -14.25504 moveto
+(\000) cmsy10 9.96265 fshow
+-18.45877 -14.25504 moveto
+(1) cmr10 9.96265 fshow
+-46.0499 -14.25504 moveto
+(\000) cmsy10 9.96265 fshow
+-38.3012 -14.25504 moveto
+(2) cmr10 9.96265 fshow
+-65.89232 -14.25504 moveto
+(\000) cmsy10 9.96265 fshow
+-58.14362 -14.25504 moveto
+(3) cmr10 9.96265 fshow
+-85.73474 -14.25504 moveto
+(\000) cmsy10 9.96265 fshow
+-77.98604 -14.25504 moveto
+(4) cmr10 9.96265 fshow
+-105.57716 -14.25504 moveto
+(\000) cmsy10 9.96265 fshow
+-97.82846 -14.25504 moveto
+(5) cmr10 9.96265 fshow
+-125.41959 -14.25504 moveto
+(\000) cmsy10 9.96265 fshow
+-117.67088 -14.25504 moveto
+(6) cmr10 9.96265 fshow
+newpath 19.84242 -2.83464 moveto
+19.84242 2.83464 lineto stroke
+newpath 39.68484 -2.83464 moveto
+39.68484 2.83464 lineto stroke
+newpath 59.52727 -2.83464 moveto
+59.52727 2.83464 lineto stroke
+newpath 79.36969 -2.83464 moveto
+79.36969 2.83464 lineto stroke
+newpath 99.21211 -2.83464 moveto
+99.21211 2.83464 lineto stroke
+newpath 119.05453 -2.83464 moveto
+119.05453 2.83464 lineto stroke
+17.35175 -14.255 moveto
+(1) cmr10 9.96265 fshow
+37.19417 -14.255 moveto
+(2) cmr10 9.96265 fshow
+57.03659 -14.255 moveto
+(3) cmr10 9.96265 fshow
+76.87901 -14.255 moveto
+(4) cmr10 9.96265 fshow
+96.72144 -14.255 moveto
+(5) cmr10 9.96265 fshow
+116.56386 -14.255 moveto
+(6) cmr10 9.96265 fshow
+ 0 setgray
+-2.43091 -16.8062 moveto
+(0) futr8r 9.16562 fshow
+newpath 0 5.6692 moveto
+0 -5.6692 lineto stroke
+ 1 0 0 setrgbcolor 0 2 dtransform truncate idtransform setlinewidth pop
+newpath -59.52727 0 moveto
+128.97575 0 lineto stroke
+newpath -56.69263 4.25197 moveto
+-59.52727 4.25197 lineto
+-59.52727 -4.25197 lineto
+-56.69263 -4.25197 lineto stroke
+53.13318 34.63655 moveto
+(J) futr8r 9.16562 fshow
+58.24507 34.63655 moveto
+(\306) fourier-ms 9.16562 fshow
+66.54498 34.63655 moveto
+([) futr8r 9.16562 fshow
+69.57358 34.63655 moveto
+(\241) fourier-ms 9.16562 fshow
+76.16888 34.63655 moveto
+(3) futr8r 9.16562 fshow
+82.24828 34.63655 moveto
+(;) futr8r 9.16562 fshow
+86.62738 34.63655 moveto
+(\305) fourier-ms 9.16562 fshow
+93.22258 34.63655 moveto
+(1) fourier-ms 9.16562 fshow
+102.57748 34.63655 moveto
+([) futr8r 9.16562 fshow
+ 0 0.79001 0.34001 setrgbcolor [0 5 ] 2.5 setdash
+newpath -19.84242 0 moveto
+79.36969 0 lineto stroke
+ [] 0 setdash
+newpath 82.20433 4.25197 moveto
+79.36969 4.25197 lineto
+79.36969 -4.25197 lineto
+82.20433 -4.25197 lineto stroke
+newpath -22.67706 4.25197 moveto
+-19.84242 4.25197 lineto
+-19.84242 -4.25197 lineto
+-22.67706 -4.25197 lineto stroke
+-1.11053 34.63655 moveto
+(I) futr8r 9.16562 fshow
+3.79216 34.63655 moveto
+(\306) fourier-ms 9.16562 fshow
+10.38736 34.63655 moveto
+(]) futr8r 9.16562 fshow
+14.63367 34.63655 moveto
+(\241) fourier-ms 9.16562 fshow
+22.44656 34.63655 moveto
+(1) futr8r 9.16562 fshow
+28.52586 34.63655 moveto
+(;) futr8r 9.16562 fshow
+32.90497 34.63655 moveto
+(4) futr8r 9.16562 fshow
+37.76677 34.63655 moveto
+([) futr8r 9.16562 fshow
+showpage
+%%EOF

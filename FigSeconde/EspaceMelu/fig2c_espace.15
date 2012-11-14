@@ -1,0 +1,117 @@
+%!PS
+%%BoundingBox: -1 -81 143 80 
+%%Creator: MetaPost
+%%CreationDate: 2006.12.15:1741
+%%Pages: 1
+%*Font: futr8r 9.16562 9.96265 50:c
+%*Font: futri8r 9.16562 9.96265 64:8
+%*Font: fourier-ms 6.96591 9.96265 30:8
+%*Font: fourier-ml 9.16562 9.96265 a2:8
+%*Font: futr8r 6.96591 9.96265 31:8
+%%EndProlog
+%%Page: 1 1
+ 0.63528 0.96936 1 setrgbcolor
+newpath 0 0 moveto
+113.3858 0 lineto
+141.73225 56.6929 lineto
+28.34645 56.6929 lineto
+ closepath fill
+ 0 setgray 0 0.5 dtransform truncate idtransform setlinewidth pop [] 0 setdash
+ 1 setlinecap 1 setlinejoin 10 setmiterlimit
+newpath 0 0 moveto
+28.34645 56.6929 lineto stroke
+newpath 28.34645 56.6929 moveto
+141.73225 56.6929 lineto stroke
+ 0 1.99252 dtransform truncate idtransform setlinewidth pop
+newpath 0 0 moveto
+113.3858 0 lineto stroke
+newpath 113.3858 0 moveto
+141.73225 56.6929 lineto stroke
+6.33481 3.49998 moveto
+(P) futr8r 9.16562 fshow
+ 0 0.49814 dtransform truncate idtransform setlinewidth pop
+newpath 22.67725 28.34645 moveto
+113.3858 42.51968 lineto stroke
+newpath 28.34645 45.35449 moveto
+102.0474 11.33841 lineto stroke
+118.3858 39.15979 moveto
+(d) futri8r 9.16562 fshow
+107.0474 7.62881 moveto
+(d) futri8r 9.16562 fshow
+113.3537 11.24521 moveto
+(0) fourier-ms 6.96591 fshow
+ 0 1 0 setrgbcolor
+newpath 0 -70.86613 moveto
+113.3858 -70.86613 lineto
+141.73225 -14.17323 lineto
+28.34645 -14.17323 lineto
+ closepath fill
+ 0 setgray
+newpath 0 -70.86613 moveto
+28.34645 -14.17323 lineto stroke
+newpath 28.34645 -14.17323 moveto
+141.73225 -14.17323 lineto stroke
+ 0 1.99252 dtransform truncate idtransform setlinewidth pop
+newpath 0 -70.86613 moveto
+113.3858 -70.86613 lineto stroke
+newpath 113.3858 -70.86613 moveto
+141.73225 -14.17323 lineto stroke
+6.33481 -65.59285 moveto
+(Q) futr8r 9.16562 fshow
+ 0 0.49814 dtransform truncate idtransform setlinewidth pop
+newpath 22.67725 -42.51968 moveto
+113.3858 -28.34645 lineto stroke
+newpath 28.34645 -25.51163 moveto
+102.0474 -59.52773 lineto stroke
+118.3858 -31.0264 moveto
+(d) futri8r 9.16562 fshow
+124.0645 -32.5208 moveto
+(1) futr8r 6.96591 fshow
+107.0474 -61.71758 moveto
+(d) futri8r 9.16562 fshow
+113.3537 -58.10118 moveto
+(0) fourier-ms 6.96591 fshow
+112.72609 -64.89157 moveto
+(1) futr8r 6.96591 fshow
+ 0.49814 0 dtransform exch truncate exch idtransform pop setlinewidth
+newpath 54.44246 75.82959 moveto
+54.44246 33.3099 lineto stroke
+ [3 3 ] 0 setdash
+newpath 54.44246 33.3099 moveto
+54.44223 -0.00024 lineto stroke
+ [] 0 setdash
+newpath 54.44223 -0.00024 moveto
+54.44246 -37.55623 lineto stroke
+ [3 3 ] 0 setdash
+newpath 54.44246 -37.55623 moveto
+54.44223 -70.86617 lineto stroke
+ [] 0 setdash
+newpath 54.44223 -70.86617 moveto
+54.44246 -80.07591 lineto stroke
+59.44246 72.62413 moveto
+(\242) fourier-ml 9.16562 fshow
+newpath 48.08951 36.56946 moveto
+48.08951 32.31723 lineto stroke
+ 0 0.49814 dtransform truncate idtransform setlinewidth pop
+newpath 48.08951 36.56946 moveto
+54.44246 37.56213 lineto stroke
+ 0.49814 0 dtransform exch truncate exch idtransform pop setlinewidth
+newpath 48.08948 -34.79308 moveto
+48.08951 -38.5489 lineto stroke
+ 0 0.49814 dtransform truncate idtransform setlinewidth pop
+newpath 48.08948 -34.79308 moveto
+54.44243 -33.8004 lineto stroke
+ 0.49814 0 dtransform exch truncate exch idtransform pop setlinewidth
+newpath 59.20325 35.36485 moveto
+59.20325 31.11263 lineto stroke
+ 0 0.49814 dtransform truncate idtransform setlinewidth pop
+newpath 59.20325 35.36485 moveto
+54.44246 37.56213 lineto stroke
+ 0.49814 0 dtransform exch truncate exch idtransform pop setlinewidth
+newpath 59.20322 -35.99768 moveto
+59.20325 -39.75351 lineto stroke
+ 0 0.49814 dtransform truncate idtransform setlinewidth pop
+newpath 59.20322 -35.99768 moveto
+54.44243 -33.8004 lineto stroke
+showpage
+%%EOF
